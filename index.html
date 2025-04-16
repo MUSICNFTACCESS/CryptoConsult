@@ -2,135 +2,76 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Crimzn Crypto Consultations</title>
+  <title>Crimzn Crypto Consult</title>
   <style>
-    :root {
-      --bg: #0d0d0d;
-      --text: #f0f0f0;
-      --box: #1a1a1a;
-      --accent: #ff8800;
-    }
     body {
-      margin: 0;
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      padding: 40px;
-      transition: background-color 0.3s, color 0.3s;
-      opacity: 0;
-      animation: fadeIn 1s ease-in-out forwards;
-    }
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-    .intro {
-      font-family: "Courier New", monospace;
-      color: #0f0;
-      font-size: 1.2rem;
-      text-align: left;
-      max-width: 700px;
-      margin: auto;
-      padding-bottom: 30px;
-      white-space: pre-wrap;
-      border-left: 3px solid #0f0;
-      padding-left: 15px;
-      overflow: hidden;
-      position: relative;
-    }
-    .intro::after {
-      content: "|";
-      color: #0f0;
-      animation: blink 1s step-end infinite;
-      position: absolute;
-    }
-    @keyframes blink {
-      from, to { opacity: 1; }
-      50% { opacity: 0; }
-    }
-    .container {
-      max-width: 700px;
-      margin: auto;
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #fff;
       padding: 20px;
-      background-color: var(--box);
-      border-radius: 15px;
-      box-shadow: 0 0 15px #444;
     }
-    h1 {
-      color: var(--accent);
+
+    h1, h2 {
+      color: #f7931a;
     }
-    .button {
-      background-color: var(--accent);
-      color: #000;
-      padding: 12px 24px;
+
+    #chat-form {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    #user-input {
+      flex: 1;
+      padding: 8px;
       border: none;
-      border-radius: 8px;
+      border-radius: 4px;
+    }
+
+    #chat-response {
+      margin-top: 20px;
+      background: #222;
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    button {
+      background-color: #f7931a;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      color: black;
       font-weight: bold;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 20px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 12px var(--accent);
-    }
-    ul {
-      text-align: left;
-      margin-top: 20px;
-    }
-    .tweet {
-      margin-top: 40px;
-    }
-    .toggle {
-      margin-top: 30px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
+  <h1>Welcome to Crimzn Crypto Consult</h1>
+  <p>Your one-stop page for crypto consulting powered by AI.</p>
 
-  <div class="intro">
-    > Welcome to the edge of finance.<br>
-    > Crimzn offers high-signal crypto consulting for those who live beyond the banks.<br>
-    > Bitcoin. Security. DeFi. Sovereignty. Let's build your future.
-  </div>
+  <section id="crimznbot">
+    <h2>Talk to CrimznBot</h2>
+    <form id="chat-form">
+      <input type="text" id="user-input" placeholder="Ask anything..." required />
+      <button type="submit">Send</button>
+    </form>
+    <div id="chat-response"></div>
+  </section>
 
-  <div class="container">
-    <h1>Crimzn's Crypto Consulting</h1>
-    <p><strong>Rate:</strong> $99.99/hr</p>
-    <ul>
-      <li>Portfolio Reviews</li>
-      <li>Wallet Setup & Security</li>
-      <li>DeFi & Yield Strategies</li>
-      <li>Market Outlooks</li>
-    </ul>
-    <a class="button" href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">Book Now</a>
-    <br><br>
-    <a class="button" href="https://x.com/crimzn" target="_blank">Message Me on X</a>
-
-    <div class="tweet">
-      <a class="twitter-timeline" data-theme="dark" data-height="500" href="https://twitter.com/crimzn">Loading Tweets by @crimzn...</a>
-    </div>
-
-    <div class="toggle">
-      <button class="button" onclick="toggleTheme()">Toggle Dark/Light</button>
-    </div>
-  </div>
-
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <script>
-    function toggleTheme() {
-      const root = document.documentElement;
-      if (root.style.getPropertyValue('--bg') === '#0d0d0d') {
-        root.style.setProperty('--bg', '#f5f5f5');
-        root.style.setProperty('--text', '#000');
-        root.style.setProperty('--box', '#fff');
-      } else {
-        root.style.setProperty('--bg', '#0d0d0d');
-        root.style.setProperty('--text', '#f0f0f0');
-        root.style.setProperty('--box', '#1a1a1a');
-      }
-    }
+    document.getElementById("chat-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const input = document.getElementById("user-input").value;
+      const res = await fetch("https://crimznbot.onrender.com/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: input })
+      });
+      const data = await res.json();
+      document.getElementById("chat-response").innerHTML = `<p><strong>CrimznBot:</strong> ${data.reply}</p>`;
+      document.getElementById("user-input").value = "";
+    });
   </script>
 </body>
 </html>
