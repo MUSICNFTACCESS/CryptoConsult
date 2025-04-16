@@ -24,6 +24,24 @@
     @keyframes fadeIn {
       to { opacity: 1; }
     }
+    .intro {
+      font-family: "Courier New", monospace;
+      color: #0f0;
+      font-size: 1.2rem;
+      text-align: left;
+      max-width: 700px;
+      margin: auto;
+      padding-bottom: 30px;
+      white-space: pre-wrap;
+      border-left: 3px solid #0f0;
+      padding-left: 15px;
+      animation: typing 3s steps(40, end);
+      overflow: hidden;
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
     .container {
       max-width: 700px;
       margin: auto;
@@ -64,6 +82,13 @@
   </style>
 </head>
 <body>
+
+  <div class="intro">
+    > Welcome to the edge of finance.<br>
+    > Crimzn offers high-signal crypto consulting for those who live beyond the banks.<br>
+    > Bitcoin. Security. DeFi. Sovereignty. Let's build your future.
+  </div>
+
   <div class="container">
     <h1>Crimzn's Crypto Consulting</h1>
     <p><strong>Rate:</strong> 9.99/hr</p>
