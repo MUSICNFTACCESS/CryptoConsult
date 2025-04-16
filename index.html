@@ -35,12 +35,18 @@
       white-space: pre-wrap;
       border-left: 3px solid #0f0;
       padding-left: 15px;
-      animation: typing 3s steps(40, end);
       overflow: hidden;
+      position: relative;
     }
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
+    .intro::after {
+      content: "|";
+      color: #0f0;
+      animation: blink 1s step-end infinite;
+      position: absolute;
+    }
+    @keyframes blink {
+      from, to { opacity: 1; }
+      50% { opacity: 0; }
     }
     .container {
       max-width: 700px;
@@ -91,7 +97,7 @@
 
   <div class="container">
     <h1>Crimzn's Crypto Consulting</h1>
-    <p><strong>Rate:</strong> 99.99/hr</p>
+    <p><strong>Rate:</strong> $99.99/hr</p>
     <ul>
       <li>Portfolio Reviews</li>
       <li>Wallet Setup & Security</li>
@@ -103,7 +109,7 @@
     <a class="button" href="https://x.com/crimzn" target="_blank">Message Me on X</a>
 
     <div class="tweet">
-      <a class="twitter-timeline" data-theme="dark" data-height="500" href="https://x.com/crimzn?ref_src=twsrc%5Etfw">Tweets by @crimzn</a>
+      <a class="twitter-timeline" data-theme="dark" data-height="500" href="https://twitter.com/crimzn">Loading Tweets by @crimzn...</a>
     </div>
 
     <div class="toggle">
