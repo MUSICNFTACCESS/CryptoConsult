@@ -1,28 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Crimzn Crypto Consultations</title>
   <style>
+    :root {
+      --bg: #0d0d0d;
+      --text: #f0f0f0;
+      --box: #1a1a1a;
+      --accent: #ff8800;
+    }
     body {
-      background-color: #0d0d0d;
-      color: #f0f0f0;
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--text);
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
       padding: 40px;
+      transition: background-color 0.3s, color 0.3s;
+      opacity: 0;
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
     }
     .container {
-      max-width: 600px;
+      max-width: 700px;
       margin: auto;
       padding: 20px;
-      background-color: #1a1a1a;
+      background-color: var(--box);
       border-radius: 15px;
-      box-shadow: 0 0 10px #444;
+      box-shadow: 0 0 15px #444;
     }
     h1 {
-      color: #ff8800;
+      color: var(--accent);
     }
     .button {
-      background-color: #ff8800;
+      background-color: var(--accent);
       color: #000;
       padding: 12px 24px;
       border: none;
@@ -31,10 +45,21 @@
       text-decoration: none;
       display: inline-block;
       margin-top: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 12px var(--accent);
     }
     ul {
       text-align: left;
       margin-top: 20px;
+    }
+    .tweet {
+      margin-top: 40px;
+    }
+    .toggle {
+      margin-top: 30px;
     }
   </style>
 </head>
@@ -51,6 +76,30 @@
     <a class="button" href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">Book Now</a>
     <br><br>
     <a class="button" href="https://x.com/crimzn" target="_blank">Message Me on X</a>
+
+    <div class="tweet">
+      <a class="twitter-timeline" data-theme="dark" data-height="500" href="https://x.com/crimzn?ref_src=twsrc%5Etfw">Tweets by @crimzn</a>
+    </div>
+
+    <div class="toggle">
+      <button class="button" onclick="toggleTheme()">Toggle Dark/Light</button>
+    </div>
   </div>
+
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <script>
+    function toggleTheme() {
+      const root = document.documentElement;
+      if (root.style.getPropertyValue('--bg') === '#0d0d0d') {
+        root.style.setProperty('--bg', '#f5f5f5');
+        root.style.setProperty('--text', '#000');
+        root.style.setProperty('--box', '#fff');
+      } else {
+        root.style.setProperty('--bg', '#0d0d0d');
+        root.style.setProperty('--text', '#f0f0f0');
+        root.style.setProperty('--box', '#1a1a1a');
+      }
+    }
+  </script>
 </body>
 </html>
