@@ -25,7 +25,7 @@ app.post("/chat", async (req, res) => {
       messages: [{ role: "user", content: userMessage }]
     }, {
       headers: {
-        Authorization: ,
+        Authorization: "Bearer " + OPENAI_API_KEY,
         "Content-Type": "application/json"
       }
     });
