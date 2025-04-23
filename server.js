@@ -11,10 +11,10 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static("public")); // Serve static files from /public
+app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/index.html"));
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 app.post("/chat", async (req, res) => {
@@ -25,10 +25,11 @@ app.post("/chat", async (req, res) => {
       messages: [{ role: "user", content: userMessage }]
     }, {
       headers: {
-        Authorization: "Bearer " + OPENAI_API_KEY,
+        Authorization: ,
         "Content-Type": "application/json"
       }
     });
+
     res.json({ response: response.data.choices[0].message.content });
   } catch (err) {
     res.json({ response: "Error reaching CrimznBot." });
@@ -36,9 +37,9 @@ app.post("/chat", async (req, res) => {
 });
 
 app.use((req, res) => {
-  res.status(404).send("404 Not Found");
+  res.status(404).send("404 Not Found - Check your URL or backend routes.");
 });
 
 app.listen(PORT, () => {
-  console.log("✅ Server running on port", PORT);
+  console.log();
 });
