@@ -1,10 +1,11 @@
 services:
   - type: web
-    name: crimznbot-site
+    name: cryptoconsult
     env: node
     plan: free
     buildCommand: npm install
     startCommand: node server.js
+    rootDir: ./
     envVars:
       - key: OPENAI_API_KEY
         sync: false
