@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const axios = require("axios");
 
 const app = express();
+const cors = require("cors");
+app.use(cors());
 const PORT = process.env.PORT || 3000;
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
