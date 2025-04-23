@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: CryptoConsult
+    name: crimznbot-site
     env: node
     plan: free
     buildCommand: npm install
