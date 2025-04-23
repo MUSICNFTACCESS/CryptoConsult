@@ -45,7 +45,7 @@
 </head>
 <body>
   <h1>Welcome to Crimzn Crypto Consult</h1>
-  <h2>Powered by CrimznBot</h2>
+  <h2>Powered by crimznbot</h2>
   <p>Get Bitcoin & crypto consulting powered by AI.</p>
 
   <form id="chat-form">
@@ -53,7 +53,7 @@
     <button type="submit">Send</button>
   </form>
 
-  <div id="chat-response">This is where CrimznBot will respond.</div>
+  <div id="chat-response">This is where crimznbot will respond.</div>
 
   <a class="button" href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">Pay with Crypto</a>
   <a class="button" href="https://x.com/Crimzn570" target="_blank">Follow on X</a>
@@ -76,7 +76,7 @@
         const data = await res.json();
         responseDiv.innerHTML = data.response || "No reply.";
       } catch {
-        responseDiv.innerHTML = "Error reaching CrimznBot.";
+        responseDiv.innerHTML = "Error reaching crimznbot.";
       }
       input.value = '';
     });
