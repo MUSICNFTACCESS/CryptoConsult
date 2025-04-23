@@ -2,8 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const axios = require("axios");
 const path = require("path");
+const axios = require("axios");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,7 +11,7 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static("public"));
+app.use(express.static("public")); // Serve static files from /public
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public/index.html"));
@@ -29,13 +29,16 @@ app.post("/chat", async (req, res) => {
         "Content-Type": "application/json"
       }
     });
-
     res.json({ response: response.data.choices[0].message.content });
   } catch (err) {
     res.json({ response: "Error reaching CrimznBot." });
   }
 });
 
+app.use((req, res) => {
+  res.status(404).send("404 Not Found");
+});
+
 app.listen(PORT, () => {
-  console.log("Server running on port", PORT);
+  console.log("✅ Server running on port", PORT);
 });
