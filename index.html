@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Crimzn Crypto Consult</title>
   <style>
     body {
@@ -13,30 +14,32 @@
     h1, h2 {
       color: #f7931a;
     }
+    .button {
+      background-color: #f7931a;
+      color: #000;
+      padding: 12px 20px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      margin: 10px 5px;
+      display: inline-block;
+    }
     #chat-form {
       display: flex;
-      gap: 10px;
       margin-top: 20px;
     }
     #user-input {
       flex: 1;
-      padding: 8px;
+      padding: 10px;
+      border-radius: 5px;
       border: none;
-      border-radius: 4px;
-    }
-    #submit-btn {
-      background-color: #f7931a;
-      color: #000;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 4px;
-      cursor: pointer;
     }
     #chat-response {
       margin-top: 20px;
       background: #222;
       padding: 10px;
-      border-radius: 6px;
+      border-radius: 5px;
     }
   </style>
 </head>
@@ -46,21 +49,36 @@
   <p>Get Bitcoin & crypto consulting powered by AI.</p>
 
   <form id="chat-form">
-    <input type="text" id="user-input" placeholder="Ask CrimznBot something..." />
-    <button id="submit-btn" type="submit">Send</button>
+    <input type="text" id="user-input" placeholder="Ask anything about crypto..." />
+    <button type="submit">Send</button>
   </form>
 
-  <div id="chat-response">Your response will appear here.</div>
+  <div id="chat-response">This is where CrimznBot will respond.</div>
+
+  <a class="button" href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">Pay with Crypto</a>
+  <a class="button" href="https://x.com/Crimzn570" target="_blank">Follow on X</a>
 
   <script>
-    document.getElementById("chat-form").addEventListener("submit", async function(e) {
+    const form = document.getElementById('chat-form');
+    const input = document.getElementById('user-input');
+    const responseDiv = document.getElementById('chat-response');
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const input = document.getElementById("user-input").value;
-      document.getElementById("chat-response").innerText = "Thinking...";
-      // Placeholder — this would call your backend bot
-      setTimeout(() => {
-        document.getElementById("chat-response").innerText = "This is where CrimznBot will respond.";
-      }, 1000);
+      const userMessage = input.value;
+      responseDiv.innerHTML = "Thinking...";
+      try {
+        const res = await fetch('https://crimznbot.onrender.com/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: userMessage })
+        });
+        const data = await res.json();
+        responseDiv.innerHTML = data.response || "No reply.";
+      } catch {
+        responseDiv.innerHTML = "Error reaching CrimznBot.";
+      }
+      input.value = '';
     });
   </script>
 </body>
