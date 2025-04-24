@@ -7,11 +7,15 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
+console.log("CrimznBot server starting...");
+console.log("OPENAI_API_KEY detected:", !!OPENAI_API_KEY);
+
 app.use(cors());
 app.use(bodyParser.json());
 
 app.post("/chat", async (req, res) => {
   const userMessage = req.body.message;
+  console.log("Received user message:", userMessage);
 
   try {
     const response = await axios.post("https://api.openai.com/v1/chat/completions", {
