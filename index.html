@@ -51,7 +51,7 @@ const API_URL = "https://cryptoconsult-1.onrender.com/chat";
     function sendMessage() {
       const input = document.getElementById("user-input").value;
       if (!input.trim()) return;
-      fetch("https://crimznbot.onrender.com/chat", {
+      fetch("https://cryptoconsult-1.onrender.com/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: input })
