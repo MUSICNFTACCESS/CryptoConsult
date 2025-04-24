@@ -1,1 +1,29 @@
-404: Not Found
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crimzn Crypto Consult</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Welcome to Crimzn Crypto Consult</h1>
+  <p>Your one-stop page for Bitcoin & crypto consulting powered by AI.</p>
+
+  <h2>Talk to CrimznBot</h2>
+  <p>CrimznBot is your AI-powered crypto assistant.</p>
+  <div>
+    <input type="text" id="userInput" placeholder="Ask CrimznBot something..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+  <div id="response"></div>
+
+  <audio id="bgMusic" autoplay loop>
+    <source src="autoplay.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+  <button onclick="toggleMusic()">Toggle Music</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
