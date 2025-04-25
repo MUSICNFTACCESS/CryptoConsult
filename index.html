@@ -3,39 +3,120 @@
 <head>
   <meta charset="UTF-8">
   <title>Crimzn Crypto Consult</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: monospace;
+      background-color: #000;
+      color: #0f0;
+      padding: 20px;
+    }
+
+    .terminal {
+      border-left: 2px solid #0f0;
+      padding-left: 15px;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background-color: #111;
+      border-radius: 12px;
+      padding: 20px;
+      color: #fff;
+      max-width: 500px;
+      margin: 0 auto 40px auto;
+      box-shadow: 0 0 10px #0f0;
+    }
+
+    .card h2 {
+      color: #f7931a;
+      margin-bottom: 10px;
+    }
+
+    .card .price {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card ul li::before {
+      content: "• ";
+      color: #f7931a;
+    }
+
+    .button {
+      display: block;
+      width: fit-content;
+      margin: 10px auto;
+      padding: 10px 20px;
+      background-color: #f7931a;
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+
+    .prices {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .prices span {
+      display: inline-block;
+      margin: 0 15px;
+      font-size: 1.2em;
+    }
+
+    .label {
+      color: #f7931a;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Beyond the realms of traditional finance,</h1>
-    <h2>Crimzn Crypto Consult empowers the next generation of cypherpunks.</h2>
-  </header>
+  <div class="terminal">
+    <p>> Welcome to the edge of finance.</p>
+    <p>> Crimzn offers high-signal crypto consulting for those who live beyond the banks.</p>
+    <p>> Bitcoin. Security. DeFi. Sovereignty. Let’s build your future.</p>
+  </div>
+
+  <div class="prices">
+    <span><span class="label">BTC:</span> <span id="btc">...</span></span>
+    <span><span class="label">ETH:</span> <span id="eth">...</span></span>
+    <span><span class="label">SOL:</span> <span id="sol">...</span></span>
+  </div>
 
   <div class="card">
-    <h2>Book a Consultation</h2>
-    <p>Price: $99.99/hr — Paid in Crypto</p>
+    <h2>Crimzn's Crypto Consulting</h2>
+    <p class="price"><strong>Rate:</strong> $99.99/hr</p>
     <ul>
-      <li>Wallet setup & security guidance</li>
-      <li>Portfolio review & BTC rotation strategy</li>
-      <li>On-ramping & off-ramping assistance</li>
-      <li>Token analysis & passive yield strategies</li>
+      <li>Portfolio Reviews</li>
+      <li>Wallet Setup & Security</li>
+      <li>DeFi & Yield Strategies</li>
+      <li>Market Outlooks</li>
     </ul>
-    <button class="btn" onclick="window.open(https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8, _blank)">Pay Now</button>
+
+    <a class="button" href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">Book Now</a>
+    <a class="button" href="https://x.com/crimzn" target="_blank">Message Me on X</a>
+    <a class="button" href="https://crimznbot-2z5j.onrender.com" target="_blank">Chat with CrimznBot</a>
   </div>
 
-  <div class="card">
-    <h2>Ask CrimznBot</h2>
-    <form id="chat-form">
-      <input type="text" id="user-input" placeholder="Ask something...">
-      <button type="submit" class="btn">Send</button>
-    </form>
-    <div id="chat-response"></div>
-  </div>
-
-  <audio autoplay loop>
-    <source src="autoplay.mp3" type="audio/mpeg">
-  </audio>
-
-  <script src="script.js"></script>
+  <script>
+    async function fetchPrices() {
+      try {
+        const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
+        const data = await res.json();
+        document.getElementById("btc").textContent = "$" + data.bitcoin.usd.toLocaleString();
+        document.getElementById("eth").textContent = "$" + data.ethereum.usd.toLocaleString();
+        document.getElementById("sol").textContent = "$" + data.solana.usd.toLocaleString();
+      } catch (err) {
+        console.error("Price fetch failed:", err);
+      }
+    }
+    fetchPrices();
+    setInterval(fetchPrices, 60000); // Update every 60s
+  </script>
 </body>
 </html>
