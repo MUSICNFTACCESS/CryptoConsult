@@ -1,1 +1,86 @@
-404: Not Found
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crimzn Crypto Consult</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #111; color: #fff; padding: 20px; }
+    h1, h2 { color: #f7931a; }
+    .card { background-color: #222; padding: 20px; border-radius: 10px; margin-top: 20px; }
+    .btn { padding: 10px 15px; background-color: #f7931a; color: #000; border: none; cursor: pointer; margin-right: 10px; }
+    #chat-form { display: flex; gap: 10px; margin-top: 20px; }
+    #user-input { flex: 1; padding: 8px; border: none; border-radius: 4px; }
+    #chat-response { margin-top: 20px; background: #222; padding: 15px; border-radius: 10px; }
+    #audio-toggle { margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <audio id="bg-audio" autoplay loop>
+    <source src="philly2scranton.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <button class="btn" id="audio-toggle" onclick="toggleAudio()">Mute</button>
+
+  <h1>&gt; Welcome to the edge of finance.</h1>
+  <p>&gt; Crimzn offers high-signal crypto consulting for those who live beyond borders.</p>
+  <p>&gt; Bitcoin. Security. DeFi. Sovereignty. Let's build your future.</p>
+
+  <div class="card">
+    <h2>Crimzn's Crypto Consulting</h2>
+    <p><strong>Rate:</strong> $99.99/hr</p>
+    <ul>
+      <li>Portfolio Reviews</li>
+      <li>Wallet Setup & Security</li>
+      <li>DeFi & Yield Strategies</li>
+      <li>Market Outlooks</li>
+    </ul>
+    <button class="btn" onclick="window.open('https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8')">Pay with Crypto</button>
+    <button class="btn" onclick="window.open('https://twitter.com/crimzn')">Message Me on X</button>
+  </div>
+
+  <div id="chat-form">
+    <input type="text" id="user-input" placeholder="Ask CrimznBot something...">
+    <button class="btn" onclick="sendMessage()">Send</button>
+  </div>
+  <div id="chat-response">Your response will appear here.</div>
+
+  <script>
+    async function sendMessage() {
+      const input = document.getElementById("user-input").value;
+      const responseDiv = document.getElementById("chat-response");
+      responseDiv.innerText = "Thinking...";
+      try {
+        const response = await fetch("https://crimznbot.onrender.com/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: input })
+        });
+        const data = await response.json();
+        responseDiv.innerText = data.reply || "No response.";
+      } catch (e) {
+        responseDiv.innerText = "Error: Failed to fetch";
+      }
+    }
+
+    function toggleAudio() {
+      const audio = document.getElementById("bg-audio");
+      const button = document.getElementById("audio-toggle");
+      if (audio.paused) {
+        audio.play();
+        button.innerText = "Mute";
+      } else {
+        audio.pause();
+        button.innerText = "Unmute";
+      }
+    }
+
+    // On user click anywhere, resume audio (autoplay fix for mobile)
+    document.addEventListener('click', function () {
+      const audio = document.getElementById("bg-audio");
+      if (audio.paused) audio.play();
+    }, { once: true });
+  </script>
+</body>
+</html>
