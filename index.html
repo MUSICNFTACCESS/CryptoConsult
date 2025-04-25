@@ -9,12 +9,14 @@
       background-color: #000;
       color: #0f0;
       padding: 20px;
+      text-align: center;
     }
 
     .terminal {
       border-left: 2px solid #0f0;
       padding-left: 15px;
       margin-bottom: 40px;
+      text-align: left;
     }
 
     .card {
@@ -49,33 +51,54 @@
 
     .button {
       display: block;
-      width: fit-content;
+      width: 90%;
+      max-width: 300px;
       margin: 10px auto;
-      padding: 10px 20px;
+      padding: 12px;
       background-color: #f7931a;
       color: #000;
       font-weight: bold;
       text-decoration: none;
       border-radius: 6px;
+      font-size: 1.1em;
     }
 
     .prices {
-      text-align: center;
       margin-bottom: 40px;
-    }
-
-    .prices span {
-      display: inline-block;
-      margin: 0 15px;
       font-size: 1.2em;
     }
 
     .label {
       color: #f7931a;
     }
+
+    #chat-box {
+      background-color: #111;
+      border: 1px solid #f7931a;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 30px auto;
+      max-width: 500px;
+      color: #fff;
+    }
+
+    input, button {
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 1em;
+      border-radius: 6px;
+      border: none;
+    }
+
+    button {
+      background-color: #f7931a;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
   </style>
 </head>
-<body>
+<body onclick="playMusicOnce()">
   <div class="terminal">
     <p>> Welcome to the edge of finance.</p>
     <p>> Crimzn offers high-signal crypto consulting for those who live beyond the banks.</p>
@@ -100,8 +123,17 @@
 
     <a class="button" href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">Book Now</a>
     <a class="button" href="https://x.com/crimzn" target="_blank">Message Me on X</a>
-    <a class="button" href="https://crimznbot-2z5j.onrender.com" target="_blank">Chat with CrimznBot</a>
   </div>
+
+  <div id="chat-box">
+    <h2 style="color:#f7931a;">Ask CrimznBot</h2>
+    <input type="text" id="msg" placeholder="Ask me anything..." style="width:80%">
+    <br>
+    <button onclick="send()">Send</button>
+    <p id="response" style="margin-top:15px;"></p>
+  </div>
+
+  <audio id="beat" src="philly2scranton.mp3" preload="auto"></audio>
 
   <script>
     async function fetchPrices() {
@@ -115,8 +147,35 @@
         console.error("Price fetch failed:", err);
       }
     }
+
+    async function send() {
+      const msg = document.getElementById("msg").value;
+      const resEl = document.getElementById("response");
+      resEl.textContent = "Thinking...";
+      try {
+        const res = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: msg })
+        });
+        const data = await res.json();
+        resEl.textContent = data.response;
+      } catch (err) {
+        resEl.textContent = "Error: Could not reach CrimznBot.";
+        console.error(err);
+      }
+    }
+
     fetchPrices();
-    setInterval(fetchPrices, 60000); // Update every 60s
+    setInterval(fetchPrices, 60000);
+
+    let musicPlayed = false;
+    function playMusicOnce() {
+      if (!musicPlayed) {
+        document.getElementById("beat").play();
+        musicPlayed = true;
+      }
+    }
   </script>
 </body>
 </html>
