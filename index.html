@@ -141,7 +141,7 @@
       const resEl = document.getElementById("response");
       resEl.textContent = "Thinking...";
       try {
-        const res = await fetch("https://crimznbot-2z5j.onrender.com/chat", {
+        const res = await fetch("https://crimznbot.onrender.com/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ message: msg })
