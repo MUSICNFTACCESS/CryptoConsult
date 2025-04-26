@@ -2,40 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>CryptoConsult - CrimznBot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CryptoConsult</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<h1>Talk to CrimznBot</h1>
-
-<input type="text" id="userInput" placeholder="Type your message here...">
-<button onclick="sendMessage()">Send</button>
-
-<div id="botResponse" style="margin-top: 20px; font-weight: bold;"></div>
-
-<script>
-async function sendMessage() {
-  const message = document.getElementById("userInput").value;
-
-  if (!message.trim()) {
-    alert("Please enter a message.");
-    return;
-  }
-
-  const response = await fetch("https://crimznbot.onrender.com/api/chat", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message })
-  });
-
-  if (response.ok) {
-    const data = await response.json();
-    document.getElementById("botResponse").innerText = "CrimznBot: " + data.reply;
-  } else {
-    document.getElementById("botResponse").innerText = "Error talking to CrimznBot.";
-  }
-}
-</script>
-
+  <h1>Welcome to CryptoConsult</h1>
+  <div id="chat-container">
+    <div id="chat-box"></div>
+    <input type="text" id="user-input" placeholder="Ask CrimznBot a question...">
+    <button id="send-button">Send</button>
+  </div>
+  <audio id="background-audio" autoplay loop>
+    <source src="music/autoplay.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <script src="script.js"></script>
 </body>
 </html>
