@@ -5,165 +5,110 @@
   <title>Crimzn Crypto Consult</title>
   <style>
     body {
-      font-family: monospace;
-      background-color: #000;
-      color: #0f0;
+      background-color: #121212;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      margin: 0;
       padding: 20px;
       text-align: center;
     }
-    .terminal {
-      border-left: 2px solid #0f0;
-      padding-left: 15px;
-      margin-bottom: 40px;
-      text-align: left;
+    h1 {
+      margin-bottom: 20px;
     }
     .card {
-      background-color: #111;
-      border-radius: 12px;
+      background: #1e1e1e;
       padding: 20px;
-      color: #fff;
-      max-width: 500px;
-      margin: 0 auto 40px auto;
-      box-shadow: 0 0 10px #0f0;
-    }
-    .card h2 {
-      color: #f7931a;
-      margin-bottom: 10px;
-    }
-    .card .price {
-      font-size: 1.2em;
-      margin-bottom: 10px;
-    }
-    .card ul {
-      list-style: none;
-      padding: 0;
-    }
-    .card ul li::before {
-      content: "• ";
-      color: #f7931a;
-    }
-    .button {
-      display: block;
-      width: 90%;
-      max-width: 300px;
-      margin: 10px auto;
-      padding: 12px;
-      background-color: #f7931a;
-      color: #000;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 6px;
-      font-size: 1.1em;
-    }
-    .prices {
-      margin-bottom: 40px;
-      font-size: 1.2em;
-    }
-    .label {
-      color: #f7931a;
-    }
-    #chat-box {
-      background-color: #111;
-      border: 1px solid #f7931a;
-      padding: 15px;
+      margin: 20px auto;
       border-radius: 10px;
-      margin: 30px auto;
       max-width: 500px;
-      color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
-    input, button {
+    .btn {
+      background: #00bcd4;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .btn:hover {
+      background: #0196a6;
+    }
+    #user-input {
+      width: 80%;
       padding: 10px;
       margin-top: 10px;
-      font-size: 1em;
-      border-radius: 6px;
       border: none;
+      border-radius: 5px;
     }
-    button {
-      background-color: #f7931a;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
+    #chat-response {
+      margin-top: 20px;
+      background: #2e2e2e;
+      padding: 15px;
+      border-radius: 10px;
+      min-height: 50px;
+      font-size: 16px;
     }
   </style>
 </head>
-<body onclick="playMusicOnce()">
-  <div class="terminal">
-    <p>> Welcome to the edge of finance.</p>
-    <p>> Crimzn offers high-signal crypto consulting for those who live beyond the banks.</p>
-    <p>> Bitcoin. Security. DeFi. Sovereignty. Let’s build your future.</p>
-  </div>
+<body>
 
-  <div class="prices">
-    <span><span class="label">BTC:</span> <span id="btc">...</span></span>
-    <span><span class="label">ETH:</span> <span id="eth">...</span></span>
-    <span><span class="label">SOL:</span> <span id="sol">...</span></span>
+  <h1>Crimzn Crypto Consult</h1>
+
+  <div class="card">
+    <h2>Book a Consultation</h2>
+    <p>Price: $99.99/hr — Paid in Crypto</p>
+    <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">
+      <button class="btn">Pay Now</button>
+    </a>
   </div>
 
   <div class="card">
-    <h2>Crimzn's Crypto Consulting</h2>
-    <p class="price"><strong>Rate:</strong> $99.99/hr</p>
-    <ul>
-      <li>Portfolio Reviews</li>
-      <li>Wallet Setup & Security</li>
-      <li>DeFi & Yield Strategies</li>
-      <li>Market Outlooks</li>
-    </ul>
-
-    <a class="button" href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">Book Now</a>
-    <a class="button" href="https://x.com/crimzn" target="_blank">Message Me on X</a>
+    <h2>Ask CrimznBot</h2>
+    <form id="chat-form">
+      <input type="text" id="user-input" placeholder="Ask me anything..." required>
+      <br>
+      <button type="submit" class="btn">Send</button>
+    </form>
+    <div id="chat-response">Waiting for your question...</div>
   </div>
-
-  <div id="chat-box">
-    <h2 style="color:#f7931a;">Ask CrimznBot</h2>
-    <input type="text" id="msg" placeholder="Ask me anything..." style="width:80%">
-    <br>
-    <button onclick="send()">Send</button>
-    <p id="response" style="margin-top:15px;"></p>
-  </div>
-
-  <audio id="beat" src="philly2scranton.mp3" preload="auto"></audio>
 
   <script>
-    async function fetchPrices() {
-      try {
-        const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
-        const data = await res.json();
-        document.getElementById("btc").textContent = "$" + data.bitcoin.usd.toLocaleString();
-        document.getElementById("eth").textContent = "$" + data.ethereum.usd.toLocaleString();
-        document.getElementById("sol").textContent = "$" + data.solana.usd.toLocaleString();
-      } catch (err) {
-        console.error("Price fetch failed:", err);
-      }
-    }
+    const API_URL = "https://crimznbot.onrender.com/api/chat";
 
-    async function send() {
-      const msg = document.getElementById("msg").value;
-      const resEl = document.getElementById("response");
-      resEl.textContent = "Thinking...";
+    document.getElementById("chat-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const userInput = document.getElementById("user-input").value.trim();
+      if (!userInput) return;
+
+      const responseDiv = document.getElementById("chat-response");
+      responseDiv.innerText = "Thinking...";
+
       try {
-        const res = await fetch("https://crimznbot.onrender.com/chat", {
+        const res = await fetch(API_URL, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: msg })
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message: userInput }),
         });
+
         const data = await res.json();
-        resEl.textContent = data.response;
-      } catch (err) {
-        resEl.textContent = "Error: Could not reach CrimznBot.";
-        console.error(err);
+        if (data.reply) {
+          responseDiv.innerText = data.reply;
+        } else if (data.response) {
+          responseDiv.innerText = data.response;
+        } else {
+          responseDiv.innerText = "No reply received.";
+        }
+      } catch (error) {
+        console.error(error);
+        responseDiv.innerText = "Error: Could not reach CrimznBot.";
       }
-    }
-
-    fetchPrices();
-    setInterval(fetchPrices, 60000);
-
-    let musicPlayed = false;
-    function playMusicOnce() {
-      if (!musicPlayed) {
-        document.getElementById("beat").play();
-        musicPlayed = true;
-      }
-    }
+    });
   </script>
+
 </body>
 </html>
