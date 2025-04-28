@@ -17,14 +17,17 @@ document.getElementById("chat-form").addEventListener("submit", async (e) => {
       body: JSON.stringify({ message: userInput }),
     });
 
-    if (!res.ok) {
-      const errorText = await res.text();
-      responseDiv.innerText = `Server Error ${res.status}: ${errorText}`;
-      return;
+    const data = await res.json();
+    
+    // Handle different response formats
+    if (data.reply) {
+      responseDiv.innerText = data.reply;
+    } else if (data.response) {
+      responseDiv.innerText = data.response;
+    } else {
+      responseDiv.innerText = "No reply received.";
     }
 
-    const data = await res.json();
-    responseDiv.innerText = data.reply || "No reply.";
   } catch (error) {
     console.error(error);
     responseDiv.innerText = "Error: Could not reach CrimznBot.";
