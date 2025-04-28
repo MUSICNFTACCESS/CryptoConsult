@@ -18,8 +18,6 @@ document.getElementById("chat-form").addEventListener("submit", async (e) => {
     });
 
     const data = await res.json();
-    
-    // Handle different response formats
     if (data.reply) {
       responseDiv.innerText = data.reply;
     } else if (data.response) {
@@ -27,7 +25,6 @@ document.getElementById("chat-form").addEventListener("submit", async (e) => {
     } else {
       responseDiv.innerText = "No reply received.";
     }
-
   } catch (error) {
     console.error(error);
     responseDiv.innerText = "Error: Could not reach CrimznBot.";
