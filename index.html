@@ -4,53 +4,13 @@
   <meta charset="UTF-8">
   <title>Crimzn Crypto Consult</title>
   <style>
-    body {
-      background-color: #121212;
-      color: #ffffff;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      text-align: center;
-    }
-    h1 {
-      margin-bottom: 20px;
-    }
-    .card {
-      background: #1e1e1e;
-      padding: 20px;
-      margin: 20px auto;
-      border-radius: 10px;
-      max-width: 500px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    }
-    .btn {
-      background: #00bcd4;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      margin-top: 10px;
-    }
-    .btn:hover {
-      background: #0196a6;
-    }
-    #user-input {
-      width: 80%;
-      padding: 10px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 5px;
-    }
-    #chat-response {
-      margin-top: 20px;
-      background: #2e2e2e;
-      padding: 15px;
-      border-radius: 10px;
-      min-height: 50px;
-      font-size: 16px;
-    }
+    body { background-color: #121212; color: #ffffff; font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+    h1 { margin-bottom: 20px; }
+    .card { background: #1e1e1e; padding: 20px; margin: 20px auto; border-radius: 10px; max-width: 500px; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
+    .btn { background: #00bcd4; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 10px; }
+    .btn:hover { background: #0196a6; }
+    #user-input { width: 80%; padding: 10px; margin-top: 10px; border: none; border-radius: 5px; }
+    #chat-response { margin-top: 20px; background: #2e2e2e; padding: 15px; border-radius: 10px; min-height: 50px; font-size: 16px; }
   </style>
 </head>
 <body>
@@ -75,7 +35,37 @@
     <div id="chat-response">Waiting for your question...</div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const API_URL = "https://crimznbot.onrender.com/api/chat";
+
+    document.getElementById("chat-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const userInput = document.getElementById("user-input").value.trim();
+      if (!userInput) return;
+
+      const responseDiv = document.getElementById("chat-response");
+      responseDiv.innerText = "Thinking...";
+
+      try {
+        const res = await fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: userInput }),
+        });
+        const data = await res.json();
+        if (data.reply) {
+          responseDiv.innerText = data.reply;
+        } else if (data.response) {
+          responseDiv.innerText = data.response;
+        } else {
+          responseDiv.innerText = "No reply received.";
+        }
+      } catch (error) {
+        console.error(error);
+        responseDiv.innerText = "Error: Could not reach CrimznBot.";
+      }
+    });
+  </script>
 
 </body>
 </html>
