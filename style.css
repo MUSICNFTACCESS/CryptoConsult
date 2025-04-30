@@ -1,33 +1,71 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #111;
-  color: #fff;
-  padding: 20px;
-}
-h1, h2 {
+  background-color: #0a0a0a;
   color: #f7931a;
-  text-align: center;
+  font-family: 'Courier New', monospace;
+  margin: 0;
+  padding: 0;
 }
-.card {
-  background-color: #222;
+
+.container {
   padding: 20px;
-  border-radius: 10px;
-  margin-top: 20px;
-  box-shadow: 0 0 10px #000;
+  max-width: 800px;
+  margin: auto;
 }
-.btn {
+
+h1 {
+  font-size: 2.5em;
+  text-align: center;
+  text-shadow: 0 0 10px #f7931a;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1.2em;
+  margin-bottom: 30px;
+  color: #cccccc;
+}
+
+.services ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.services li {
+  padding: 10px 0;
+  border-bottom: 1px solid #333;
+}
+
+.bot {
+  margin-top: 40px;
+}
+
+#user-input {
+  width: 70%;
+  padding: 10px;
+  font-size: 1em;
+}
+
+button {
   padding: 10px 15px;
-  background-color: #f7931a;
-  color: #fff;
+  background: #f7931a;
   border: none;
-  border-radius: 5px;
+  color: black;
+  font-weight: bold;
   cursor: pointer;
   margin-top: 10px;
-  display: inline-block;
+  margin-bottom: 10px;
 }
-#chat-response {
+
+#chat-box {
   margin-top: 20px;
-  background: #222;
   padding: 15px;
-  border-radius: 10px;
+  background-color: #1a1a1a;
+  min-height: 100px;
+  white-space: pre-wrap;
+  border: 1px solid #333;
+}
+
+.controls {
+  text-align: center;
+  margin-bottom: 20px;
 }

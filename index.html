@@ -1,71 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Crimzn Crypto Consult</title>
-  <style>
-    body { background-color: #121212; color: #ffffff; font-family: Arial, sans-serif; text-align: center; padding: 20px; }
-    h1 { margin-bottom: 20px; }
-    .card { background: #1e1e1e; padding: 20px; margin: 20px auto; border-radius: 10px; max-width: 500px; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
-    .btn { background: #00bcd4; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 10px; }
-    .btn:hover { background: #0196a6; }
-    #user-input { width: 80%; padding: 10px; margin-top: 10px; border: none; border-radius: 5px; }
-    #chat-response { margin-top: 20px; background: #2e2e2e; padding: 15px; border-radius: 10px; min-height: 50px; font-size: 16px; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CryptoConsult by Crimzn</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <audio autoplay loop id="bg-audio" src="autoplay.mp3"></audio>
 
-  <h1>Crimzn Crypto Consult</h1>
+  <div class="container">
+    <h1>CryptoConsult by Crimzn</h1>
+    <p class="subtitle">Cypherpunk Spirit Meets Modern Insight</p>
 
-  <div class="card">
-    <h2>Book a Consultation</h2>
-    <p>Price: $99.99/hr — Paid in Crypto</p>
-    <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">
-      <button class="btn">Pay Now</button>
-    </a>
+    <section class="controls">
+      <button id="toggle-audio" onclick="toggleAudio()">Pause Beat</button>
+    </section>
+
+    <section class="services">
+      <h2>Services Offered</h2>
+      <ul>
+        <li>Bitcoin & Altcoin Portfolio Strategy</li>
+        <li>Crypto Wallet Setup & Security Tips</li>
+        <li>Technical & Fundamental Analysis</li>
+        <li>Consultation via Telegram or Video</li>
+        <li>On/Off Ramp Support (Fiat ↔ Crypto)</li>
+        <li>Altcoin Rotation Planning</li>
+        <li>Custom TA/FA Reports</li>
+      </ul>
+    </section>
+
+    <section class="bot">
+      <h2>Chat with CrimznBot</h2>
+      <input type="text" id="user-input" placeholder="Ask me anything crypto..." />
+      <button onclick="sendMessage()">Send</button>
+      <div id="chat-box"></div>
+    </section>
   </div>
 
-  <div class="card">
-    <h2>Ask CrimznBot</h2>
-    <form id="chat-form">
-      <input type="text" id="user-input" placeholder="Ask me anything..." required>
-      <br>
-      <button type="submit" class="btn">Send</button>
-    </form>
-    <div id="chat-response">Waiting for your question...</div>
-  </div>
-
-  <script>
-    const API_URL = "https://crimznbot.onrender.com/api/chat";
-
-    document.getElementById("chat-form").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const userInput = document.getElementById("user-input").value.trim();
-      if (!userInput) return;
-
-      const responseDiv = document.getElementById("chat-response");
-      responseDiv.innerText = "Thinking...";
-
-      try {
-        const res = await fetch(API_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: userInput }),
-        });
-        const data = await res.json();
-        if (data.reply) {
-          responseDiv.innerText = data.reply;
-        } else if (data.response) {
-          responseDiv.innerText = data.response;
-        } else {
-          responseDiv.innerText = "No reply received.";
-        }
-      } catch (error) {
-        console.error(error);
-        responseDiv.innerText = "Error: Could not reach CrimznBot.";
-      }
-    });
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
