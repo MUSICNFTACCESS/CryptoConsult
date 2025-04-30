@@ -69,3 +69,19 @@ button {
   text-align: center;
   margin-bottom: 20px;
 }
+
+footer {
+  margin-top: 40px;
+  text-align: center;
+}
+
+footer .btn {
+  display: inline-block;
+  margin: 10px;
+  background: #f7931a;
+  color: black;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+}
