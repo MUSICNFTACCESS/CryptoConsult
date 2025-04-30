@@ -24,6 +24,7 @@ function sendMessage() {
 
 // Mobile autoplay fix
 document.addEventListener('click', function () {
+  console.log("Chat form submitted");
   const audio = document.getElementById('bg-audio');
   if (audio.paused) audio.play();
 }, { once: true });
