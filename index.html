@@ -92,7 +92,7 @@
         const data = await res.json();
         responseDiv.innerText = data.response || "No reply.";
       } catch (err) {
-        responseDiv.innerText = "Error reaching CrimznBot.";
+        responseDiv.innerText = "Error: " + err.message;
         console.error(err);
       }
       input.value = "";
