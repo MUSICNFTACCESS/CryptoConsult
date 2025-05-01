@@ -29,7 +29,7 @@
       e.preventDefault();
       const input = document.getElementById("user-input").value;
       document.getElementById("chat-response").innerText = "Thinking...";
-      fetch("https://crimzn-consult.onrender.com/api/chat", {
+      fetch("https://crimzn-consult.onrender.comhttps://crimzn-consult.onrender.com/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: input })
