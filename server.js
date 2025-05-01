@@ -10,14 +10,19 @@ app.get('/', (req, res) => {
   res.send('CrimznBot backend is running!');
 });
 
-app.post('/api/chat', async (req, res) => {
+// Universal chat handler
+const handleChat = async (req, res) => {
   const { message } = req.body;
   if (!message) {
     return res.status(400).json({ error: 'Missing message' });
   }
 
-  res.json({ reply: `You said: "${message}"` }); // (your OpenAI call would be here)
-});
+  const reply = `You said: "${message}"`; // Replace with OpenAI call if needed
+  res.json({ response: reply });
+};
+
+app.post('/chat', handleChat);
+app.post('/api/chat', handleChat);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
