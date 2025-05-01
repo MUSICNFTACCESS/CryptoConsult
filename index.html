@@ -71,5 +71,64 @@
   </div>
 
 </div>
+<script>
+
+document.getElementById("chat-form").addEventListener("submit", async (e) => {
+
+  e.preventDefault();
+
+  const message = document.getElementById("user-input").value.trim();
+
+  const responseDiv = document.getElementById("chat-response");
+
+  if (!message) return;
+
+  responseDiv.innerText = `> ${message}\n\n`;
+
+
+
+  const typingEl = document.createElement("div");
+
+  typingEl.className = "typing";
+
+  typingEl.innerText = "CrimznBot is typing...";
+
+  responseDiv.appendChild(typingEl);
+
+
+
+  try {
+
+    const res = await fetch("https://cryptoconsult.onrender.com/chat", {
+
+      method: "POST",
+
+      headers: { "Content-Type": "application/json" },
+
+      body: JSON.stringify({ message })
+
+    });
+
+    const data = await res.json();
+
+    typingEl.remove();
+
+    responseDiv.innerText += data.response || "CrimznBot had no reply.";
+
+    responseDiv.scrollTop = responseDiv.scrollHeight;
+
+  } catch (err) {
+
+    typingEl.remove();
+
+    console.error(err);
+
+    responseDiv.innerText += "Error reaching CrimznBot.";
+
+  }
+
+});
+
+</script>
 </body>
 </html>
