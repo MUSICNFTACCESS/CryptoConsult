@@ -2,321 +2,101 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CryptoConsult by Crimzn</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #f7931a;
+      padding: 20px;
+    }
+    h1, h2 {
+      color: #f7931a;
+    }
+    .button {
+      background-color: #f7931a;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 10px 5px;
+      display: inline-block;
+    }
+    #chat-form {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    #user-input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+    #submit-btn {
+      background-color: #f7931a;
+      border: none;
+      color: #000;
+      padding: 10px 16px;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+    #chat-response {
+      margin-top: 20px;
+      background: #111;
+      padding: 12px;
+      border-radius: 5px;
+      color: #fff;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #333;
+      margin: 20px 0;
+    }
+  </style>
 </head>
 <body>
-  <audio autoplay loop id="bg-audio" src="philly2scranton.mp3"></audio>
-
-  <div class="container">
-    <h1>CryptoConsult by Crimzn</h1>
-    <p class="subtitle">Cypherpunk Spirit Meets Modern Insight</p>
-
-    <section class="controls">
-      <button id="toggle-audio" onclick="toggleAudio()">Pause Beat</button>
-    </section>
-
-    <section class="services">
-      <h2>Services Offered</h2>
-      <ul>
-        <li>Bitcoin & Altcoin Portfolio Strategy</li>
-        <li>Crypto Wallet Setup & Security Tips</li>
-        <li>Technical & Fundamental Analysis</li>
-        <li>Consultation via Telegram or Video</li>
-        <li>On/Off Ramp Support (Fiat ↔ Crypto)</li>
-        <li>Altcoin Rotation Planning</li>
-        <li>Custom TA/FA Reports</li>
-      </ul>
-    </section>
-
-<section class="bot">
+  <h1>CryptoConsult by Crimzn</h1>
+  <p>On/Off Ramp Support (Fiat ↔ Crypto)</p>
+  <hr />
+  <p>Altcoin Rotation Planning</p>
+  <hr />
+  <p>Custom TA/FA Reports</p>
+  <hr />
 
   <h2>Chat with CrimznBot</h2>
-
   <form id="chat-form">
-
     <input type="text" id="user-input" placeholder="Ask me anything crypto..." />
-
-    <button type="submit">Send</button>
-
+    <button id="submit-btn" type="submit">Send</button>
   </form>
+  <div id="chat-response">Your response will appear here.</div>
 
-  <div id="chat-response"></div>
+  <br />
+  <a class="button" href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">Crypto</a>
+  <a class="button" href="https://paypal.me/crimzn" target="_blank">PayPal</a>
 
-  <button id="clear-btn">Clear Chat</button>
-
-</section>
-
-    <footer>
-    </footer>
-  </div>
-
-document.addEventListener("click", function () {
-  const audio = document.getElementById("background-audio");
-  if (audio && audio.paused) {
-    audio.play().catch(e => console.log("Autoplay failed:", e));
-  }
-}, { once: true });
-  <script src="script.js"></script>
-<div style="text-align:center; margin-top: 30px;">
-
-  <p style="font-weight:bold; font-size:20px; margin-bottom:10px;">Support the Movement</p>
-
-  <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
-
-    <a href="https://www.paypal.me/CrimZn" target="_blank" style="text-decoration:none;">
-
-      <button style="padding:12px 24px; font-size:16px; background-color:#0070ba; color:#fff; border:none; border-radius:10px; box-shadow:0 4px 6px rgba(0,0,0,0.2); cursor:pointer;">
-
-        PayPal
-
-      </button>
-
-    </a>
-
-    <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank" style="text-decoration:none;">
-
-      <button style="padding:12px 24px; font-size:16px; background-color:#1652f0; color:#fff; border:none; border-radius:10px; box-shadow:0 4px 6px rgba(0,0,0,0.2); cursor:pointer;">
-
-        Crypto
-
-      </button>
-
-    </a>
-
-  </div>
-
-</div>
-<script>
-
-document.getElementById("chat-form").addEventListener("submit", async (e) => {
-
-  e.preventDefault();
-
-  const message = document.getElementById("user-input").value.trim();
-
-  const responseDiv = document.getElementById("chat-response");
-
-  if (!message) return;
-
-  responseDiv.innerText = `> ${message}\n\n`;
-
-
-
-  const typingEl = document.createElement("div");
-
-  typingEl.className = "typing";
-
-  typingEl.innerText = "CrimznBot is typing...";
-
-  responseDiv.appendChild(typingEl);
-
-
-
-  try {
-
-    const res = await fetch("https://cryptoconsult.onrender.com/chat", {
-
-      method: "POST",
-
-      headers: { "Content-Type": "application/json" },
-
-      body: JSON.stringify({ message })
-
+  <script>
+    document.getElementById("chat-form").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const input = document.getElementById("user-input");
+      const responseDiv = document.getElementById("chat-response");
+      responseDiv.innerText = "Thinking...";
+      try {
+        const res = await fetch("https://crimznbot.onrender.com/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: input.value })
+        });
+        const data = await res.json();
+        responseDiv.innerText = data.response || "No reply.";
+      } catch (err) {
+        responseDiv.innerText = "Error reaching CrimznBot.";
+        console.error(err);
+      }
+      input.value = "";
     });
-
-    const data = await res.json();
-
-    typingEl.remove();
-
-    responseDiv.innerText += data.response || "CrimznBot had no reply.";
-
-    responseDiv.scrollTop = responseDiv.scrollHeight;
-
-  } catch (err) {
-
-    typingEl.remove();
-
-    console.error(err);
-
-    responseDiv.innerText += "Error reaching CrimznBot.";
-
-  }
-
-});
-
-document.addEventListener("click", function () {
-  const audio = document.getElementById("background-audio");
-  if (audio && audio.paused) {
-    audio.play().catch(e => console.log("Autoplay failed:", e));
-  }
-}, { once: true });
-</script>
-<script>
-
-document.getElementById("chat-form").addEventListener("submit", async (e) => {
-
-  e.preventDefault();
-
-  const message = document.getElementById("user-input").value.trim();
-
-  const responseDiv = document.getElementById("chat-response");
-
-  if (!message) return;
-
-  responseDiv.innerText = `> ${message}\n\n`;
-
-
-
-  const typingEl = document.createElement("div");
-
-  typingEl.className = "typing";
-
-  typingEl.innerText = "CrimznBot is typing...";
-
-  responseDiv.appendChild(typingEl);
-
-
-
-  try {
-
-    const res = await fetch("https://cryptoconsult.onrender.com/chat", {
-
-      method: "POST",
-
-      headers: { "Content-Type": "application/json" },
-
-      body: JSON.stringify({ message })
-
-    });
-
-    const data = await res.json();
-
-    typingEl.remove();
-
-    const reply = data?.response || "CrimznBot had no reply.";
-
-    responseDiv.innerText += reply;
-
-    responseDiv.scrollTop = responseDiv.scrollHeight;
-
-  } catch (err) {
-
-    typingEl.remove();
-
-    console.error(err);
-
-    responseDiv.innerText += "Error reaching CrimznBot.";
-
-  }
-
-});
-
-document.addEventListener("click", function () {
-  const audio = document.getElementById("background-audio");
-  if (audio && audio.paused) {
-    audio.play().catch(e => console.log("Autoplay failed:", e));
-  }
-}, { once: true });
-</script>
-<section id="layerzero" style="padding: 2em; background-color: #111; color: #eee; border-top: 1px solid #333;">
-  <img src="https://metalamp.io/uploads/images/overview-layerzero-v2.png" alt="LayerZero Architecture" style="width:100%;max-width:600px;margin:1em 0;border:1px solid #333;border-radius:8px;" />
-
-  <div id="layerzero-activity" style="background:#222;padding:1em;margin-top:1em;border-radius:5px;">
-
-    <h3 style="color:#f7931a;">Live Cross-Chain Activity</h3>
-
-    <p style="font-size:0.9em;color:#aaa;">Fetching recent LayerZero transfers...</p>
-
-  </div>
-  <img src="https://metalamp.io/uploads/images/overview-layerzero-v2.png" alt="LayerZero Architecture" style="width:100%;max-width:600px;margin:1em 0;border:1px solid #333;border-radius:8px;" />
-
-  <div id="layerzero-activity" style="background:#222;padding:1em;margin-top:1em;border-radius:5px;">
-
-    <h3 style="color:#f7931a;">Live Cross-Chain Activity</h3>
-
-    <p style="font-size:0.9em;color:#aaa;">Fetching recent LayerZero transfers...</p>
-
-  </div>
-
-  <h2 style="font-size: 1.5em; color: #f7931a;">Omnichain with LayerZero</h2>
-
-  <p>LayerZero enables cross-chain apps (OApps), token transfers (OFTs), and decentralized messaging across 60+ blockchains — all trustlessly.</p>
-
-  <p>If you're building on Solana, Ethereum, or want to go cross-chain — I offer custom consulting to help you integrate LayerZero's v2 tech.</p>
-
-  <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" style="display:inline-block;margin-top:1em;padding:0.7em 1.5em;background:#f7931a;color:#000;text-decoration:none;border-radius:5px;">Book a Cross-Chain Consult</a>
-
-</section>
+  </script>
 </body>
 </html>
-<!-- force rebuild Wed Apr 30 22:23:05 EDT 2025 -->
-
-<script>
-async function fetchLayerZeroTransfers() {
-  try {
-    const res = await fetch("https://scan.layerzero-api.com/api/trpc/tx.getTransactionsV2?input=%7B%22json%22:%7B%22page%22:1,%22limit%22:5%7D%7D");
-    const data = await res.json();
-    const container = document.getElementById("layerzero-activity");
-    const list = document.createElement("ul");
-    list.style.color = "#eee";
-    list.style.fontSize = "0.9em";
-
-    const transfers = data.result?.data?.items || [];
-    list.innerHTML = transfers.map(tx => {
-      const src = tx.srcChainId;
-      const dst = tx.dstChainId;
-      const hash = tx.srcTxHash.slice(0, 10) + "...";
-      return `<li>Tx ${hash} from Chain ${src} → Chain ${dst}</li>`;
-    }).join("");
-
-    container.innerHTML = "<h3 style=\\"color:#f7931a;\\">Live Cross-Chain Activity</h3>";
-    container.appendChild(list);
-  } catch (err) {
-    console.error("Failed to fetch transfers", err);
-  }
-}
-fetchLayerZeroTransfers();
-document.addEventListener("click", function () {
-  const audio = document.getElementById("background-audio");
-  if (audio && audio.paused) {
-    audio.play().catch(e => console.log("Autoplay failed:", e));
-  }
-}, { once: true });
-</script>
-
-
-<script>
-async function fetchLayerZeroTransfers() {
-  try {
-    const res = await fetch("https://scan.layerzero-api.com/api/trpc/tx.getTransactionsV2?input=%7B%22json%22:%7B%22page%22:1,%22limit%22:5%7D%7D");
-    const data = await res.json();
-    const container = document.getElementById("layerzero-activity");
-    const list = document.createElement("ul");
-    list.style.color = "#eee";
-    list.style.fontSize = "0.9em";
-
-    const transfers = data.result?.data?.items || [];
-    list.innerHTML = transfers.map(tx => {
-      const src = tx.srcChainId;
-      const dst = tx.dstChainId;
-      const hash = tx.srcTxHash.slice(0, 10) + "...";
-      return `<li>Tx ${hash} from Chain ${src} → Chain ${dst}</li>`;
-    }).join("");
-
-    container.innerHTML = "<h3 style=\\"color:#f7931a;\\">Live Cross-Chain Activity</h3>";
-    container.appendChild(list);
-  } catch (err) {
-    console.error("Failed to fetch transfers", err);
-  }
-}
-fetchLayerZeroTransfers();
-document.addEventListener("click", function () {
-  const audio = document.getElementById("background-audio");
-  if (audio && audio.paused) {
-    audio.play().catch(e => console.log("Autoplay failed:", e));
-  }
-}, { once: true });
-</script>
-
