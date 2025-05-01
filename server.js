@@ -41,6 +41,7 @@ const handleChat = async (req, res) => {
 app.post('/chat', handleChat);
 app.post('/api/chat', handleChat);
 
+console.log("OPENAI_API_KEY loaded:", OPENAI_API_KEY ? "✅ Present" : "❌ Missing");
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
