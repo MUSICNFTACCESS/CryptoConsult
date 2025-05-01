@@ -35,6 +35,7 @@ app.post("/api/chat", async (req, res) => {
 
   try {
     const { Configuration, OpenAIApi } = require("openai");
+console.log("Loaded OpenAI key:", process.env.OPENAI_API_KEY ? "✅ Present" : "❌ Missing");
     const config = new Configuration({ apiKey: process.env.OPENAI_API_KEY });
     const openai = new OpenAIApi(config);
 
