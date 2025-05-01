@@ -1,7 +1,9 @@
 function sendMessage() {
   const input = document.getElementById("user-input");
-  const message = input.value;
+  const message = input.value.trim();
   input.value = "";
+
+  if (!message) return;
 
   fetch("https://crimznbot.onrender.com/api/chat", {
     method: "POST",
@@ -13,30 +15,18 @@ function sendMessage() {
   .then(res => res.json())
   .then(data => {
     const box = document.getElementById("chat-box");
-    box.textContent += "> " + message + "\n" + data.response + "\n\n";
+    box.textContent += "> " + message + "\n" + data.reply + "\n\n";
     box.scrollTop = box.scrollHeight;
   })
   .catch(err => {
-    alert("Error talking to CrimznBot.");
     console.error(err);
+    alert("Error talking to CrimznBot.");
   });
 }
 
-// Mobile autoplay fix
-document.addEventListener('click', function () {
-  console.log("Chat form submitted");
-  const audio = document.getElementById('bg-audio');
-  if (audio.paused) audio.play();
-}, { once: true });
-
-function toggleAudio() {
-  const audio = document.getElementById('bg-audio');
-  const btn = document.getElementById('toggle-audio');
-  if (audio.paused) {
-    audio.play();
-    btn.textContent = "Pause Beat";
-  } else {
-    audio.pause();
-    btn.textContent = "Play Beat";
-  }
-}
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById("chat-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    sendMessage();
+  });
+});
