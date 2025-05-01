@@ -30,12 +30,23 @@
       </ul>
     </section>
 
-    <section class="bot">
-      <h2>Chat with CrimznBot</h2>
-      <input type="text" id="user-input" placeholder="Ask me anything crypto..." />
-      <button onclick="sendMessage()">Send</button>
-      <div id="chat-box"></div>
-    </section>
+<section class="bot">
+
+  <h2>Chat with CrimznBot</h2>
+
+  <form id="chat-form">
+
+    <input type="text" id="user-input" placeholder="Ask me anything crypto..." />
+
+    <button type="submit">Send</button>
+
+  </form>
+
+  <div id="chat-response"></div>
+
+  <button id="clear-btn">Clear Chat</button>
+
+</section>
 
     <footer>
     </footer>
