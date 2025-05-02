@@ -5,7 +5,7 @@ function sendMessage() {
 
   if (!message) return;
 
-  fetch("https://crimznbot.onrender.comhttps://crimznbot.onrender.com/api/chat", {
+  fetch("https://crimznbot.onrender.com/api/chat", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -30,3 +30,4 @@ document.addEventListener('DOMContentLoaded', () => {
     sendMessage();
   });
 });
+
