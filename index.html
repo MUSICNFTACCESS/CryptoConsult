@@ -1,16 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CryptoConsult</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <script src="script.js" defer></script>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #f7931a;
+      font-family: 'Orbitron', sans-serif;
+      padding: 2em;
+      margin: 0;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 0.5em;
+    }
+    .prices {
+      text-align: center;
+      margin: 1em 0;
+      font-size: 1.2em;
+    }
+    ul.services {
+      list-style: none;
+      padding-left: 0;
+      max-width: 500px;
+      margin: 2em auto;
+    }
+    .services li {
+      margin-bottom: 0.75em;
+      border-left: 4px solid #f7931a;
+      padding-left: 1em;
+    }
+    #chat-form {
+      max-width: 600px;
+      margin: 2em auto;
+    }
+    textarea {
+      width: 100%;
+      height: 80px;
+      background-color: #111;
+      color: #f7931a;
+      border: 1px solid #333;
+      padding: 0.5em;
+      font-family: monospace;
+    }
+    button {
+      background: #f7931a;
+      color: #0d0d0d;
+      border: none;
+      padding: 0.5em 1em;
+      margin-right: 0.5em;
+      cursor: pointer;
+    }
+    #chat-box {
+      white-space: pre-wrap;
+      background: #111;
+      padding: 1em;
+      height: 200px;
+      overflow-y: auto;
+      border: 1px solid #333;
+      max-width: 600px;
+      margin: 1em auto;
+    }
+    audio {
+      display: none;
+    }
+  </style>
 </head>
 <body>
   <h1>CryptoConsult</h1>
-  <p>Welcome to your personal crypto consulting service.</p>
-
+  <div class="prices">
+    BTC: <span id="btc-price">Loading...</span> |
+    ETH: <span id="eth-price">Loading...</span> |
+    SOL: <span id="sol-price">Loading...</span>
+  </div>  <p style="text-align:center">Welcome to your personal crypto consulting service.</p>
   <ul class="services">
     <li>Technical Analysis</li>
     <li>Risk Management</li>
@@ -18,17 +85,55 @@
     <li>On-Ramping & Off-Ramping</li>
     <li>Capital Allocation</li>
     <li>Custom Consulting</li>
-  </ul>
-
-  <form id="chat-form">
+  </ul>  <form id="chat-form">
     <textarea id="user-input" placeholder="Ask CrimznBot..."></textarea>
     <button type="submit">Send</button>
-    <button type="button" onclick="document.getElementById('chat-box').textContent = '';">Clear</button>
-  </form>
+    <button type="button" onclick="document.getElementById('chat-box').textContent = ''">Clear</button>
+  </form>  <pre id="chat-box"></pre>  <audio autoplay loop>
+<div class="payment-options" style="text-align: center; margin-top: 2em;">
 
-  <pre id="chat-box"></pre>
-  <audio autoplay loop>
-    <source src="philly2scranton.mp3" type="audio/mpeg" />
-  </audio>
-</body>
+  <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">
+
+    <button style="background-color:#f7931a; color:#0d0d0d; padding: 0.75em 1.5em; font-weight: bold; border: none; cursor: pointer;">
+
+      Book Now with Crypto (Coinbase)
+
+    </button>
+
+  </a>
+
+  <br/><br/>
+
+  <a href="https://www.paypal.me/crimzn" target="_blank">
+
+    <button style="background-color:#003087; color:#fff; padding: 0.75em 1.5em; font-weight: bold; border: none; cursor: pointer;">
+
+      Pay with PayPal
+
+    </button>
+
+  </a>
+
+</div>
+    <source src="philly2scranton.mp3" type="audio/mpeg">
+  </audio>  <script>
+    async function fetchPrice(symbol, targetId) {
+      try {
+        const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${symbol}&vs_currencies=usd`);
+        const data = await res.json();
+        document.getElementById(targetId).textContent = `$${data[symbol].usd.toLocaleString()}`;
+      } catch (err) {
+        document.getElementById(targetId).textContent = 'Error';
+      }
+    }
+
+    function updatePrices() {
+      fetchPrice('bitcoin', 'btc-price');
+      fetchPrice('ethereum', 'eth-price');
+      fetchPrice('solana', 'sol-price');
+    }
+
+    updatePrices();
+    setInterval(updatePrices, 60000); // update every 60 sec
+  </script></body>
 </html>
