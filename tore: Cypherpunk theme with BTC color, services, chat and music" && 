@@ -1,0 +1,60 @@
+[33m055cb19[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Fix: final fetch and DOM handler syntax
+[33m95fa4d2[m Fix: connect frontend to backend via full API URL
+[33m363be39[m Fix API path for external backend on separate Render service
+[33mc7b39c1[m Log OpenAI key presence for debugging
+[33m94454de[m Fix duplicate CORS, add explicit headers
+[33m90d7af2[m Reapply CrimznBot frontend after resolving conflict
+[33mf0481a1[m Fix: remove duplicate CORS declaration
+[33m8be348d[m Add render.yaml for Render deployment
+[33m17cab66[m UI Upgrade: chat bubbles, audio, clear button
+[33m26f4905[m Add package.json for Render fullstack deploy
+[33m8362f3d[m Add .render-build.sh to force root path for Render
+[33m37796e6[m Fix: rewrite script block with proper fetch and error handling
+[33mb07c08c[m Fix: ensure correct fetch POST request to CrimznBot backend
+[33m64718b1[m Debug: show detailed fetch error on page
+[33m9adf3c6[m Fix: correct duplicated backend URL in fetch()
+[33ma2f14ec[m Fix: use full backend URL for CrimznBot integration
+[33mc34c4c5[m Fix: enable CORS for cross-origin frontend requests
+[33m497082a[m Fix: revert to full backend URL since services are separate
+[33mc803658[m Fix: use relative /api/chat for Render fullstack routing
+[33m1adaf63[m Fix: point CrimznBot to /api/chat endpoint
+[33m43f58f8[m Fix: properly embed script and UI layout
+[33mb139dd2[m Fix autoplay on first click and add mock LayerZero data fallback
+[33mced2975[m Add LayerZero architecture image and live activity widget
+[33me96d8b9[m Add LayerZero architecture image and live activity widget
+[33m539a775[m Manually added LayerZero section before </body>
+[33mde1ed88[m Enable CORS for CrimznBot backend
+[33m5d70388[m Fix frontend to match CrimznBot /api/chat endpoint
+[33m732efea[m Log OPENAI_API_KEY presence for debugging
+[33mf3ba899[m Add OpenAI logic with fallback and error logging
+[33m273aeff[m Fix backend route to handle /chat and /api/chat
+[33m6bfb45c[m Fix broken chat form and enable CrimznBot submit
+[33me0a5a55[m Force rebuild to refresh Render deploy
+[33m68da0d7[m Improve CrimznBot error handling and reply fallback
+[33m85edef5[m Add CrimznBot typing animation + orange chat style
+[33m308371c[m Fix route and confirm frontend connection to CrimznBot
+[33m88a2853[m Clean up duplicate and outdated buttons
+[33m42d9aaf[m Add PayPal and Crypto donation buttons
+[33mf041a28[m Fix X link and add PayPal placeholder button
+[33mc26c49c[m Point audio to philly2scranton.mp3 beat
+[33m08a8d16[m Final polish: beat, services, CrimznBot, Coinbase + X buttons
+[33m85f331a[m Updated site with beat, services, and CrimznBot restored
+[33m03ef09c[m Fix: Added CORS support to CrimznBot backend
+[33me04d52a[m Final: working inline CrimznBot fix
+[33m48cb625[m Fix API URL to CrimznBot
+[33m2f02778[m Final clean separation frontend
+[33m1173358[m New clean frontend for CrimznBot
+[33mbba6ce6[m Fix: Support both reply and response fields from CrimznBot
+[33ma7a3479[m Fix: Connect frontend chat to live CrimznBot server
+[33mcca35fb[m Fix: use Render dynamic port for server
+[33mde10b97[m Fix: update chat API URL to live backend
+[33mcfba9f0[m Restore: full CryptoConsult working version with beat, prices, buttons, and CrimznBot
+[33md6da714[m Updated index.html to new working frontend
+[33m18e311b[m Fix: Connect to CrimznBot backend
+[33mcbceec0[m Update: placeholder message for CrimznBot coming soon
+[33mf763943[m Add corrected beat philly2scranton.mp3 for autoplay
+[33m360c4b5[m Update autoplay.mp3
+[33mcb3f03d[m Restore: full site with CrimznBot chat, price feed, and autoplay beat
+[33m531e5e6[m Restore: full site with live BTC/ETH/SOL and CrimznBot
+[33med108c3[m Update: restore original 4-service consultation list
+[33m9167a40[m Rebuild: full working 1-pager with welcome, music, bot, and pay button
