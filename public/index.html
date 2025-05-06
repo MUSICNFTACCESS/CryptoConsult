@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CryptoConsult by Crimzn</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+    body {
+      background-color: #0d0d0d;
+      color: #f7931a;
+      font-family: 'Orbitron', sans-serif;
+      padding: 2em;
+      margin: 0;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 0.5em;
+    }
+    #prices {
+      text-align: center;
+      margin-top: 1em;
+      font-size: 1.2em;
+    }
+    ul.services {
+      list-style: none;
+      padding-left: 0;
+      max-width: 500px;
+      margin: 2em auto;
+    }
+    .services li {
+      margin-bottom: 0.75em;
+      border-left: 4px solid #f7931a;
+      padding-left: 1em;
+    }
+    #chatbox {
+      background-color: #111;
+      color: #f7931a;
+      padding: 1em;
+      max-width: 600px;
+      margin: 2em auto;
+      border: 1px solid #f7931a;
+      min-height: 200px;
+      white-space: pre-line;
+    }
+    #chat-form {
+      max-width: 600px;
+      margin: 0 auto 2em;
+      display: flex;
+    }
+    #chat-form input {
+      flex: 1;
+      padding: 10px;
+      background: #222;
+      color: #fff;
+      border: 1px solid #f7931a;
+    }
+    #chat-form button {
+      background: #f7931a;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 2em;
+    }
+    .buttons a {
+      background: #f7931a;
+      color: #000;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>CryptoConsult by Crimzn</h1>
+
+  <div id="prices">Loading live prices...</div>
+
+  <ul class="services">
+    <li>Technical Analysis</li>
+    <li>Wallet Setup</li>
+    <li>On-Ramp & Off-Ramp Guidance</li>
+    <li>Risk Management & Strategy</li>
+  </ul>
+
+  <div class="buttons">
+    <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">Book Now</a>
+    <a href="https://paypal.me/crimzn" target="_blank">Pay with PayPal</a>
+  </div>
+
+  <div id="chatbox"></div>
+  <form id="chat-form">
+    <input type="text" placeholder="Ask CrimznBot..." required>
+    <button type="submit">Send</button>
+  </form>
+
+  <script src="script.js"></script>
+</body>
+</html>
