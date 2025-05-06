@@ -1,11 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CryptoConsult by Crimzn</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #f7931a;
+      font-family: "Courier New", monospace;
+      padding: 20px;
+    }
+    h1 {
+      color: #f7931a;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    #prices {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .services {
+      list-style: square;
+      margin-bottom: 20px;
+    }
+    .buttons a {
+      display: inline-block;
+      background: #f7931a;
+      color: black;
+      padding: 10px 16px;
+      margin: 5px 10px 15px 0;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+    #chatbox {
+      background-color: #111;
+      border: 1px solid #f7931a;
+      padding: 15px;
+      min-height: 100px;
+      margin-bottom: 10px;
+      overflow-y: auto;
+    }
+    form {
+      display: flex;
+      gap: 10px;
+    }
+    input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      background-color: #222;
+      border: 1px solid #f7931a;
+      color: white;
+    }
+    button {
+      background-color: #f7931a;
+      color: black;
+      padding: 10px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+    audio {
+      display: none;
+    }
+  </style>
+</head>
 <body>
   <audio autoplay loop>
     <source src="autoplay.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
   </audio>
 
   <h1>CryptoConsult by Crimzn</h1>
-
   <div id="prices">Loading live prices...</div>
 
   <ul class="services">
@@ -22,9 +87,10 @@
 
   <div id="chatbox"></div>
   <form id="chat-form">
-    <input type="text" placeholder="Ask CrimznBot..." required>
+    <input type="text" placeholder="Ask CrimznBot..." required />
     <button type="submit">Send</button>
   </form>
 
   <script src="script.js"></script>
 </body>
+</html>
