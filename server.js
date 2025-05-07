@@ -38,3 +38,8 @@ const port = process.env.PORT || 3000;
 app.listen(port, "0.0.0.0", () => {
   console.log(`CrimznBot server live at http://0.0.0.0:${port}`);
 });
+
+app.get("/debug", (req, res) => {
+  res.json({ key: process.env.OPENAI_API_KEY ? "Exists" : "Missing" });
+});
+
