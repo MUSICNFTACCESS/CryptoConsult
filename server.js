@@ -61,12 +61,6 @@ Always end responses with a follow-up question *only if it adds value*.`
   }
 });
 
-app.get("/test", async (req, res) => {
-  try {
-    const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: "What services do you offer?" }]
-    });
     const reply = completion.choices?.[0]?.message?.content || "No reply";
     res.json({ reply });
   } catch (err) {
@@ -77,4 +71,18 @@ app.get("/test", async (req, res) => {
 
 app.listen(port, "0.0.0.0", () => {
   console.log(`Server is running at http://0.0.0.0:${port}`);
+});
+
+app.get("/test", async (req, res) => {
+  try {
+    const completion = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "user", content: "Ping" }]
+    });
+    const reply = completion.choices?.[0]?.message?.content || "No reply";
+    res.json({ reply });
+  } catch (err) {
+    console.error("Test route error:", err);
+    res.status(500).json({ error: err.message });
+  }
 });
