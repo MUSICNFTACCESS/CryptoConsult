@@ -11,6 +11,7 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
+console.log("Booting CrimznBot backend...");
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
@@ -69,6 +70,7 @@ Always end responses with a follow-up question *only if it adds value*.`
   }
 });
 
+console.log("Express routes loaded. Ready for requests.");
 app.listen(port, "0.0.0.0", () => {
   console.log(`Server is running at http://0.0.0.0:${port}`);
 });
