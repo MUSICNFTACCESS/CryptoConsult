@@ -113,9 +113,21 @@
     }
     .copy-button:hover { animation: pulse 0.6s infinite; }
   </style>
-  <h3 style="color:#f7931a;font-size:20px;">Support the Project</h3>
-  <p style="color:#ccc;font-size:16px;">Send SOL or verified tokens</p>
-  <button class="copy-button" onclick="const btn=this;navigator.clipboard.writeText('Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF');btn.innerText='Copied!';setTimeout(()=>btn.innerText='Copy Wallet Address',3000)" style="margin-top:10px;padding:0.5em 1em;background:#f7931a;color:#000;border:none;border-radius:8px;font-weight:bold;cursor:pointer;">Copy Wallet Address</button><br><br>
-  <a href="solana:Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF" style="display:inline-block;margin-top:1em;padding:0.75em 1.5em;background:#f7931a;color:#000;font-weight:bold;border-radius:10px;font-size:15px;text-decoration:none;">Send a Tip – Fuel the Future of Crypto Education</a><br><br>
-  <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=solana:Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF" alt="SOL QR Code" style="margin-top:10px;border:1px solid #444;padding:4px;border-radius:8px;"/>
-</section>
+<div style="margin:2em auto;padding:1.5em;background:rgba(17,17,17,0.8);border:2px solid #f7931a;border-radius:16px;text-align:center;max-width:95%;backdrop-filter:blur(8px);box-shadow:0 0 20px #f7931a80;">
+  <style>
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .copy-button:hover {
+      animation: pulse 0.6s infinite;
+    }
+  </style>
+  <h3 style="color:#f7931a;font-size:22px;margin-bottom:10px;">Support the Project</h3>
+  <p style="color:#ccc;font-size:16px;margin-bottom:10px;">Send SOL or verified tokens</p>
+  <button class="copy-button" onclick="const btn=this;navigator.clipboard.writeText('Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF');btn.innerText='Copied!';setTimeout(()=>btn.innerText='Copy Wallet Address',3000)" style="margin:10px auto;padding:0.6em 1.2em;background:#f7931a;color:#000;border:none;border-radius:8px;font-weight:bold;cursor:pointer;display:block;">Copy Wallet Address</button>
+  <a href="solana:Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF" style="display:inline-block;margin:1em auto;padding:0.75em 1.5em;background:#f7931a;color:#000;font-weight:bold;border-radius:10px;font-size:15px;text-decoration:none;">Send a Tip – Fuel the Future of Crypto Education</a>
+  <br><br>
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=solana:Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF" alt="SOL QR Code" style="margin:10px auto;border:1px solid #444;padding:4px;border-radius:8px;display:block;" />
+</div>
