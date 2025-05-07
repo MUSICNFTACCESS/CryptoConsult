@@ -12,38 +12,29 @@ const openai = new OpenAI({
 });
 
 app.post("/api/chat", async (req, res) => {
-  const userMessage = req.body.message;
-
   try {
-    const completion = await openai.chat.completions.create({
+    const userMessage = req.body.message;
+
+    const response = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [
         {
           role: "system",
-          content: `You are CrimznBot — an AI crypto and finance consultant built by Crimzn.
-Your top priorities:
-- Help users with crypto investing, technical/fundamental analysis, wallet setup, market psychology, and macroeconomic strategy.
-- Use a confident but clear tone: give direct, actionable answers — no vague fluff.
-- If asked about live market data (e.g. BTC price), answer only if a real-time API is integrated; otherwise, inform the user to check a live chart.`,
+          content: `You are CrimznBot — a sharp, Cypherpunk-themed crypto consultant built by Crimzn. Always give bold, confident answers related to crypto investing, technicals, fundamentals, and strategy.`,
         },
-        {
-          role: "user",
-          content: userMessage,
-        },
+        { role: "user", content: userMessage },
       ],
     });
 
-    const reply = completion.choices?.[0]?.message?.content || "No reply";
+    const reply = response.choices?.[0]?.message?.content || "No reply generated.";
     res.json({ reply });
   } catch (error) {
     console.error("Error in /api/chat:", error);
-    res.status(500).json({ error: "Something went wrong." });
+    res.status(500).json({ error: "CrimznBot ran into a bug. Try again shortly." });
   }
 });
 
-// Start the server
 const port = process.env.PORT || 3000;
 app.listen(port, "0.0.0.0", () => {
-  console.log(`Server is running at http://0.0.0.0:${port}`);
+  console.log(`CrimznBot server live at http://0.0.0.0:${port}`);
 });
-// trigger redeploy
