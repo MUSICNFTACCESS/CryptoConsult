@@ -2,132 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CryptoConsult by Crimzn</title>
   <style>
     body {
       background-color: #000;
       color: #f7931a;
-      font-family: "Courier New", monospace;
+      font-family: monospace;
+      margin: 0;
       padding: 20px;
     }
-    h1 {
-      color: #f7931a;
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-    #prices {
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-    .services {
-      list-style: square;
-      margin-bottom: 20px;
-    }
-    .buttons a {
-      display: inline-block;
-      background: #f7931a;
-      color: black;
-      padding: 10px 16px;
-      margin: 5px 10px 15px 0;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-    }
+    h1 { color: #fff; }
     #chatbox {
-      background-color: #111;
+      background: #111;
       border: 1px solid #f7931a;
-      padding: 15px;
-      min-height: 100px;
-      margin-bottom: 10px;
+      padding: 1em;
+      margin-bottom: 1em;
+      height: 300px;
       overflow-y: auto;
-    }
-    form {
-      display: flex;
-      gap: 10px;
+      white-space: pre-wrap;
     }
     input[type="text"] {
-      flex: 1;
-      padding: 10px;
-      background-color: #222;
+      width: 80%;
+      padding: 0.5em;
+      font-size: 1em;
       border: 1px solid #f7931a;
-      color: white;
+      background: #111;
+      color: #fff;
     }
     button {
+      padding: 0.5em 1em;
       background-color: #f7931a;
-      color: black;
-      padding: 10px;
-      font-weight: bold;
       border: none;
+      color: #000;
+      font-weight: bold;
+      font-family: monospace;
       cursor: pointer;
+      margin-left: 10px;
     }
-    audio {
-      display: none;
+    footer {
+      margin-top: 2em;
+      color: #888;
     }
   </style>
 </head>
 <body>
-  <audio autoplay loop>
-    <source src="autoplay.mp3" type="audio/mpeg">
-  </audio>
-
   <h1>CryptoConsult by Crimzn</h1>
-  <div id="prices">Loading live prices...</div>
+  <p><strong>BTC:</strong> $<span id="btc-price">...</span> |
+     <strong>ETH:</strong> $<span id="eth-price">...</span> |
+     <strong>SOL:</strong> $<span id="sol-price">...</span></p>
 
-  <ul class="services">
-    <li>Technical Analysis</li>
-    <li>Wallet Setup</li>
-    <li>On-Ramp & Off-Ramp Guidance</li>
-    <li>Risk Management & Strategy</li>
-  </ul>
-
-  <div class="buttons">
-    <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">Book Now</a>
-    <a href="https://paypal.me/crimzn" target="_blank">Pay with PayPal</a>
-  </div>
-
-  <div id="chatbox"></div>
-  <form id="chat-form">
-    <input type="text" placeholder="Ask CrimznBot..." required />
+  <div id="chatbox">Ask CrimznBot anything about crypto...</div>
+  <form>
+    <input type="text" placeholder="Ask CrimznBot..." />
     <button type="submit">Send</button>
   </form>
 
+  <!-- Tip Jar Section -->
+  <section style="background:#111;border:2px solid #f7931a;padding:1em;margin:2em 0;border-radius:12px;">
+    <h2 style="color:#f7931a;font-family:monospace;">Support CrimznBot</h2>
+    <p style="color:#fff;font-size:0.95em;">
+      CrimznBot is free, real-time, and powered by GPT-4o. If it helped you, even a tip as small as <strong>0.0001 SOL</strong> keeps it alive and maintained by Crimzn.<br><br>
+      Thank you for supporting open, sovereign tools in the Cypherpunk tradition.
+    </p>
+    <a href="https://phantom.app/send/6g13EP9RCEuBjcnqK1vAjXq9aYeP6RHrkcKp9zbz64RA?amount=0.0001&token=SOL" target="_blank" style="display:inline-block;margin-top:1em;padding:0.75em 1.25em;background:#f7931a;color:#000;font-weight:bold;border:none;border-radius:8px;font-family:monospace;text-decoration:none;">
+      Tip in SOL via Phantom
+    </a>
+  </section>
+
+  <footer>
+    &copy; 2025 CryptoConsult by Crimzn
+  </footer>
+
   <script src="script.js"></script>
-<section style="margin-top:2em;padding:1em;background:#111;border:2px solid #f7931a;border-radius:12px;text-align:center;">
-<section style="margin-top:2em;padding:1em;background:#111;border:2px solid #f7931a;border-radius:12px;text-align:center;">
-<section style="margin-top:2em;padding:1em;background:#111;border:2px solid #f7931a;border-radius:12px;text-align:center;">
-<section style="margin-top:2em;padding:1em;background:#111;border:2px solid #f7931a;border-radius:12px;text-align:center;">
-  <style>
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-    .copy-button:hover { animation: pulse 0.6s infinite; }
-  </style>
-<section style="margin-top:2em;padding:1em;background:#111;border:2px solid #f7931a;border-radius:12px;text-align:center;">
-  <style>
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-    .copy-button:hover { animation: pulse 0.6s infinite; }
-  </style>
-<div style="margin:2em auto;padding:1.5em;background:rgba(17,17,17,0.8);border:2px solid #f7931a;border-radius:16px;text-align:center;max-width:95%;backdrop-filter:blur(8px);box-shadow:0 0 20px #f7931a80;">
-  <style>
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-    .copy-button:hover {
-      animation: pulse 0.6s infinite;
-    }
-  </style>
-  <h3 style="color:#f7931a;font-size:22px;margin-bottom:10px;">Support the Project</h3>
-  <p style="color:#ccc;font-size:16px;margin-bottom:10px;">Send SOL or verified tokens</p>
-  <button class="copy-button" onclick="const btn=this;navigator.clipboard.writeText('Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF');btn.innerText='Copied!';setTimeout(()=>btn.innerText='Copy Wallet Address',3000)" style="margin:10px auto;padding:0.6em 1.2em;background:#f7931a;color:#000;border:none;border-radius:8px;font-weight:bold;cursor:pointer;display:block;">Copy Wallet Address</button>
-  <a href="solana:Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF" style="display:inline-block;margin:1em auto;padding:0.75em 1.5em;background:#f7931a;color:#000;font-weight:bold;border-radius:10px;font-size:15px;text-decoration:none;">Send a Tip – Fuel the Future of Crypto Education</a>
-  <br><br>
-  <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=solana:Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF" alt="SOL QR Code" style="margin:10px auto;border:1px solid #444;padding:4px;border-radius:8px;display:block;" />
-</div>
+</body>
+</html>
