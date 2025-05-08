@@ -8,7 +8,7 @@ document.querySelector('form').addEventListener('submit', async function(e) {
   chatBox.innerHTML += `> You: ${userMessage}<br>`;
 
   try {
-    const response = await fetch('https://crimznbot.onrender.comhttps://crimznbot.onrender.com/api/chat', {
+    const response = await fetch('https://crimznbot.onrender.com/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: userMessage })
