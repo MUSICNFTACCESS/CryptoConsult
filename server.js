@@ -1,45 +1,45 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const dotenv = require("dotenv");
 const OpenAI = require("openai");
 
+dotenv.config();
 const app = express();
+const port = process.env.PORT || 3000;
+
 app.use(cors());
 app.use(bodyParser.json());
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY
 });
 
 app.post("/api/chat", async (req, res) => {
-  try {
-    const userMessage = req.body.message;
+  const userMessage = req.body.message;
 
-    const response = await openai.chat.completions.create({
-      model: "gpt-4o",
+  try {
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4",
       messages: [
         {
           role: "system",
-          content: `You are CrimznBot — a sharp, Cypherpunk-themed crypto consultant built by Crimzn. Always give bold, confident answers related to crypto investing, technicals, fundamentals, and strategy.`,
+          content: `You are CrimznBot — an elite crypto and finance assistant trained to provide sharp, market-savvy insights. Focus on Bitcoin, Solana, ETFs, macro trends, token analysis, and portfolio strategy. Avoid generic disclaimers. Be confident, concise, and educational.`
         },
-        { role: "user", content: userMessage },
-      ],
+        {
+          role: "user",
+          content: userMessage
+        }
+      ]
     });
 
-    const reply = response.choices?.[0]?.message?.content || "No reply generated.";
-    res.json({ reply });
+    res.json({ reply: completion.choices[0].message.content });
   } catch (error) {
-    console.error("Error in /api/chat:", error);
-    res.status(500).json({ error: "CrimznBot ran into a bug. Try again shortly." });
+    console.error("Error in /api/chat:", error.response?.data || error.message);
+    res.status(500).json({ error: "Something went wrong" });
   }
 });
 
-const port = process.env.PORT || 3000;
-app.listen(port, "0.0.0.0", () => {
-  console.log(`CrimznBot server live at http://0.0.0.0:${port}`);
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server running on port ${port}`);
 });
-
-app.get("/debug", (req, res) => {
-  res.json({ key: process.env.OPENAI_API_KEY ? "Exists" : "Missing" });
-});
-
