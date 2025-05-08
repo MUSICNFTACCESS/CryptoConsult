@@ -1,1 +1,135 @@
-404: Not Found
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CryptoConsult by Crimzn</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #f7931a;
+      font-family: 'Courier New', monospace;
+      margin: 0;
+      padding: 20px;
+    }
+    h1, h2 {
+      color: #f7931a;
+    }
+    #chatbox {
+      background-color: #111;
+      border: 1px solid #f7931a;
+      padding: 10px;
+      height: 300px;
+      overflow-y: auto;
+      margin-bottom: 20px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #111;
+      border: 1px solid #f7931a;
+      color: #fff;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #f7931a;
+      color: #000;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .price-feed {
+      margin: 20px 0;
+    }
+    .footer {
+      margin-top: 40px;
+      border-top: 1px solid #f7931a;
+      padding-top: 20px;
+    }
+    .footer img {
+      max-width: 180px;
+      margin-top: 10px;
+    }
+    .footer input {
+      width: 100%;
+      margin-top: 5px;
+      background: #111;
+      color: #fff;
+      border: 1px solid #f7931a;
+      padding: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h1>CryptoConsult by Crimzn</h1>
+
+  <div class="price-feed">
+    <p>Live Prices: <span id="prices">Loading...</span></p>
+  </div>
+
+  <div id="chatbox">Welcome to CrimznBot! Ask me anything about crypto...</div>
+  <form>
+    <input type="text" placeholder="Type your message..." required />
+    <button type="submit">Send</button>
+  </form>
+
+  <div class="footer">
+    <h2>Support the Project</h2>
+    <p>Send SOL or verified tokens:</p>
+    <input type="text" readonly value="6g13EP9RCEuBjcnqK1vAjXq9aYeP6RHrkcKp9zbz64RA" onclick="this.select();document.execCommand('copy');" />
+    <p>Scan QR to pay:</p>
+    <img src="https://raw.githubusercontent.com/MUSICNFTACCESS/CryptoConsult/main/solana-qr.png" alt="SOL QR Code" />
+
+    <p>
+      <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">
+        <button>Pay with Coinbase</button>
+      </a>
+      <a href="https://paypal.me/crimzn" target="_blank">
+        <button>Pay with PayPal</button>
+      </a>
+    </p>
+    <p>Thank you for supporting decentralized crypto consulting!</p>
+  </div>
+
+  <script>
+    document.querySelector('form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const input = document.querySelector('input[type="text"]');
+      const userMessage = input.value.trim();
+      if (!userMessage) return;
+
+      const chatBox = document.querySelector('#chatbox');
+      chatBox.innerHTML += `<br>> You: ${userMessage}`;
+
+      try {
+        const response = await fetch('https://crimznbot.onrender.com/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: userMessage })
+        });
+
+        const data = await response.json();
+        chatBox.innerHTML += `<br>> CrimznBot: ${data.reply}`;
+        chatBox.scrollTop = chatBox.scrollHeight;
+      } catch (err) {
+        chatBox.innerHTML += '<br>> CrimznBot: Error reaching server.';
+      }
+
+      input.value = '';
+    });
+
+    async function fetchPrices() {
+      try {
+        const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd');
+        const data = await res.json();
+        document.getElementById('prices').innerText =
+          `BTC: $${data.bitcoin.usd} | ETH: $${data.ethereum.usd} | SOL: $${data.solana.usd}`;
+      } catch (e) {
+        document.getElementById('prices').innerText = 'Error fetching prices';
+      }
+    }
+    fetchPrices();
+    setInterval(fetchPrices, 30000);
+  </script>
+</body>
+</html>
