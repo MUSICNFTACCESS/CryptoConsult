@@ -10,6 +10,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
+app.use(express.static("public"));
 app.use(bodyParser.json());
 
 const openai = new OpenAI({
