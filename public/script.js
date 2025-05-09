@@ -5,20 +5,21 @@ document.querySelector('form').addEventListener('submit', async function(e) {
   if (!userMessage) return;
 
   const chatBox = document.querySelector('#chatbox');
-  chatBox.innerHTML += `> You: ${userMessage}<br>`;
+  chatBox.innerHTML += '<div>> You: ' + userMessage + '</div>';
 
   try {
-    const response = await fetch('https://crimznbot.onrender.com/api/chat', {
+    const response = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: userMessage })
     });
 
     const data = await response.json();
-    chatBox.innerHTML += `> CrimznBot: ${data.reply}<br>`;
+    chatBox.innerHTML += '<div>> CrimznBot: ' + data.reply + '</div>';
   } catch (err) {
-    chatBox.innerHTML += `> CrimznBot: Error reaching server.<br>`;
+    chatBox.innerHTML += '<div>> CrimznBot: Error reaching server.</div>';
   }
 
   input.value = '';
+  chatBox.scrollTop = chatBox.scrollHeight; // auto-scroll to bottom
 });
