@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap');
+
 body {
   background-color: #000;
   color: #f7931a;
@@ -7,8 +9,9 @@ body {
   margin: 0;
 }
 
-h1 {
-  margin-bottom: 10px;
+h1, h2 {
+  font-family: 'Bungee Shade', cursive;
+  color: white;
 }
 
 .prices {
@@ -45,11 +48,6 @@ form button {
   overflow-y: auto;
   text-align: left;
   white-space: pre-wrap;
-}
-
-h2 {
-  margin-top: 30px;
-  color: white;
 }
 
 .services {
