@@ -10,8 +10,8 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
-app.use(express.static("public"));
 app.use(bodyParser.json());
+app.use(express.static("public"));
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
@@ -22,11 +22,12 @@ async function getPrices() {
     const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
     const data = await res.json();
     return {
-      btc: data.bitcoin.usd,
-      eth: data.ethereum.usd,
-      sol: data.solana.usd
+      btc: data?.bitcoin?.usd || "N/A",
+      eth: data?.ethereum?.usd || "N/A",
+      sol: data?.solana?.usd || "N/A"
     };
   } catch (err) {
+    console.error("Price fetch failed:", err.message);
     return { btc: "N/A", eth: "N/A", sol: "N/A" };
   }
 }
@@ -35,7 +36,7 @@ app.post("/api/chat", async (req, res) => {
   const userMessage = req.body.message;
   const prices = await getPrices();
 
-  const systemPrompt = 
+  const systemPrompt =
     "You are CrimznBot — a GPT-4 crypto and finance assistant created by Crimzn.\n\n" +
     "Live market prices:\n" +
     "- Bitcoin (BTC): $" + prices.btc + "\n" +
