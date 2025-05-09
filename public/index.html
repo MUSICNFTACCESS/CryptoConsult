@@ -6,41 +6,52 @@
   <style>
     body {
       background-color: #000;
-      color: #f7931a;
+      color: #d9821b;
       font-family: 'Courier New', monospace;
       margin: 0;
       padding: 20px;
     }
     h1, h2, h3 {
-      color: #f7931a;
+      color: #d9821b;
     }
-    #chatbox {
-      background-color: #111;
-      border: 1px solid #f7931a;
+    #price-bar {
+      background: #111;
+      border: 1px solid #d9821b;
       padding: 10px;
-      height: 300px;
-      overflow-y: auto;
       margin-bottom: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+    form {
+      margin-bottom: 10px;
     }
     input[type="text"] {
       width: 100%;
       padding: 10px;
       font-size: 16px;
-      border: 2px solid #f7931a;
+      border: 2px solid #d9821b;
       background: #111;
       color: #fff;
-      margin-bottom: 10px;
+    }
+    #chatbox {
+      background-color: #111;
+      border: 1px solid #d9821b;
+      padding: 10px;
+      min-height: 300px;
+      max-height: 400px;
+      overflow-y: auto;
     }
     button {
-      background-color: #f7931a;
+      background-color: #d9821b;
       color: #000;
       padding: 10px 16px;
       border: none;
       cursor: pointer;
       font-weight: bold;
+      margin-top: 8px;
     }
     button:hover {
-      background-color: #ffa94d;
+      background-color: #ec9c2c;
     }
     ul {
       padding-left: 20px;
@@ -52,11 +63,19 @@
 </head>
 <body>
   <h1>CryptoConsult by Crimzn</h1>
-  <div id="chatbox"></div>
+
+  <div id="price-bar">
+    BTC: <span id="btc-price">...</span> | 
+    ETH: <span id="eth-price">...</span> | 
+    SOL: <span id="sol-price">...</span>
+  </div>
+
   <form>
     <input type="text" placeholder="Ask CrimznBot..." />
     <button type="submit">Send</button>
   </form>
+
+  <div id="chatbox"></div>
 
   <div id="payment-section">
     <h2>Support the Project</h2>
@@ -67,7 +86,7 @@
       <button onclick="window.open('https://paypal.me/crimzn')">Pay with PayPal</button>
     </div>
 
-    <h3>Personal 1-on-1 Consulting — 9.99</h3>
+    <h3>Personal 1-on-1 Consulting — $99.99</h3>
     <ul>
       <li>Wallet Setup & Secure Storage</li>
       <li>Crypto On-Ramping & Off-Ramping</li>
@@ -77,8 +96,8 @@
       <li>Live Trading Support (BTC / SOL / ALT)</li>
     </ul>
 
-    <div style="margin-top: 30px; border: 2px solid #f7931a; border-radius: 20px; padding: 16px; background: #111;">
-      <h2 style="color: #f7931a;">Support CrimznBot</h2>
+    <div style="margin-top: 30px; border: 2px solid #d9821b; border-radius: 20px; padding: 16px; background: #111;">
+      <h2 style="color: #d9821b;">Support CrimznBot</h2>
       <p>CrimznBot is free, real-time, and powered by GPT-4o. If it helped you, even a tip as small as <strong>0.0001 SOL</strong> keeps it alive and maintained by Crimzn.</p>
       <p>Thank you for supporting open, sovereign tools in the Cypherpunk tradition.</p>
       <button onclick="window.open('https://phantom.app/ul/browse/send?recipient=6g13EP9RCEuBjcnqK1vAjXq9aYeP6RHrkcKp9zbz64RA&amount=0.01&reference=tip')">
@@ -89,6 +108,21 @@
     <p style="margin-top: 30px;">© 2025 CryptoConsult by Crimzn</p>
   </div>
 
-  <script src="script.js?v=2"></script>
+  <script src="script.js?v=5"></script>
+  <script>
+    async function getPrices() {
+      try {
+        const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
+        const data = await res.json();
+        document.getElementById("btc-price").textContent = "$" + data.bitcoin.usd.toLocaleString();
+        document.getElementById("eth-price").textContent = "$" + data.ethereum.usd.toLocaleString();
+        document.getElementById("sol-price").textContent = "$" + data.solana.usd.toLocaleString();
+      } catch (e) {
+        console.error("Price API error", e);
+      }
+    }
+    getPrices();
+    setInterval(getPrices, 30000);
+  </script>
 </body>
 </html>
