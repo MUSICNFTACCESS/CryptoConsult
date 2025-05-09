@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const OpenAI = require("openai");
+const path = require("path");
 
 dotenv.config();
 const app = express();
@@ -10,9 +11,10 @@ const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, "public")));
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 app.post("/api/chat", async (req, res) => {
@@ -20,30 +22,30 @@ app.post("/api/chat", async (req, res) => {
 
   try {
     const completion = await openai.chat.completions.create({
-      model: "gpt-4",
+      model: "gpt-4o",
       messages: [
         {
           role: "system",
-          content: `You are CrimznBot — an elite crypto and finance assistant who:
-- Gives confident, actionable advice on crypto, investing, and finance
-- Answers like ChatGPT-4 would
-- Uses simple but sharp language
-- Never rambles or hesitates`
+          content: "You are CrimznBot — a pro crypto assistant. Focus on BTC, ETH, SOL, macro trends. Be confident and actionable.",
         },
         {
           role: "user",
-          content: userMessage
-        }
-      ]
+          content: userMessage,
+        },
+      ],
     });
 
     res.json({ reply: completion.choices[0].message.content });
-  } catch (error) {
-    console.error("Error in /api/chat:", error.response?.data || error.message);
-    res.status(500).json({ error: "Something went wrong" });
+  } catch (err) {
+    console.error("OpenAI error:", err);
+    res.status(500).json({ error: "Bot error." });
   }
 });
 
-app.listen(port, '0.0.0.0', () => {
-  console.log(`Server running on port ${port}`);
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/index.html"));
+});
+
+app.listen(port, "0.0.0.0", () => {
+  console.log(`CrimznBot server running at http://0.0.0.0:${port}`);
 });
