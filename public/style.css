@@ -4,30 +4,85 @@ body {
   font-family: 'Courier New', monospace;
   text-align: center;
   padding: 20px;
+  margin: 0;
 }
-input {
+
+h1 {
+  margin-bottom: 10px;
+}
+
+.prices {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+form input {
   padding: 10px;
   width: 60%;
+  max-width: 400px;
+  border: none;
   margin-right: 10px;
+  border-radius: 5px;
 }
-button {
-  padding: 10px;
+
+form button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #f7931a;
+  color: #000;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
 }
+
 #chatbox {
   background: #111;
   border: 1px solid #f7931a;
   padding: 15px;
-  margin-top: 20px;
+  margin: 20px auto;
+  max-width: 600px;
   height: 300px;
   overflow-y: auto;
   text-align: left;
+  white-space: pre-wrap;
 }
+
+h2 {
+  margin-top: 30px;
+  color: white;
+}
+
+.services {
+  list-style: none;
+  padding: 0;
+  margin: 10px auto 30px;
+  max-width: 400px;
+  text-align: left;
+}
+
+.services li {
+  margin: 5px 0;
+}
+
+.buttons {
+  margin: 20px 0;
+}
+
 .buttons a {
   display: inline-block;
-  margin: 10px;
+  margin: 5px;
   padding: 10px 20px;
   background-color: purple;
   color: white;
   text-decoration: none;
   border-radius: 5px;
+  font-weight: bold;
+}
+
+.cta {
+  margin-top: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #ccc;
 }
