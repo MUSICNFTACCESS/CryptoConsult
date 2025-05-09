@@ -5,7 +5,8 @@ document.querySelector('form').addEventListener('submit', async function(e) {
   if (!userMessage) return;
 
   const chatBox = document.querySelector('#chatbox');
-  chatBox.innerHTML += '<div>> You: ' + userMessage + '</div>';
+  chatBox.innerHTML += `<div>> You: ${userMessage}</div>`;
+  input.value = '';
 
   try {
     const response = await fetch('/api/chat', {
@@ -15,11 +16,9 @@ document.querySelector('form').addEventListener('submit', async function(e) {
     });
 
     const data = await response.json();
-    chatBox.innerHTML += '<div>> CrimznBot: ' + data.reply + '</div>';
+    chatBox.innerHTML += `<div>CrimznBot: ${data.reply}</div>`;
+    chatBox.scrollTop = chatBox.scrollHeight;
   } catch (err) {
-    chatBox.innerHTML += '<div>> CrimznBot: Error reaching server.</div>';
+    chatBox.innerHTML += `<div>CrimznBot: Sorry, I’m not responding right now.</div>`;
   }
-
-  input.value = '';
-  chatBox.scrollTop = chatBox.scrollHeight; // auto-scroll to bottom
 });
