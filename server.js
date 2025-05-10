@@ -82,3 +82,4 @@ app.get("/api/prices", async (req, res) => {
 app.listen(port, () => {
   console.log("CrimznBot server running on port " + port);
 });
+// redeploy trigger
