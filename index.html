@@ -2,64 +2,105 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CryptoConsult by Crimzn</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>CryptoConsult by Crimzn</h1>
-  <div class="prices" id="prices">BTC, ETH, and SOL loading...</div>
+  <header>
+    <h1>CryptoConsult by Crimzn</h1>
+    <div id="prices">BTC, ETH, and SOL loading...</div>
+  </header>
 
-  <p>
-    Welcome to <strong>CryptoConsult</strong> — your personalized, AI-powered crypto consulting hub.
-    Whether you're new to crypto or a seasoned investor, CrimznBot and I offer insights into market trends,
-    portfolio strategy, smart contracts, and more.
-  </p>
+  <main>
+    <section class="intro">
+      <p>
+        Welcome to <strong>CryptoConsult</strong> — your personalized, AI-powered crypto advisory platform. Whether you're new to crypto or a seasoned investor, CrimznBot and I are here to guide you through wallet setup, portfolio strategy, smart contracts, and more.
+      </p>
+    </section>
 
-  <h2>About Crimzn</h2>
-  <p>
-    I've worked in traditional finance for nearly a decade. Now I help people grow their money smarter through crypto.
-    You get real-time advice, wallet setup, and strategies — all from someone who lives and breathes blockchain.
-  </p>
+    <section class="about">
+      <h2>About Crimzn</h2>
+      <p>
+        I've worked in traditional finance for nearly a decade and have been deep in crypto for 6+ years, through two full Bitcoin cycles. I'm certified in blockchain, tokenomics, and wrapped token infrastructure — with hands-on experience building decentralized apps, integrating Solana Pay and Coinbase Commerce, and tracking wallets across multiple chains.
+      </p>
+      <p>
+        This site is powered by GPT-4o and built entirely from scratch with crypto-first users in mind. CrimznBot delivers instant insights, while I personally offer consultations for anyone serious about navigating the crypto space.
+      </p>
+    </section>
 
-  <h2>Consultation Services</h2>
-  <ul>
-    <li>Wallet Setup & Security</li>
-    <li>On-Ramping / Off-Ramping</li>
-    <li>Portfolio Strategy & Reallocation</li>
-    <li>Risk Management</li>
-    <li>TA & FA for Coins & Tokens</li>
-  </ul>
+    <section class="chat">
+      <h2>Ask CrimznBot...</h2>
+      <form id="chat-form">
+        <input type="text" id="user-input" placeholder="Ask CrimznBot..." required />
+        <button type="submit">Send</button>
+      </form>
+      <div id="chatbox"></div>
+    </section>
 
-  <div>
-    <button onclick="window.open('https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8', '_blank')">Pay with Crypto</button>
-    <button onclick="window.open('https://www.paypal.me/crimzn', '_blank')">Pay with PayPal</button>
-    <button onclick="window.location.href='mailto:crimzncipriano@gmail.com'">Book a Consultation</button>
-  </div>
+    <section class="services">
+      <h2>Available Services</h2>
+      <ul>
+        <li>Technical Analysis</li>
+        <li>Fundamental Analysis</li>
+        <li>Wallet Setup</li>
+        <li>On-Ramping / Off-Ramping</li>
+        <li>Risk Management</li>
+        <li>Capital Allocation</li>
+        <li>Smart Contract Guidance</li>
+      </ul>
+      <div class="payment-buttons">
+        <button onclick="window.location.href='https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8'">Pay with Coinbase</button>
+        <button onclick="window.location.href='https://paypal.me/crimzn'">Pay with PayPal</button>
+        <button onclick="window.location.href='#'">Pay with Solana</button>
+      </div>
+    </section>
 
-  <h2>Talk to CrimznBot</h2>
-  <form>
-    <input type="text" placeholder="Ask CrimznBot..." />
-    <button type="submit">Send</button>
-  </form>
-  <div id="chatbox"></div>
+    <section class="disclaimer">
+      <p>
+        <strong>CryptoConsult by Crimzn</strong> is powered by GPT-4o and backed by real-world finance and blockchain expertise.
+      </p>
+      <p>
+        All consulting sessions are currently offered at no cost while we test the platform. Support is appreciated!
+      </p>
+      <p>
+        <strong>Disclaimer:</strong> I am not a financial advisor, and nothing I or CrimznBot say should be taken as literal financial advice. This is crypto consulting — meant to guide you through the noise on X, the hype in the media, and help you stay grounded in facts and data. You are responsible for your own decisions. Use this platform as a compass, not a guarantee.
+      </p>
+    </section>
+
+    <section class="beta-access">
+      <h2>Free Access to GPT-4o</h2>
+      <p>
+        You're chatting with CrimznBot, powered by GPT-4o — and it's completely free during beta. Enjoy the insights? Support future features or book a personal consult below.
+      </p>
+      <div class="payment-buttons">
+        <button onclick="window.location.href='https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8'">Book a Session</button>
+        <button onclick="window.location.href='https://paypal.me/crimzn'">Pay with PayPal</button>
+        <button onclick="window.location.href='#'">Pay with Solana</button>
+      </div>
+      <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.7;">Created by Crimzn</p>
+    </section>
+
+    <section class="cta">
+      <h2>Tap Into Pro-Level Crypto Guidance</h2>
+      <p>
+        While CrimznBot gives you free real-time insights powered by GPT-4o, there’s no substitute for human strategy.
+      </p>
+      <p>
+        Book a private 1-on-1 session with <strong>Crimzn</strong> — a proven blockchain consultant with traditional finance roots — to cut through the noise, decode market chaos, and craft a game plan aligned with your goals.
+      </p>
+      <p>
+        Sessions are just <strong>$99.99/hour</strong> and could save you thousands in missteps.
+      </p>
+      <div class="payment-buttons">
+        <button onclick="window.location.href='https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8'">Book a Session</button>
+        <button onclick="window.location.href='https://paypal.me/crimzn'">Pay with PayPal</button>
+        <button onclick="window.location.href='#'">Pay with Solana</button>
+      </div>
+      <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.7;">Created by Crimzn</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
 </html>
-<section class="cta">
-  <h2>Tap Into Pro-Level Crypto Guidance</h2>
-  <p>
-    While CrimznBot delivers free real-time insights powered by GPT-4o, nothing compares to tailored human strategy.
-  </p>
-  <p>
-    Book a private 1-on-1 session with <strong>Crimzn</strong> — a blockchain consultant with deep roots in traditional finance — and gain clarity in a chaotic market. Together, we’ll build a game plan aligned with your goals.
-  </p>
-  <p>
-    <strong>$99.99/hour</strong> sessions could save you thousands in costly missteps.
-  </p>
-  <div class="cta-buttons">
-    <button onclick="window.location.href='https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8'">Pay with Crypto (Coinbase)</button>
-    <button onclick="window.location.href='https://paypal.me/crimzn'">Pay with PayPal</button>
-    <button onclick="window.location.href='#'">Pay with Solana</button>
-  </div>
-  <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.7;">Created by Crimzn</p>
-</section>
