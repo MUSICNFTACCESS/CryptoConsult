@@ -1,0 +1,37 @@
+body {
+  background-color: #000;
+  color: #f7931a;
+  font-family: 'Courier New', monospace;
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+}
+h1, h2 {
+  color: #f7931a;
+}
+#chatbox {
+  background-color: #111;
+  border: 1px solid #f7931a;
+  padding: 10px;
+  height: 300px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+input, button {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  border: none;
+}
+button {
+  background-color: #f7931a;
+  color: #000;
+  font-weight: bold;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+.payment-buttons button {
+  margin: 5px;
+}
