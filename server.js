@@ -16,7 +16,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-// Fetch current crypto prices from CoinGecko
+// Fetch prices to embed into CrimznBot replies
 async function getPrices() {
   try {
     const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
@@ -32,7 +32,7 @@ async function getPrices() {
   }
 }
 
-// CrimznBot chat endpoint
+// CrimznBot ChatGPT-4o route
 app.post("/api/chat", async (req, res) => {
   const userMessage = req.body.message;
   const prices = await getPrices();
@@ -64,7 +64,6 @@ app.post("/api/chat", async (req, res) => {
   }
 });
 
-// Public API route for frontend price fetch
 app.get("/api/prices", async (req, res) => {
   const prices = await getPrices();
   res.json({
