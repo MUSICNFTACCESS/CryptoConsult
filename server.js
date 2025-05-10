@@ -16,15 +16,19 @@ app.get('/', (req, res) => {
 app.post('/api/chat', async (req, res) => {
   const userMessage = req.body.message;
   try {
-    const pricesRes = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd');
-    const pricesData = await pricesRes.json();
-    const btc = pricesData.bitcoin.usd;
-    const eth = pricesData.ethereum.usd;
-    const sol = pricesData.solana.usd;
+    const prices = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd');
+    const data = await prices.json();
 
-    const prompt = `BTC: $\{btc\} | ETH: $\{eth\} | SOL: $\{sol\}\n\nUser: ${userMessage}\nCrimznBot:`;
+    const btc = data.bitcoin.usd;
+    const eth = data.ethereum.usd;
+    const sol = data.solana.usd;
 
-    const gptRes = await fetch('https://api.openai.com/v1/chat/completions', {
+    const messages = [
+      { role: 'system', content: 'You are CrimznBot, an expert crypto consultant. Give clear, confident, helpful advice based on real-time price context.' },
+      { role: 'user', content: `BTC: $\{btc\}, ETH: $\{eth\}, SOL: $\{sol\}\n\nUser: ${userMessage}\nCrimznBot:` }
+    ];
+
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -32,16 +36,16 @@ app.post('/api/chat', async (req, res) => {
       },
       body: JSON.stringify({
         model: 'gpt-4o',
-        messages: [{ role: 'system', content: 'You are CrimznBot, an expert in crypto consulting. Give sharp, practical advice.' }, { role: 'user', content: prompt }]
+        messages
       })
     });
 
-    const gptData = await gptRes.json();
-    const reply = gptData.choices?.[0]?.message?.content || 'CrimznBot is currently unavailable.';
+    const result = await response.json();
+    const reply = result.choices?.[0]?.message?.content || 'CrimznBot is unavailable.';
 
     res.json({ reply });
   } catch (err) {
-    console.error('Bot error:', err);
+    console.error('Bot error:', err.message);
     res.status(500).json({ reply: 'Error reaching server.' });
   }
 });
