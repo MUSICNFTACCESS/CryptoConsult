@@ -9,11 +9,8 @@ const openai = new OpenAI({
 
 const knownCoins = {
   btc: 'bitcoin',
-  bitcoin: 'bitcoin',
   eth: 'ethereum',
-  ethereum: 'ethereum',
   sol: 'solana',
-  solana: 'solana',
   ondo: 'ondocoin',
   pepe: 'pepe',
   link: 'chainlink',
@@ -49,14 +46,26 @@ async function getCoinPrices(userMessage) {
   }
 }
 
+function generateChartLinks(userMessage) {
+  const chartLinks = [];
+  const tokens = Object.keys(knownCoins);
+  tokens.forEach(token => {
+    if (userMessage.toLowerCase().includes(token)) {
+      chartLinks.push(`https://www.tradingview.com/symbols/${token.toUpperCase()}USDT/`);
+    }
+  });
+  return chartLinks;
+}
+
 router.post('/api/chat', async (req, res) => {
   const userMessage = req.body.message;
   const priceSummary = await getCoinPrices(userMessage);
+  const chartLinks = generateChartLinks(userMessage);
 
   const messages = [
     {
       role: 'system',
-      content: "You are CrimznBot, a GPT-4o powered crypto consultant built by Crimzn. Respond like ChatGPT but with expert crypto knowledge. If the user asks for any crypto prices, use the live price snapshot injected below if available."
+      content: "You are CrimznBot, a GPT-4o powered crypto consultant built by Crimzn. Speak naturally and clearly. If the user asks for price data or chart info, use the injected context below."
     },
     {
       role: 'user',
@@ -67,7 +76,14 @@ router.post('/api/chat', async (req, res) => {
   if (priceSummary) {
     messages.unshift({
       role: 'system',
-      content: `Live price snapshot:\n${priceSummary}`
+      content: `Live prices:\n${priceSummary}`
+    });
+  }
+
+  if (chartLinks.length > 0 && userMessage.toLowerCase().includes("chart")) {
+    messages.unshift({
+      role: 'system',
+      content: `Suggested chart links:\n${chartLinks.join('\n')}`
     });
   }
 
