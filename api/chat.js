@@ -11,14 +11,14 @@ const knownCoins = {
   btc: 'bitcoin',
   eth: 'ethereum',
   sol: 'solana',
-  ondo: 'ondocoin',
+  ondo: 'ondos-finance',
   pepe: 'pepe',
   link: 'chainlink',
   dot: 'polkadot',
   ada: 'cardano',
   doge: 'dogecoin',
   avax: 'avalanche-2',
-  matic: 'polygon',
+  matic: 'polygon'
 };
 
 async function getCoinPrices(userMessage) {
@@ -37,7 +37,7 @@ async function getCoinPrices(userMessage) {
     return ids
       .map(id => {
         const price = data[id]?.usd;
-        return price ? `- ${id.charAt(0).toUpperCase() + id.slice(1)}: $${price}` : null;
+        return price ? `- ${id.toUpperCase()}: $${price}` : null;
       })
       .filter(Boolean)
       .join('\n');
@@ -48,8 +48,7 @@ async function getCoinPrices(userMessage) {
 
 function generateChartLinks(userMessage) {
   const chartLinks = [];
-  const tokens = Object.keys(knownCoins);
-  tokens.forEach(token => {
+  Object.keys(knownCoins).forEach(token => {
     if (userMessage.toLowerCase().includes(token)) {
       chartLinks.push(`https://www.tradingview.com/symbols/${token.toUpperCase()}USDT/`);
     }
@@ -62,30 +61,32 @@ router.post('/api/chat', async (req, res) => {
   const priceSummary = await getCoinPrices(userMessage);
   const chartLinks = generateChartLinks(userMessage);
 
-  const messages = [
-    {
-      role: 'system',
-      content: "You are CrimznBot, a GPT-4o powered crypto consultant built by Crimzn. Speak naturally and clearly. If the user asks for price data or chart info, use the injected context below."
-    },
-    {
-      role: 'user',
-      content: userMessage
-    }
-  ];
+  const systemPrompts = [];
 
   if (priceSummary) {
-    messages.unshift({
+    systemPrompts.push({
       role: 'system',
-      content: `Live prices:\n${priceSummary}`
+      content: `Live crypto prices:\n${priceSummary}`
     });
   }
 
   if (chartLinks.length > 0 && userMessage.toLowerCase().includes("chart")) {
-    messages.unshift({
+    systemPrompts.push({
       role: 'system',
       content: `Suggested chart links:\n${chartLinks.join('\n')}`
     });
   }
+
+  systemPrompts.push({
+    role: 'system',
+    content:
+      "You are CrimznBot, a crypto consulting assistant built by Crimzn using GPT-4o. Answer like ChatGPT would — accurate, helpful, and natural. Use any injected price data above if the user asked about price."
+  });
+
+  const messages = [
+    ...systemPrompts,
+    { role: 'user', content: userMessage }
+  ];
 
   try {
     const completion = await openai.chat.completions.create({
