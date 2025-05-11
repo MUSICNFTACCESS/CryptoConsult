@@ -1,3 +1,18 @@
+// Fetch and update live prices
+async function loadPrices() {
+  try {
+    const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&t=' + Date.now());
+    const data = await res.json();
+    const pricesDiv = document.getElementById('prices');
+    pricesDiv.innerText = `BTC: $${data.bitcoin.usd} | ETH: $${data.ethereum.usd} | SOL: $${data.solana.usd}`;
+  } catch (err) {
+    document.getElementById('prices').innerText = 'Error loading prices';
+    console.error('Price load failed:', err);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadPrices);
+
 document.querySelector('form').addEventListener('submit', async function(e) {
   e.preventDefault();
 
@@ -6,8 +21,13 @@ document.querySelector('form').addEventListener('submit', async function(e) {
   if (!userMessage) return;
 
   const chatBox = document.querySelector('#chatbox');
-  chatBox.innerHTML = ''; // Clear previous content
+  if (!chatBox) {
+    console.error('chatbox element not found');
+    return;
+  }
 
+  // Clear previous message
+  chatBox.innerHTML = '';
   chatBox.innerHTML += `<div>> You: ${userMessage}</div>`;
 
   try {
