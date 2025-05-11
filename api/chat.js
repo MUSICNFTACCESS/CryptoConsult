@@ -11,7 +11,7 @@ const knownCoins = {
   btc: 'bitcoin',
   eth: 'ethereum',
   sol: 'solana',
-  ondo: 'ondos',
+  ondo: 'ondo-finance',
   pepe: 'pepe',
   link: 'chainlink',
   dot: 'polkadot',
