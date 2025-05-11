@@ -1,7 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // === Enable music on first click ===
+  document.body.addEventListener('click', () => {
+    const audio = document.getElementById('bgmusic');
+    if (audio) {
+      audio.muted = false;
+      audio.play().catch(() => {});
+    }
+  }, { once: true });
+
   // === Live Price Fetcher ===
   function updatePrices() {
-    fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&ts=' + Date.now())
+    fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd')
       .then(res => res.json())
       .then(data => {
         const priceDiv = document.getElementById('prices');
