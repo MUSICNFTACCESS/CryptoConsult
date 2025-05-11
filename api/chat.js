@@ -1,47 +1,34 @@
-const express = require('express');
-const router = express.Router();
-const axios = require('axios');
-const { Configuration, OpenAIApi } = require('openai');
+onst fetch = require('node-fetch');
 
-const config = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(config);
-
-router.post('/', async (req, res) => {
-  const userMessage = req.body.message || '';
-
-  const coinMatch = userMessage.match(/\bprice of (\w+)\b/i);
-  let priceText = '';
-  if (coinMatch) {
-    const coin = coinMatch[1].toLowerCase();
-    try {
-      const priceRes = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd`);
-      const price = priceRes.data[coin]?.usd;
-      if (price) {
-        priceText = `The current price of ${coin.toUpperCase()} is $${price}`;
-      } else {
-        priceText = `Sorry, I couldn’t find the price for ${coin.toUpperCase()}.`;
-      }
-    } catch (err) {
-      priceText = `Failed to fetch the price for ${coin.toUpperCase()}.`;
-    }
-  }
-
+module.exports = async function (req, res) {
   try {
-    const prompt = `${priceText}\n\nUser asked: "${userMessage}"\n\nAnswer as if you're Crimzn.`;
+    const { message } = req.body;
 
-    const completion = await openai.createChatCompletion({
-      model: 'gpt-4o',
-      messages: [{ role: 'user', content: prompt }],
+    const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: 'gpt-4o',
+        messages: [
+          {
+            role: 'system',
+            content: "You are CrimznBot, a crypto-savvy AI trained by Crimzn to guide users with insights, market commentary, and friendly advice. Always try to answer clearly and accurately. You're allowed to give price estimates but clarify they may be outdated unless real-time data is available.",
+          },
+          { role: 'user', content: message },
+        ],
+        temperature: 0.7,
+      }),
     });
 
-    const reply = completion.data.choices[0].message.content;
+    const data = await openaiRes.json();
+    const reply = data.choices?.[0]?.message?.content || "I'm sorry, something went wrong.";
+
     res.json({ reply });
   } catch (error) {
-    console.error('OpenAI error:', error);
-    res.status(500).json({ reply: 'Error generating response.' });
+    console.error('Error in chat.js:', error);
+    res.status(500).json({ reply: "CrimznBot: I'm having trouble reaching the brain right now. Try again soon." });
   }
-});
-
-module.exports = router;
+};
