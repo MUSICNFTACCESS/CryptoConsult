@@ -4,14 +4,13 @@ const fetch = require('node-fetch');
 const { Configuration, OpenAIApi } = require('openai');
 
 const openai = new OpenAIApi(new Configuration({
-  apiKey: process.env.OPENAI_API_KEY
+  apiKey: process.env.OPENAI_API_KEY,
 }));
 
 router.post('/', async (req, res) => {
   const userMessage = req.body.message || '';
   let priceNote = '';
 
-  // Extract coin symbol from question
   const match = userMessage.match(/price of (\w+)/i);
   if (match) {
     const coin = match[1].toLowerCase();
@@ -29,12 +28,12 @@ router.post('/', async (req, res) => {
   try {
     const completion = await openai.createChatCompletion({
       model: 'gpt-4o',
-      messages: [{ role: 'user', content: userMessage }]
+      messages: [{ role: 'user', content: userMessage }],
     });
     const reply = completion.data.choices[0].message.content + priceNote;
     res.json({ reply });
   } catch (err) {
-    console.error('OpenAI error:', err);
+    console.error(err);
     res.json({ reply: 'Sorry, an error occurred. Please try again later.' });
   }
 });
