@@ -1,34 +1,43 @@
+const express = require('express');
+const router = express.Router();
 const fetch = require('node-fetch');
+const { Configuration, OpenAIApi } = require('openai');
 
-module.exports = async function (req, res) {
+const openai = new OpenAIApi(new Configuration({
+  apiKey: process.env.OPENAI_API_KEY
+}));
+
+router.post('/', async (req, res) => {
+  const userMessage = req.body.message || '';
+
+  // Extract coin ticker from question if any
+  const match = userMessage.match(/price of (\w+)/i);
+  let priceNote = '';
+  if (match) {
+    const coin = match[1].toLowerCase();
+    try {
+      const resp = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd`);
+      const data = await resp.json();
+      if (data[coin] && data[coin].usd) {
+        priceNote = `\n\nAs of now, ${coin.toUpperCase()} is trading at **$${data[coin].usd}** USD.`;
+      }
+    } catch (err) {
+      console.error('Price fetch error:', err);
+    }
+  }
+
   try {
-    const { message } = req.body;
-
-    const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: 'gpt-4o',
-        messages: [
-          {
-            role: 'system',
-            content: "You are CrimznBot, a crypto-savvy AI trained by Crimzn to guide users with insights, market commentary, and friendly advice. Always try to answer clearly and accurately. You're allowed to give price estimates but clarify they may be outdated unless real-time data is available.",
-          },
-          { role: 'user', content: message },
-        ],
-        temperature: 0.7,
-      }),
+    const completion = await openai.createChatCompletion({
+      model: 'gpt-4o',
+      messages: [{ role: 'user', content: userMessage }]
     });
 
-    const data = await openaiRes.json();
-    const reply = data.choices?.[0]?.message?.content || "I'm sorry, something went wrong.";
-
+    const reply = completion.data.choices[0].message.content + priceNote;
     res.json({ reply });
-  } catch (error) {
-    console.error('Error in chat.js:', error);
-    res.status(500).json({ reply: "CrimznBot: I'm having trouble reaching the brain right now. Try again soon." });
+  } catch (err) {
+    console.error(err);
+    res.json({ reply: 'Sorry, an error occurred. Please try again later.' });
   }
-};
+});
+
+module.exports = router;
