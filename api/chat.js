@@ -1,12 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
-const { Configuration, OpenAIApi } = require('openai');
+const OpenAI = require('openai');
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
 });
-const openai = new OpenAIApi(configuration);
 
 async function getPricesString() {
   try {
@@ -37,12 +36,12 @@ router.post('/api/chat', async (req, res) => {
   ];
 
   try {
-    const completion = await openai.createChatCompletion({
+    const completion = await openai.chat.completions.create({
       model: 'gpt-4o',
       messages
     });
 
-    const reply = completion.data.choices[0].message.content;
+    const reply = completion.choices[0].message.content;
     res.json({ reply });
   } catch (error) {
     console.error('OpenAI error:', error.message);
@@ -51,4 +50,3 @@ router.post('/api/chat', async (req, res) => {
 });
 
 module.exports = router;
-// force redeploy
