@@ -7,36 +7,67 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
 
-async function getBTCPrice() {
+const knownCoins = {
+  btc: 'bitcoin',
+  bitcoin: 'bitcoin',
+  eth: 'ethereum',
+  ethereum: 'ethereum',
+  sol: 'solana',
+  solana: 'solana',
+  ondo: 'ondocoin',
+  pepe: 'pepe',
+  link: 'chainlink',
+  dot: 'polkadot',
+  ada: 'cardano',
+  doge: 'dogecoin',
+  avax: 'avalanche-2',
+  matic: 'polygon',
+};
+
+async function getCoinPrices(userMessage) {
+  const mentioned = Object.keys(knownCoins).filter(key =>
+    userMessage.toLowerCase().includes(key)
+  );
+  const ids = [...new Set(mentioned.map(key => knownCoins[key]))];
+
+  if (ids.length === 0) return null;
+
   try {
-    const res = await fetch('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1');
+    const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids.join(',')}&vs_currencies=usd&t=${Date.now()}`;
+    const res = await fetch(url);
     const data = await res.json();
-    const latest = data.prices[data.prices.length - 1][1]; // last price point
-    return `The current price of Bitcoin is $${latest.toFixed(2)}.`;
+
+    return ids
+      .map(id => {
+        const price = data[id]?.usd;
+        return price ? `- ${id.charAt(0).toUpperCase() + id.slice(1)}: $${price}` : null;
+      })
+      .filter(Boolean)
+      .join('\n');
   } catch (e) {
-    return 'BTC price unavailable right now.';
+    return null;
   }
 }
 
 router.post('/api/chat', async (req, res) => {
   const userMessage = req.body.message;
-  const btcPrice = await getBTCPrice();
-
-  const basePrompt = "You are CrimznBot, a GPT-4o powered crypto consultant built by Crimzn. Answer naturally like ChatGPT would. If the user asks for prices or the current value of Bitcoin, use the injected btcPrice string below.";
+  const priceSummary = await getCoinPrices(userMessage);
 
   const messages = [
-    { role: 'system', content: basePrompt },
-    { role: 'user', content: userMessage }
+    {
+      role: 'system',
+      content: "You are CrimznBot, a GPT-4o powered crypto consultant built by Crimzn. Respond like ChatGPT but with expert crypto knowledge. If the user asks for any crypto prices, use the live price snapshot injected below if available."
+    },
+    {
+      role: 'user',
+      content: userMessage
+    }
   ];
 
-  if (
-    userMessage.toLowerCase().includes("price") ||
-    userMessage.toLowerCase().includes("bitcoin") ||
-    userMessage.toLowerCase().includes("btc")
-  ) {
+  if (priceSummary) {
     messages.unshift({
       role: 'system',
-      content: btcPrice
+      content: `Live price snapshot:\n${priceSummary}`
     });
   }
 
