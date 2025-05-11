@@ -64,10 +64,18 @@
 </head>
 <body>
   <audio id="bgmusic" src="autoplay.mp3" autoplay loop muted></audio>
-  <button onclick="const m=document.getElementById('bgmusic');m.muted=false;m.volume=1.0;m.play();">Play Music</button>
+  <button onclick="const m=document.getElementById('bgmusic'); m.muted=false; m.volume=1.0; m.play();">Play Music</button>
 
   <h1>CryptoConsult by Crimzn</h1>
   <div class="section" id="prices">BTC, ETH, and SOL loading...</div>
+
+  <div class="section">
+    <form>
+      <input type="text" placeholder="Ask CrimznBot anything..." />
+      <button type="submit">Send</button>
+    </form>
+    <div id="chatbox"></div>
+  </div>
 
   <div class="section">
     <p>Welcome to <strong>CryptoConsult</strong> – your personalized, AI-powered crypto advisory platform. Whether you're new to crypto or a seasoned investor, CrimznBot and I are here to guide you through wallet setup, portfolio strategy, smart contracts, and more.</p>
@@ -124,4 +132,3 @@
   </footer>
 </body>
 </html>
-
