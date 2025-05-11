@@ -34,10 +34,11 @@ async function getCoinPrices(userMessage) {
     const res = await fetch(url);
     const data = await res.json();
 
-    return ids
-      .map(id => {
+    return mentioned
+      .map(key => {
+        const id = knownCoins[key];
         const price = data[id]?.usd;
-        return price ? `- ${id.toUpperCase()}: $${price}` : null;
+        return price ? `- ${key.toUpperCase()}: $${price}` : null;
       })
       .filter(Boolean)
       .join('\n');
@@ -61,30 +62,23 @@ router.post('/api/chat', async (req, res) => {
   const priceSummary = await getCoinPrices(userMessage);
   const chartLinks = generateChartLinks(userMessage);
 
-  const systemPrompts = [];
-
-  if (priceSummary) {
-    systemPrompts.push({
+  const systemPrompt = [
+    priceSummary ? {
       role: 'system',
-      content: `Live crypto prices:\n${priceSummary}`
-    });
-  }
-
-  if (chartLinks.length > 0 && userMessage.toLowerCase().includes("chart")) {
-    systemPrompts.push({
+      content: `Here are the live prices based on the user's question:\n${priceSummary}`
+    } : null,
+    chartLinks.length > 0 && userMessage.toLowerCase().includes("chart") ? {
       role: 'system',
       content: `Suggested chart links:\n${chartLinks.join('\n')}`
-    });
-  }
-
-  systemPrompts.push({
-    role: 'system',
-    content:
-      "You are CrimznBot, a crypto consulting assistant built by Crimzn using GPT-4o. Answer like ChatGPT would — accurate, helpful, and natural. Use any injected price data above if the user asked about price."
-  });
+    } : null,
+    {
+      role: 'system',
+      content: `You are CrimznBot, a crypto assistant powered by GPT-4o and built by Crimzn. If price data has been injected, speak confidently as if you know it natively. Do not say "I cannot access real-time data" if prices are available. Be natural and accurate like ChatGPT.`
+    }
+  ].filter(Boolean);
 
   const messages = [
-    ...systemPrompts,
+    ...systemPrompt,
     { role: 'user', content: userMessage }
   ];
 
