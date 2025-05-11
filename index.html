@@ -52,6 +52,7 @@
       text-align: left;
       display: inline-block;
       padding-left: 20px;
+      font-size: 1.1em;
     }
     footer {
       margin-top: 40px;
@@ -63,32 +64,35 @@
 </head>
 <body>
   <audio id="bgmusic" src="autoplay.mp3" autoplay loop muted></audio>
-  <button onclick="document.getElementById('bgmusic').muted = false; document.getElementById('bgmusic').play();">Play Music</button>
+  <button onclick="const m=document.getElementById('bgmusic');m.muted=false;m.volume=1.0;m.play();">Play Music</button>
 
   <h1>CryptoConsult by Crimzn</h1>
   <div class="section" id="prices">BTC, ETH, and SOL loading...</div>
 
   <div class="section">
-    <form>
-      <input type="text" placeholder="Ask CrimznBot anything..." />
-      <button type="submit">Send</button>
-    </form>
-    <div id="chatbox"></div>
+    <p>Welcome to <strong>CryptoConsult</strong> – your personalized, AI-powered crypto advisory platform. Whether you're new to crypto or a seasoned investor, CrimznBot and I are here to guide you through wallet setup, portfolio strategy, smart contracts, and more.</p>
   </div>
 
   <div class="section">
     <h2>About Crimzn</h2>
-    <p>With over 9 years in traditional finance and a background in risk strategy, I bring a macro-informed approach to the crypto world. Whether you're new to DeFi or managing a high-conviction portfolio, I can help sharpen your game with precision insights backed by experience — and now enhanced with GPT-4o intelligence.</p>
+    <p>I've worked in traditional finance for nearly a decade and have been deep in crypto for 6+ years, through two full Bitcoin cycles. I'm certified in blockchain, tokenomics, and wrapped token infrastructure – with hands-on experience building decentralized apps, integrating Solana Pay and Coinbase Commerce, and tracking wallets across multiple chains.</p>
   </div>
 
   <div class="section">
-    <h2>Services Offered</h2>
+    <h2>What Powers This</h2>
+    <p>This site is powered by GPT-4o and built entirely from scratch with crypto-first users in mind. CrimznBot delivers instant insights, while I personally offer consultations for anyone serious about navigating the crypto space.</p>
+  </div>
+
+  <div class="section">
+    <h2>Available Services</h2>
     <ul>
-      <li>Technical & Fundamental Crypto Analysis</li>
-      <li>On-Ramping / Off-Ramping Assistance</li>
-      <li>Wallet Setup & Security Guidance</li>
-      <li>Portfolio Strategy & Risk Management</li>
-      <li>1-on-1 Consulting via CrimznBot or Zoom</li>
+      <li>Technical Analysis</li>
+      <li>Fundamental Analysis</li>
+      <li>Wallet Setup</li>
+      <li>On-Ramping / Off-Ramping</li>
+      <li>Risk Management</li>
+      <li>Capital Allocation</li>
+      <li>Smart Contract Guidance</li>
     </ul>
   </div>
 
@@ -106,14 +110,17 @@
   </div>
 
   <div class="section">
-    <h3>What You’re Getting</h3>
-    <p>You’re not just chatting with an AI — you’re getting direct access to Crimzn’s personally trained crypto consulting assistant backed by GPT-4o.</p>
-    <p>This service includes personalized guidance on technical analysis, wallet security, capital rotation, risk management, DeFi tools, and more.</p>
-    <p style="font-weight:bold; color:white;">Consulting sessions are $99.99 per hour, payable via crypto or PayPal. No free sessions are offered.</p>
+    <h3>Support This Project</h3>
+    <p>If you've found value in this platform or want to support CrimznBot’s continued development, feel free to contribute using any of the payment options above. Every sat, SOL, or USDC helps keep this going.</p>
+  </div>
+
+  <div class="section">
+    <h3>Disclaimer</h3>
+    <p><strong>Crimzn is not a licensed financial advisor.</strong> All services are provided for educational and consultative purposes only. You are responsible for your own investment decisions.</p>
   </div>
 
   <footer>
-    <p>Created by Crimzn | Bitcoin-first, Solana-friendly | Powered by GPT-4o</p>
+    <p>Created by Crimzn | Powered by GPT-4o | Built for Bitcoin & Solana-native clients</p>
   </footer>
 </body>
 </html>
