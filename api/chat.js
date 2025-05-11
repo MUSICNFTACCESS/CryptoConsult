@@ -7,24 +7,22 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
 
-async function getPricesString() {
+async function getBTCPrice() {
   try {
-    const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&t=' + Date.now());
+    const res = await fetch('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1');
     const data = await res.json();
-    return `Live prices:
-- Bitcoin: 22879{data.bitcoin.usd}
-- Ethereum: 22879{data.ethereum.usd}
-- Solana: 22879{data.solana.usd}`;
+    const latest = data.prices[data.prices.length - 1][1]; // last price point
+    return `The current price of Bitcoin is $${latest.toFixed(2)}.`;
   } catch (e) {
-    return 'Live prices unavailable right now.';
+    return 'BTC price unavailable right now.';
   }
 }
 
 router.post('/api/chat', async (req, res) => {
   const userMessage = req.body.message;
-  const prices = await getPricesString();
+  const btcPrice = await getBTCPrice();
 
-  const basePrompt = "You are CrimznBot, a GPT-4o powered crypto consultant built by Crimzn. Answer just like ChatGPT would, but with extra knowledge and clarity on crypto topics when relevant.";
+  const basePrompt = "You are CrimznBot, a GPT-4o powered crypto consultant built by Crimzn. Answer naturally like ChatGPT would. If the user asks for prices or the current value of Bitcoin, use the injected btcPrice string below.";
 
   const messages = [
     { role: 'system', content: basePrompt },
@@ -34,13 +32,11 @@ router.post('/api/chat', async (req, res) => {
   if (
     userMessage.toLowerCase().includes("price") ||
     userMessage.toLowerCase().includes("bitcoin") ||
-    userMessage.toLowerCase().includes("btc") ||
-    userMessage.toLowerCase().includes("eth") ||
-    userMessage.toLowerCase().includes("sol")
+    userMessage.toLowerCase().includes("btc")
   ) {
     messages.unshift({
       role: 'system',
-      content: `Live market snapshot:\n${prices}`
+      content: btcPrice
     });
   }
 
