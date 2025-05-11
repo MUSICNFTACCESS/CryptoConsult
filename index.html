@@ -52,7 +52,7 @@
       text-align: left;
       display: inline-block;
       padding-left: 20px;
-      font-size: 1.1em;
+      font-size: 1em;
     }
     footer {
       margin-top: 40px;
@@ -64,7 +64,15 @@
 </head>
 <body>
   <audio id="bgmusic" src="autoplay.mp3" autoplay loop muted></audio>
-  <button onclick="const m=document.getElementById('bgmusic'); m.muted=false; m.volume=1.0; m.play();">Play Music</button>
+
+  <script>
+    document.addEventListener('click', () => {
+      const music = document.getElementById('bgmusic');
+      music.muted = false;
+      music.volume = 1.0;
+      music.play().catch(() => {});
+    }, { once: true });
+  </script>
 
   <h1>CryptoConsult by Crimzn</h1>
   <div class="section" id="prices">BTC, ETH, and SOL loading...</div>
@@ -132,3 +140,4 @@
   </footer>
 </body>
 </html>
+
