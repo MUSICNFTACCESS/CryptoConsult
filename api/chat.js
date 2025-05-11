@@ -3,22 +3,26 @@ const router = express.Router();
 const fetch = require('node-fetch');
 const { Configuration, OpenAIApi } = require('openai');
 
-const openai = new OpenAIApi(new Configuration({
+const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
-}));
+});
+
+const openai = new OpenAIApi(configuration);
 
 router.post('/', async (req, res) => {
   const userMessage = req.body.message || '';
+
+  // === Extract coin ticker if present ===
+  const match = userMessage.match(/price of (\w+)/i);
   let priceNote = '';
 
-  const match = userMessage.match(/price of (\w+)/i);
   if (match) {
     const coin = match[1].toLowerCase();
     try {
       const resp = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd`);
       const data = await resp.json();
       if (data[coin] && data[coin].usd) {
-        priceNote = `\n\nAs of now, ${coin.toUpperCase()} is trading at $${data[coin].usd}.`;
+        priceNote = `\n\nAs of now, ${coin.toUpperCase()} is trading at $${data[coin].usd}`;
       }
     } catch (err) {
       console.error('Price fetch error:', err);
@@ -30,6 +34,7 @@ router.post('/', async (req, res) => {
       model: 'gpt-4o',
       messages: [{ role: 'user', content: userMessage }],
     });
+
     const reply = completion.data.choices[0].message.content + priceNote;
     res.json({ reply });
   } catch (err) {
