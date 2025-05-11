@@ -9,7 +9,7 @@ const openai = new OpenAI({
 
 async function getPricesString() {
   try {
-    const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd');
+    const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&t=' + Date.now());
     const data = await res.json();
     return `Live prices:
 - Bitcoin: 22879{data.bitcoin.usd}
@@ -24,16 +24,25 @@ router.post('/api/chat', async (req, res) => {
   const userMessage = req.body.message;
   const prices = await getPricesString();
 
+  const basePrompt = "You are CrimznBot, a GPT-4o powered crypto consultant built by Crimzn. Answer just like ChatGPT would, but with extra knowledge and clarity on crypto topics when relevant.";
+
   const messages = [
-    {
-      role: 'system',
-      content: `You are CrimznBot, a GPT-4o powered crypto consultant built by Crimzn. Answer like ChatGPT would, but with a crypto edge. Use this if price data is requested:\n\n${prices}`
-    },
-    {
-      role: 'user',
-      content: userMessage
-    }
+    { role: 'system', content: basePrompt },
+    { role: 'user', content: userMessage }
   ];
+
+  if (
+    userMessage.toLowerCase().includes("price") ||
+    userMessage.toLowerCase().includes("bitcoin") ||
+    userMessage.toLowerCase().includes("btc") ||
+    userMessage.toLowerCase().includes("eth") ||
+    userMessage.toLowerCase().includes("sol")
+  ) {
+    messages.unshift({
+      role: 'system',
+      content: `Live market snapshot:\n${prices}`
+    });
+  }
 
   try {
     const completion = await openai.chat.completions.create({
