@@ -1,63 +1,65 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const { OpenAI } = require("openai");
-require("dotenv").config();
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const OpenAI = require('openai');
+const axios = require('axios');
+require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(express.static(__dirname));
 app.use(bodyParser.json());
-app.use(express.static("public"));
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-// CrimznBot GPT-4o chat endpoint
-app.post("/api/chat", async (req, res) => {
+async function getTokenPrice(tokenName) {
+  try {
+    const idRes = await axios.get(`https://api.coingecko.com/api/v3/search?query=${tokenName}`);
+    const coin = idRes.data.coins[0];
+    if (!coin) return null;
+    const priceRes = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${coin.id}&vs_currencies=usd`);
+    return { name: coin.name, price: priceRes.data[coin.id].usd };
+  } catch (err) {
+    return null;
+  }
+}
+
+app.post('/api/chat', async (req, res) => {
   const userMessage = req.body.message;
 
-  const systemPrompt =
-    "You are CrimznBot – a GPT-4 crypto and finance assistant created by Crimzn.\n\n" +
-    "Answer with confidence, clarity, and professionalism.\n" +
-    "If asked for investment tips, give high-level guidance without financial advice.\n" +
-    "If asked about crypto projects, smart contracts, or trends, be detailed.\n" +
-    "Your goal is to help people navigate the crypto space.";
+  // Try to extract token price if user asks for it
+  let priceInfo = '';
+  const match = userMessage.match(/price of (\w+)/i);
+  if (match) {
+    const token = match[1];
+    const result = await getTokenPrice(token);
+    if (result) {
+      priceInfo = `As of now, the price of ${result.name} is $${result.price}.\n\n`;
+    }
+  }
 
   try {
     const completion = await openai.chat.completions.create({
-      model: "gpt-4o",
+      model: 'gpt-4o',
       messages: [
-        { role: "system", content: systemPrompt },
-        { role: "user", content: userMessage },
+        { role: 'system', content: 'You are CrimznBot, a crypto expert who responds like ChatGPT with deep market knowledge, live prices, and guidance. Always format prices clearly.' },
+        { role: 'user', content: userMessage }
       ],
     });
 
-    res.json({ reply: completion.choices[0].message.content });
+    const reply = priceInfo + completion.choices[0].message.content;
+    res.json({ reply });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "CrimznBot failed to respond." });
+    console.error('OpenAI error:', err.message);
+    res.json({ reply: 'CrimznBot had trouble reaching the AI server. Please try again later.' });
   }
 });
 
-const fetch = require("node-fetch");
-
-app.get("/api/prices", async (req, res) => {
-  try {
-    const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
-    const data = await response.json();
-    res.json({
-      BTC: data.bitcoin.usd,
-      ETH: data.ethereum.usd,
-      SOL: data.solana.usd,
-    });
-  } catch (err) {
-    res.status(500).json({ error: "Failed to fetch prices" });
-  }
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(port, () => {
-  console.log("CrimznBot server running on port " + port);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
