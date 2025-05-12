@@ -5,7 +5,9 @@ document.getElementById('chat-form').addEventListener('submit', async function (
   const userMessage = input.value.trim();
   if (!userMessage) return;
 
-  responseBox.innerText = "Thinking...";
+  // Clear previous response and input
+  responseBox.innerHTML = "Thinking...";
+  input.value = '';
 
   try {
     const res = await fetch('/api/chat', {
@@ -15,9 +17,8 @@ document.getElementById('chat-form').addEventListener('submit', async function (
     });
 
     const data = await res.json();
-    responseBox.innerHTML = `<div><strong>CrimznBot:</strong> ${data.reply}</div>`;
-    input.value = '';
+    responseBox.innerHTML = `<strong>CrimznBot:</strong> ${data.reply}`;
   } catch (err) {
-    responseBox.innerHTML = `<div><strong>CrimznBot:</strong> Error reaching server.</div>`;
+    responseBox.innerHTML = `<strong>CrimznBot:</strong> Error reaching server.`;
   }
 });
