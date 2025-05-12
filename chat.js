@@ -19,10 +19,8 @@ const tokenMap = {
 async function getTokenPrice(id) {
   try {
     const res = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${id}&vs_currencies=usd`);
-    const price = res.data[id]?.usd || null;
-    return price;
-  } catch (err) {
-    console.error(`Error fetching ${id} price:`, err.message);
+    return res.data[id]?.usd || null;
+  } catch {
     return null;
   }
 }
@@ -33,21 +31,30 @@ router.post('/api/chat', async (req, res) => {
   let priceInfo = '';
 
   for (const [coingeckoId, keywords] of Object.entries(tokenMap)) {
-    const matched = keywords.some(word => userMessage.includes(word));
-    if (matched) {
+    if (keywords.some(word => userMessage.includes(word))) {
       const price = await getTokenPrice(coingeckoId);
       if (price) {
         priceInfo += `- **${coingeckoId.replace(/-/g, ' ')}:** $${price.toLocaleString()}\n`;
-      } else {
-        priceInfo += `- **${coingeckoId}**: Price not found\n`;
       }
     }
   }
 
   try {
+    let messages = [{ role: 'user', content: userMessage }];
+
+    if (priceInfo) {
+      messages = [
+        {
+          role: 'system',
+          content: `You're CrimznBot — a confident, expert crypto assistant. These are the latest live token prices:\n${priceInfo}\nUse them and never suggest checking external sources like CoinGecko or Binance.`
+        },
+        { role: 'user', content: userMessage }
+      ];
+    }
+
     const completion = await openai.createChatCompletion({
       model: 'gpt-4o',
-      messages: [{ role: 'user', content: userMessage }],
+      messages: messages,
     });
 
     reply = completion.data.choices[0].message.content;
@@ -57,7 +64,6 @@ router.post('/api/chat', async (req, res) => {
 
     res.json({ reply });
   } catch (err) {
-    console.error('OpenAI error:', err.message);
     res.status(500).json({ reply: 'Something went wrong. Please try again later.' });
   }
 });
