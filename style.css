@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+body {
+  background-color: #000;
+  color: #f7931a;
+  font-family: 'Courier New', monospace;
+  margin: 0;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+h1, h2 {
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #f7931a;
+  padding-bottom: 5px;
+}
+
+section {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #f7931a;
+  border-radius: 10px;
+  background-color: #111;
+}
+
+ul {
+  list-style-type: square;
+  padding-left: 20px;
+}
+
+a {
+  color: #f7931a;
+  text-decoration: underline;
+}
+
+#prices {
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size: 1.2em;
+  color: #fff;
+}
+
+form input {
+  padding: 10px;
+  width: 60%;
+  max-width: 400px;
+  border: none;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+form button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #f7931a;
+  color: #000;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+#chat-response {
+  margin-top: 15px;
+  white-space: pre-wrap;
+  color: #fff;
+}
