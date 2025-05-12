@@ -5,8 +5,7 @@ document.getElementById('chat-form').addEventListener('submit', async function (
   const userMessage = input.value.trim();
   if (!userMessage) return;
 
-  // Clear previous response and input
-  responseBox.innerHTML = "Thinking...";
+  responseBox.innerText = "Thinking...";
   input.value = '';
 
   try {

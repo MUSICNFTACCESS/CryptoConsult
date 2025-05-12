@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <title>CryptoConsult by Crimzn</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="public/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Moonrocks&display=swap" rel="stylesheet" />
   <script defer src="public/script.js"></script>
 </head>
 <body>
@@ -15,7 +16,12 @@
   <p>Welcome to <strong>CryptoConsult</strong> — your personalized, AI-powered crypto advisory platform.</p>
 
   <h2>About Crimzn</h2>
-  <p>I've worked in traditional finance for years and now focus on blockchain consulting across multiple chains.</p>
+  <p>
+    I've worked in traditional finance for nearly a decade and have been deep in crypto for 6+ years,
+    through two full Bitcoin cycles. I'm certified in blockchain, tokenomics, and wrapped token infrastructure —
+    with hands-on experience building decentralized apps, integrating Solana Pay and Coinbase Commerce,
+    and tracking wallets across multiple chains.
+  </p>
 
   <h2>Available Services</h2>
   <ul>
@@ -29,36 +35,49 @@
   </ul>
 
   <h2>Payments & Booking</h2>
-  <p>
-    Pay with:
+  <p>Pay with:
     <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8">Coinbase</a> |
     <a href="https://paypal.me/crimzn" target="_blank">PayPal</a> |
     <a href="https://explorer.solana.com/address/6g13EP9RCEuBjcnqK1vAjXq9aYeP6RHrkcKp9zbz64RA">Solana</a>
   </p>
 
-  <h2>CrimznBot</h2>
-  <div id="crimznbot-container" style="max-width: 700px; margin: 20px auto; text-align: center;">
-    <form id="chat-form" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-      <input
-        type="text"
-        id="user-input"
-        placeholder="Ask CrimznBot anything about crypto..."
-        style="flex: 1; min-width: 250px; padding: 10px; border-radius: 6px; border: none; font-size: 1em;"
-        autocomplete="off"
-      />
-      <button
-        type="submit"
-        style="background-color: #f7931a; color: #000; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold;">
-        Send
-      </button>
-    </form>
-    <div id="chat-response"
-      style="margin-top: 20px; background: #111; color: #f7931a; padding: 15px; border-radius: 10px; font-family: monospace; white-space: pre-wrap; text-align: left;">
-    </div>
+  <h2>Personal 1-on-1 Consulting – $99.99</h2>
+  <ul>
+    <li>Wallet Setup & Secure Storage</li>
+    <li>Crypto On-Ramping & Off-Ramping</li>
+    <li>Technical & Fundamental Analysis</li>
+    <li>Risk Management Planning</li>
+    <li>Capital Allocation Strategy</li>
+    <li>Live Trading Support (BTC / SOL / ALT)</li>
+  </ul>
+
+  <div style="margin: 20px;">
+    <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" class="button">Pay with Coinbase</a>
+    <a href="https://paypal.me/crimzn" class="button">Pay with PayPal</a>
+    <a href="https://explorer.solana.com/address/6g13EP9RCEuBjcnqK1vAjXq9aYeP6RHrkcKp9zbz64RA" class="button">Pay with Solana</a>
   </div>
 
+  <h2>Ask CrimznBot</h2>
+  <form id="chat-form">
+    <input type="text" id="user-input" placeholder="Ask CrimznBot..." />
+    <button type="submit">Send</button>
+  </form>
+  <div id="chat-response"></div>
+
+  <h2>Why CryptoConsult Exists</h2>
+  <p>
+    CrimznBot is powered by GPT-4o and offered 100% free — no signups, no catches. It's my way of helping the
+    community get clear, honest answers about crypto, trading, and security.
+  </p>
+
+  <p>
+    If you've found value here, consider tipping, booking a private session, or sharing this site with a friend.
+    Every bit of support helps keep this running.
+  </p>
+
   <h2>Disclaimer</h2>
-  <p><strong>Crimzn is not a licensed financial advisor.</strong> All insights are educational guidance only.</p>
-  <footer>Created by Crimzn | Powered by GPT-4o | Built for Bitcoin & Solana</footer>
+  <p><strong>Crimzn is not a licensed financial advisor.</strong> All insights are for educational purposes only.</p>
+
+  <footer>© 2025 CryptoConsult by Crimzn</footer>
 </body>
 </html>
