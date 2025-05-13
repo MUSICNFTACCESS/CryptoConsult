@@ -7,7 +7,6 @@ const openai = new OpenAIApi(new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 }));
 
-// Supported tokens and their keywords
 const tokenMap = {
   bitcoin: ['btc', 'bitcoin'],
   ethereum: ['eth', 'ethereum'],
@@ -16,7 +15,6 @@ const tokenMap = {
   'ondo-finance': ['ondo']
 };
 
-// Fetch price from CoinGecko
 async function getTokenPrice(id) {
   try {
     const res = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${id}&vs_currencies=usd`);
@@ -28,46 +26,45 @@ async function getTokenPrice(id) {
 
 router.post('/api/chat', async (req, res) => {
   const userMessage = req.body.message.toLowerCase();
-  let reply = '';
   let priceInfo = '';
+  let tokenSummary = '';
 
   for (const [coingeckoId, keywords] of Object.entries(tokenMap)) {
     if (keywords.some(word => userMessage.includes(word))) {
       const price = await getTokenPrice(coingeckoId);
       if (price) {
         priceInfo += `- **${coingeckoId.replace(/-/g, ' ').toUpperCase()}**: $${price.toLocaleString()}\n`;
+        tokenSummary += `${coingeckoId.replace(/-/g, ' ')} = $${price.toLocaleString()}\n`;
       }
     }
   }
 
   try {
-    let messages = [{ role: 'user', content: userMessage }];
+    const messages = [];
 
     if (priceInfo) {
-      messages = [
-        {
-          role: 'system',
-          content: `You're CrimznBot, a confident and up-to-date crypto expert. Here's live price data:\n${priceInfo}\nUse this information directly. DO NOT tell users to check CoinGecko or other websites.`
-        },
-        { role: 'user', content: userMessage }
-      ];
+      messages.push({
+        role: 'system',
+        content: `You are CrimznBot, an expert crypto AI advisor. Here are current token prices:\n${tokenSummary}\n\nUse ONLY these prices in your reply. DO NOT say “check another source” or suggest outdated estimates. Be accurate, direct, and helpful.`
+      });
     }
+
+    messages.push({ role: 'user', content: req.body.message });
 
     const completion = await openai.createChatCompletion({
       model: 'gpt-4o',
-      messages: messages
+      messages
     });
 
-    reply = completion.data.choices[0].message.content;
-
-    if (priceInfo) {
-      reply = `**Live Token Prices:**\n${priceInfo}\n\n${reply}`;
-    }
+    const botReply = completion.data.choices[0].message.content;
+    const reply = priceInfo ? `**Live Token Prices:**\n${priceInfo}\n\n${botReply}` : botReply;
 
     res.json({ reply });
   } catch (err) {
-    res.status(500).json({ reply: 'Error reaching CrimznBot. Please try again later.' });
+    console.error(err.message);
+    res.status(500).json({ reply: 'CrimznBot is currently offline. Please try again shortly.' });
   }
 });
 
 module.exports = router;
+
