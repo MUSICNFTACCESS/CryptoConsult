@@ -1,24 +1,23 @@
-document.querySelector('form').addEventListener('submit', async function(e) {
+document.getElementById('chat-form').addEventListener('submit', async function (e) {
   e.preventDefault();
-  const input = document.querySelector('input');
+  const input = document.getElementById('user-input');
+  const responseBox = document.getElementById('chat-response');
   const userMessage = input.value.trim();
   if (!userMessage) return;
 
-  const chatBox = document.querySelector('#chatbox');
-  chatBox.innerHTML += `<div>> You: ${userMessage}</div>`;
+  responseBox.innerText = "Thinking...";
   input.value = '';
 
   try {
-    const response = await fetch('/api/chat', {
+    const res = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: userMessage })
     });
 
-    const data = await response.json();
-    chatBox.innerHTML += `<div>CrimznBot: ${data.reply}</div>`;
-    chatBox.scrollTop = chatBox.scrollHeight;
+    const data = await res.json();
+    responseBox.innerHTML = `<strong>CrimznBot:</strong> ${data.reply}`;
   } catch (err) {
-    chatBox.innerHTML += `<div>CrimznBot: Sorry, I’m not responding right now.</div>`;
+    responseBox.innerHTML = `<strong>CrimznBot:</strong> Error reaching server.`;
   }
 });
