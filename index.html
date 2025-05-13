@@ -1,66 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>CryptoConsult by Crimzn</title>
-  <link rel="stylesheet" href="public/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Rubik+Moonrocks&display=swap" rel="stylesheet" />
-  <script defer src="public/script.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
 </head>
 <body>
-  <audio id="bgmusic" src="autoplay.mp3" preload="auto"></audio>
+  <audio id="bgmusic" src="autoplay.mp3" preload="auto" autoplay loop></audio>
 
   <h1>CryptoConsult by Crimzn</h1>
   <div class="prices" id="prices">BTC, ETH, and SOL loading...</div>
 
-  <p>Welcome to <strong>CryptoConsult</strong> — your personalized, AI-powered crypto advisory platform.</p>
+  <p>
+    Welcome to <strong>CryptoConsult</strong> — your personalized, AI-powered crypto guide.
+  </p>
 
   <h2>About Crimzn</h2>
   <p>
-    I've worked in traditional finance for nearly a decade and have been deep in crypto for 6+ years,
-    through two full Bitcoin cycles. I'm certified in blockchain, tokenomics, and wrapped token infrastructure —
-    with hands-on experience building decentralized apps, integrating Solana Pay and Coinbase Commerce,
-    and tracking wallets across multiple chains.
+    I’ve worked in traditional finance for years and now focus on blockchain tech, DeFi, and helping others break free from the system.
   </p>
 
   <h2>Available Services</h2>
   <ul>
-    <li>Technical Analysis</li>
-    <li>Fundamental Analysis</li>
-    <li>Wallet Setup & Security</li>
-    <li>On-Ramping / Off-Ramping</li>
-    <li>Risk Management</li>
-    <li>Capital Allocation Strategy</li>
-    <li>Smart Contract Guidance</li>
+    <li>Wallet setup & security guidance</li>
+    <li>On-ramping & off-ramping</li>
+    <li>Crypto portfolio allocation</li>
+    <li>Technical & fundamental analysis</li>
+    <li>Risk management consulting</li>
+    <li>Smart contract reviews</li>
   </ul>
 
-  <h2>Payments & Booking</h2>
-  <p>Pay with:
-    <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" class="button">Coinbase</a>
-    <a href="https://paypal.me/crimzn" class="button" target="_blank">PayPal</a>
-    <a href="https://explorer.solana.com/address/6g13EP9RCEuBjcnqK1vAjXq9aYeP6RHrkcKp9zbz64RA" class="button">Solana</a>
-  </p>
-  <h2>CrimznBot</h2>
+  <h2>Book a Session</h2>
+  <p>Consultations are $99.99/hr, payable in crypto.</p>
+  <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">
+    <button>Pay with Coinbase</button>
+  </a>
+  <a href="solana:6g13EP9RCEuBjcnqK1vAjXq9aYeP6RHrkcKp9zbz64RA?amount=1" target="_blank">
+    <button>Pay with Solana</button>
+  </a>
+  <a href="https://paypal.me/crimzn" target="_blank">
+    <button>Pay with PayPal</button>
+  </a>
+
+  <h2>Talk to CrimznBot</h2>
   <form id="chat-form">
-    <input id="user-input" type="text" placeholder="Ask CrimznBot..." autocomplete="off" />
+    <input type="text" id="user-input" placeholder="Ask me anything crypto..." required />
     <button type="submit">Send</button>
   </form>
-  <div id="chat-response"></div>
-
-  <h2>Why CryptoConsult Exists</h2>
-  <p>
-    CrimznBot is powered by GPT-4o and offered 100% free — no signups, no catches. It's my way of helping the
-    community get clear, honest answers about crypto, trading, and security.
-  </p>
-
-  <p>
-    If you've found value here, consider tipping, booking a private session, or sharing this site with a friend.
-    Every bit of support helps keep this running.
-  </p>
-
-  <h2>Disclaimer</h2>
-  <p><strong>Crimzn is not a licensed financial advisor.</strong> All insights are for educational purposes only.</p>
-
-  <footer>© 2025 CryptoConsult by Crimzn</footer>
+  <div id="chatbox"></div>
 </body>
 </html>
