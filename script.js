@@ -8,9 +8,4 @@ document.addEventListener("DOMContentLoaded", async () => {
       fetch("https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd").then(res => res.json())
     ]);
 
-    priceDiv.innerHTML = `BTC: $${btc.bitcoin.usd.toLocaleString()} | ETH: $${eth.ethereum.usd.toLocaleString()} | SOL: $${sol.solana.usd.toLocaleString()}`;
-  } catch (error) {
-    console.error("Error fetching prices:", error);
-    priceDiv.innerHTML = "Error loading prices";
-  }
-});
+priceDiv.innerHTML = `BTC: $${btc.bitcoin.usd.toLocaleString()} | ETH: $${eth.ethereum.usd.toLocaleString()} | SOL: $${sol.solana.usd.toLocaleString()}`;
