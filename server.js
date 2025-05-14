@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { Configuration, OpenAIApi } from 'openai';
+import OpenAI from 'openai';
 import fetch from 'node-fetch';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -11,10 +11,9 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 let usageCount = 0;
 
-const configuration = new Configuration({
+const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
-const openai = new OpenAIApi(configuration);
 
 app.use(express.static(__dirname));
 app.use(express.json());
@@ -52,11 +51,11 @@ app.post('/api/chat', async (req, res) => {
   }
 
   try {
-    const completion = await openai.createChatCompletion({
+    const completion = await openai.chat.completions.create({
       model: 'gpt-4',
       messages: [{ role: 'user', content: userMessage }]
     });
-    reply = completion.data.choices[0].message.content;
+    reply = completion.choices[0].message.content;
     res.json({ reply });
   } catch (e) {
     console.error("OpenAI call failed:", e.message);
