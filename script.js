@@ -5,10 +5,14 @@ document.querySelector('form').addEventListener('submit', async function (e) {
   if (!userMessage) return;
 
   const chatBox = document.querySelector('#chatbox');
+
+  // Clear previous content so only the latest exchange is shown
+  chatBox.innerHTML = '';
+
   chatBox.innerHTML += `<div>> You: ${userMessage}</div>`;
 
   try {
-    const response = await fetch('/api/chat', {
+    const response = await fetch('https://crimznbot.onrender.com/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: userMessage })
