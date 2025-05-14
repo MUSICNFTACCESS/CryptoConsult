@@ -80,3 +80,53 @@ router.post('/api/chat', async (req, res) => {
 });
 
 module.exports = router;
+
+// Basic known tokens
+  const knownTokens = ['bitcoin', 'ethereum', 'solana', 'pepe', 'ondo-finance'];
+  for (const id of knownTokens) {
+    if (userMessage.includes(id) || userMessage.includes(id.split('-')[0])) {
+      const price = await getTokenPrice(id);
+      if (price) {
+        priceInfo += `${id.replace(/-/g, ' ')}: $${price}\n`;
+      }
+    }
+  }
+
+  // Try dynamic search if no known token matched
+  if (!priceInfo) {
+    const words = userMessage.split(' ');
+    for (const word of words) {
+      const id = await searchCoinGeckoToken(word);
+      if (id) {
+        const price = await getTokenPrice(id);
+        if (price) {
+          priceInfo += `${id.replace(/-/g, ' ')}: $${price}\n`;
+          break;
+        }
+      }
+    }
+  }
+
+  let prompt = userMessage;
+  if (priceInfo) {
+    prompt = `The user asked: "${userMessage}".\nHere are current token prices:\n${priceInfo}\nPlease answer their question including any useful insights.`;
+  }
+
+  try {
+    const completion = await openai.createChatCompletion({
+      model: 'gpt-4',
+      messages: [
+        { role: 'system', content: 'You are a helpful and up-to-date crypto consultant named CrimznBot.' },
+        { role: 'user', content: prompt }
+      ]
+    });
+
+    const reply = completion.data.choices[0].message.content;
+    res.json({ reply });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ reply: 'Error reaching OpenAI.' });
+  }
+});
+
+module.exports = router;
