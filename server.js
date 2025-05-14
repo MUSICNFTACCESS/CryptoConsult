@@ -21,6 +21,7 @@ app.post('/api/chat', async (req, res) => {
   const lower = userMessage.toLowerCase();
   let reply = '';
 
+console.log("User said:", lower);
   const match = lower.match(/(?:price of|what(?:'s| is) the price of) (\w+)/);
   if (match && match[1]) {
     const token = match[1].toLowerCase();
