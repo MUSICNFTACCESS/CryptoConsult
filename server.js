@@ -1,7 +1,11 @@
-const express = require('express');
-const path = require('path');
-const fetch = require('node-fetch');
-const { Configuration, OpenAIApi } = require('openai');
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { Configuration, OpenAIApi } from 'openai';
+import fetch from 'node-fetch';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,21 +23,21 @@ app.post('/api/chat', async (req, res) => {
   usageCount++;
   const userMessage = req.body.message || '';
   const lower = userMessage.toLowerCase();
-  console.log("User input:", lower);  // Always log user input
+  console.log("User input:", lower);
 
   let reply = '';
 
-  const match = lower.match(/(?:price of|what(?:'s| is) the price of) (\w+)/);
-  console.log("Match result:", match);  // Log the entire match result
+  try {
+    const match = lower.match(/(?:price of|what(?:'s| is) the price of) (\w+)/);
+    console.log("Match result:", match);
 
-  if (match && match[1]) {
-    const token = match[1].toLowerCase();
-    console.log("Attempting to fetch token:", token);  // Confirm fetch attempt
+    if (match && match[1]) {
+      const token = match[1].toLowerCase();
+      console.log("Attempting to fetch token:", token);
 
-    try {
-      const cg = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${token}&vs_currencies=usd`);
-      const data = await cg.json();
-      console.log("CoinGecko response:", data);  // Log raw response
+      const cgRes = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${token}&vs_currencies=usd`);
+      const data = await cgRes.json();
+      console.log("CoinGecko response:", JSON.stringify(data));
 
       if (data[token] && data[token].usd) {
         reply = `The current price of ${token.toUpperCase()} is $${data[token].usd}`;
@@ -42,10 +46,9 @@ app.post('/api/chat', async (req, res) => {
         reply = `I couldn't find the price for "${token.toUpperCase()}". Try another token.`;
         return res.json({ reply });
       }
-    } catch (e) {
-      console.error("Error fetching from CoinGecko:", e);
-      return res.json({ reply: 'Error fetching live token price.' });
     }
+  } catch (e) {
+    console.error("Token price logic failed:", e.message);
   }
 
   try {
@@ -56,6 +59,7 @@ app.post('/api/chat', async (req, res) => {
     reply = completion.data.choices[0].message.content;
     res.json({ reply });
   } catch (e) {
+    console.error("OpenAI call failed:", e.message);
     res.json({ reply: 'Error talking to CrimznBot.' });
   }
 });
