@@ -15,34 +15,68 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
 
+const tokenAliases = {
+  btc: 'bitcoin',
+  eth: 'ethereum',
+  sol: 'solana',
+  avax: 'avalanche-2',
+  sui: 'sui',
+  link: 'chainlink',
+  ondo: 'ondo-finance',
+  pepe: 'pepe'
+};
+
+let coinListCache = [];
+
 app.use(express.static(__dirname));
 app.use(express.json());
+
+const refreshCoinList = async () => {
+  try {
+    const res = await fetch('https://api.coingecko.com/api/v3/coins/list');
+    coinListCache = await res.json();
+    console.log('Coin list cache loaded.');
+  } catch (e) {
+    console.error('Error fetching coin list:', e.message);
+  }
+};
+refreshCoinList();
 
 app.post('/api/chat', async (req, res) => {
   usageCount++;
   const userMessage = req.body.message || '';
-  const lower = userMessage.toLowerCase();
+  const lower = userMessage.toLowerCase().replace(/[^\w\s]/g, '');
   console.log("User input:", lower);
 
   let reply = '';
 
   try {
-    const match = lower.match(/(?:price of|what(?:'s| is) the price of) (\w+)/);
+    const match = lower.match(/(?:price of|what(?:s| is) the price of) (\w+)/);
     console.log("Match result:", match);
 
     if (match && match[1]) {
-      const token = match[1].toLowerCase();
-      console.log("Attempting to fetch token:", token);
+      const symbol = match[1].toLowerCase();
+      let token = tokenAliases[symbol];
 
-      const cgRes = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${token}&vs_currencies=usd`);
-      const data = await cgRes.json();
-      console.log("CoinGecko response:", JSON.stringify(data));
+      if (!token && coinListCache.length > 0) {
+        const found = coinListCache.find(c => c.symbol === symbol);
+        if (found) token = found.id;
+      }
 
-      if (data[token] && data[token].usd) {
-        reply = `The current price of ${token.toUpperCase()} is $${data[token].usd}`;
-        return res.json({ reply });
+      if (token) {
+        const cgRes = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${token}&vs_currencies=usd`);
+        const data = await cgRes.json();
+        console.log("CoinGecko response:", JSON.stringify(data));
+
+        if (data[token] && data[token].usd) {
+          reply = `The current price of ${symbol.toUpperCase()} is $${data[token].usd}`;
+          return res.json({ reply });
+        } else {
+          reply = `I couldn't find the price for "${symbol.toUpperCase()}". Try another token.`;
+          return res.json({ reply });
+        }
       } else {
-        reply = `I couldn't find the price for "${token.toUpperCase()}". Try another token.`;
+        reply = `Sorry, I couldn't identify the token "${symbol.toUpperCase()}".`;
         return res.json({ reply });
       }
     }
