@@ -1,83 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>CryptoConsult by Crimzn</title>
   <link rel="stylesheet" href="style.css" />
   <script defer src="script.js"></script>
 </head>
 <body>
-  <main>
-    <h1>CryptoConsult by Crimzn</h1>
-    <div class="prices" id="prices">BTC, ETH, and SOL loading...</div>
+  <audio id="bgmusic" src="autoplay.mp3" preload="auto" autoplay loop></audio>
 
-    <section>
-      <p>
-        Welcome to <strong>CryptoConsult</strong> — your personalized, AI-powered crypto guide. Whether you're new or seasoned, CrimznBot and I are here to help with strategy, smart contracts, and more.
-      </p>
+  <h1>CryptoConsult by Crimzn</h1>
+  <div class="prices" id="prices">BTC, ETH, and SOL loading...</div>
 
-      <h2>Available Services</h2>
-      <ul>
-        <li>Technical & Fundamental Analysis</li>
-        <li>Portfolio Strategy</li>
-        <li>Wallet Setup & Education</li>
-        <li>Crypto On-ramping / Off-ramping</li>
-        <li>Consultation Calls</li>
-      </ul>
+  <p>
+    Welcome to <strong>CryptoConsult</strong> — your personalized, AI-powered crypto guide.
+  </p>
 
-      <h3>Support & Payments</h3>
-      <p>You can support or pay for services below:</p>
-      <div class="payment-buttons">
-        <button onclick="window.location.href='https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8'">
-          Pay $99.99 for Services Rendered
-        </button>
-        <button onclick="window.location.href='https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b'">
-          Send Tip (1 USDC)
-        </button>
-        <button onclick="window.location.href='https://paypal.me/crimzn'">Pay with PayPal</button>
-        <button onclick="window.location.href='solana:Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF?amount=1'">Pay with Solana</button>
-      </div>
-      <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.75;">
-        If you found CrimznBot even slightly helpful, consider leaving a 1 USDC tip to help keep the project growing.
-      </p>
-    </section>
+  <h2>Available Services</h2>
+  <ul>
+    <li>Technical & Fundamental Analysis</li>
+    <li>Portfolio Strategy</li>
+    <li>Wallet Setup & Education</li>
+    <li>Crypto On-ramping / Off-ramping</li>
+    <li>Consultation Calls</li>
+  </ul>
 
-    <section class="cta">
-      <h2>Tap Into Pro-Level Crypto Guidance</h2>
-      <p>
-        While CrimznBot gives you free real-time insights powered by GPT-4, you can go deeper.
-      </p>
-      <p>
-        Book a private 1-on-1 session with <strong>Crimzn</strong> — a seasoned strategist in crypto, DeFi, and AI integration.
-      </p>
-      <p>
-        Sessions are just <strong>$99.99/hour</strong> and could save you thousands in mistakes.
-      </p>
-      <div class="payment-buttons">
-        <button onclick="window.location.href='https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8'">
-          Pay $99.99 for Services Rendered
-        </button>
-        <button onclick="window.location.href='https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b'">
-          Send Tip (1 USDC)
-        </button>
-        <button onclick="window.location.href='https://paypal.me/crimzn'">Pay with PayPal</button>
-        <button onclick="window.location.href='solana:Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF?amount=1'">Pay with Solana</button>
-      </div>
-      <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.75;">
-        If you found CrimznBot even slightly helpful, consider leaving a 1 USDC tip to help keep the project growing.
-      </p>
-    </section>
+  <h2>Support & Payments</h2>
+  <p>You can support or pay for services below:</p>
+  <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">
+    <button>Pay $99.99 for Services Rendered</button>
+  </a>
+  <a href="https://paypal.me/crimzn" target="_blank">
+    <button>Pay with PayPal</button>
+  </a>
+  <button onclick="window.location.href='solana:Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF?amount=1'">
+    Pay with Solana
+  </button>
+  <br><br>
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=solana:Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF?amount=1" alt="Scan to Pay with Solana" />
+  <br>
 
-    <section class="chat">
-      <h2>Ask CrimznBot</h2>
-      <form>
-        <input type="text" placeholder="Ask me anything crypto..." required />
-        <button type="submit">Send</button>
-      </form>
-      <div id="chatbox" style="margin-top: 20px;"></div>
-    </section>
-  </main>
+  <h2>Talk to CrimznBot</h2>
+  <form id="chat-form">
+    <input type="text" id="user-input" placeholder="Ask me anything crypto..." required />
+    <button type="submit">Send</button>
+  </form>
+  <div id="chatbox"></div>
 
-  <script src="script.js"></script>
+  <br><br>
+  <button onclick="window.location.href='mailto:crimzncipriano@gmail.com'">Contact Me via Email</button>
+  <button onclick="window.location.href='https://t.me/BeyondBased'">Contact Me via Telegram</button>
 </body>
 </html>

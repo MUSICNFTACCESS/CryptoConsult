@@ -1,53 +1,64 @@
 const express = require('express');
 const path = require('path');
 const fetch = require('node-fetch');
-require('dotenv').config();
+const { Configuration, OpenAIApi } = require('openai');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+let usageCount = 0;
+
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY
+});
+const openai = new OpenAIApi(configuration);
 
 app.use(express.static(__dirname));
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+app.post('/api/chat', async (req, res) => {
+  usageCount++;
+
+  const userMessage = req.body.message || '';
+  const lower = userMessage.toLowerCase();
+  let reply = '';
+
+  // Handle live price check for any token
+  const match = lower.match(/(?:price of|what(?:'s| is) the price of) (\w+)/);
+  if (match && match[1]) {
+    const token = match[1].toLowerCase();
+    try {
+      const cg = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${token}&vs_currencies=usd`);
+      const data = await cg.json();
+      if (data[token] && data[token].usd) {
+        reply = `The current price of ${token.toUpperCase()} is $${data[token].usd}`;
+        return res.json({ reply });
+      } else {
+        reply = `I couldn't find the price for "${token.toUpperCase()}". Try another token.`;
+        return res.json({ reply });
+      }
+    } catch (e) {
+      return res.json({ reply: 'Error fetching live token price.' });
+    }
+  }
+
+  try {
+    const completion = await openai.createChatCompletion({
+      model: 'gpt-4',
+      messages: [{ role: 'user', content: userMessage }]
+    });
+    reply = completion.data.choices[0].message.content;
+    res.json({ reply });
+  } catch (e) {
+    res.json({ reply: 'Error talking to CrimznBot.' });
+  }
 });
 
-app.post('/api/chat', async (req, res) => {
-  const userMessage = req.body.message;
-  try {
-    const prices = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd');
-    const data = await prices.json();
+app.get('/api/usage', (req, res) => {
+  res.json({ usageCount });
+});
 
-    const btc = data.bitcoin.usd;
-    const eth = data.ethereum.usd;
-    const sol = data.solana.usd;
-
-    const messages = [
-      { role: 'system', content: 'You are CrimznBot, an expert crypto consultant. Give clear, confident, helpful advice based on real-time price context.' },
-      { role: 'user', content: `BTC: $\{btc\}, ETH: $\{eth\}, SOL: $\{sol\}\n\nUser: ${userMessage}\nCrimznBot:` }
-    ];
-
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: 'gpt-4o',
-        messages
-      })
-    });
-
-    const result = await response.json();
-    const reply = result.choices?.[0]?.message?.content || 'CrimznBot is unavailable.';
-
-    res.json({ reply });
-  } catch (err) {
-    console.error('Bot error:', err.message);
-    res.status(500).json({ reply: 'Error reaching server.' });
-  }
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(PORT, () => {
