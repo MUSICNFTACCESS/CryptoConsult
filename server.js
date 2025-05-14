@@ -19,15 +19,22 @@ app.post('/api/chat', async (req, res) => {
   usageCount++;
   const userMessage = req.body.message || '';
   const lower = userMessage.toLowerCase();
+  console.log("User input:", lower);  // Always log user input
+
   let reply = '';
 
-console.log("User said:", lower);
   const match = lower.match(/(?:price of|what(?:'s| is) the price of) (\w+)/);
+  console.log("Match result:", match);  // Log the entire match result
+
   if (match && match[1]) {
     const token = match[1].toLowerCase();
+    console.log("Attempting to fetch token:", token);  // Confirm fetch attempt
+
     try {
       const cg = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${token}&vs_currencies=usd`);
       const data = await cg.json();
+      console.log("CoinGecko response:", data);  // Log raw response
+
       if (data[token] && data[token].usd) {
         reply = `The current price of ${token.toUpperCase()} is $${data[token].usd}`;
         return res.json({ reply });
@@ -36,6 +43,7 @@ console.log("User said:", lower);
         return res.json({ reply });
       }
     } catch (e) {
+      console.error("Error fetching from CoinGecko:", e);
       return res.json({ reply: 'Error fetching live token price.' });
     }
   }
