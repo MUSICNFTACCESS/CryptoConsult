@@ -1,3 +1,4 @@
+// Handle CrimznBot chat form
 document.querySelector('form').addEventListener('submit', async function (e) {
   e.preventDefault();
   const input = document.querySelector('input');
@@ -26,4 +27,17 @@ document.querySelector('form').addEventListener('submit', async function (e) {
   }
 
   input.value = '';
+});
+
+// Fetch live prices for BTC, ETH, and SOL
+document.addEventListener("DOMContentLoaded", async () => {
+  const priceDiv = document.getElementById("prices");
+  try {
+    const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
+    const data = await res.json();
+    priceDiv.textContent = `BTC: $${data.bitcoin.usd} | ETH: $${data.ethereum.usd} | SOL: $${data.solana.usd}`;
+  } catch (err) {
+    priceDiv.textContent = "Price data unavailable";
+    console.error("Price fetch error:", err);
+  }
 });
