@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "cryptoconsult",
   "version": "1.0.0",
   "main": "server.js",
