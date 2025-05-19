@@ -1,1 +1,45 @@
-404: Not Found
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CryptoConsult by Crimzn</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <h1>CryptoConsult by Crimzn</h1>
+  <p><strong>Disclaimer:</strong> I am not a financial advisor. All consultations are educational and guidance only.</p>
+
+  <div class="price-feed">
+    <div>BTC: <span id="btcPrice">...</span></div>
+    <div>ETH: <span id="ethPrice">...</span></div>
+    <div>SOL: <span id="solPrice">...</span></div>
+  </div>
+
+  <div class="buttons">
+    <a href="https://t.me/Crimznbot" target="_blank">Contact via Telegram</a>
+    <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">Pay with Coinbase</a>
+    <a href="https://paypal.me/crimzn" target="_blank">Pay with PayPal</a>
+    <a href="https://solana.com" target="_blank">Pay with Solana</a>
+    <a href="lightning:crimzn@orangepillapp.com" target="_blank">Pay with BTC Lightning</a>
+  </div>
+
+  <div class="chat-container">
+    <div id="chatbox" class="chat-box"></div>
+    <input type="text" id="userInput" placeholder="Ask CrimznBot..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <h2>Contact Me</h2>
+  <form id="contactForm" method="POST" action="/contact">
+    <input type="text" name="name" placeholder="Your name" required />
+    <input type="email" name="email" placeholder="Your email" required />
+    <textarea name="message" placeholder="Your message..." required></textarea>
+    <button type="submit">Send Message</button>
+    <p id="formStatus"></p>
+  </form>
+
+  <audio id="bgMusic" src="autoplay.mp3" autoplay loop></audio>
+  <script src="script.js"></script>
+</body>
+</html>
