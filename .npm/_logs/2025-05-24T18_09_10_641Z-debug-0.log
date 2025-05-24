@@ -1,0 +1,161 @@
+0 verbose cli /data/data/com.termux/files/usr/bin/node /data/data/com.termux/files/usr/bin/npm
+1 info using npm@10.9.2
+2 info using node@v23.11.0
+3 silly config load:file:/data/data/com.termux/files/usr/lib/node_modules/npm/npmrc
+4 silly config load:file:/data/data/com.termux/files/home/CryptoConsult/Crimznbot/.npmrc
+5 silly config load:file:/data/data/com.termux/files/home/.npmrc
+6 silly config load:file:/data/data/com.termux/files/usr/etc/npmrc
+7 verbose title npm install openai@latest node-fetch
+8 verbose argv "install" "openai@latest" "node-fetch"
+9 verbose logfile logs-max:10 dir:/data/data/com.termux/files/home/.npm/_logs/2025-05-24T18_09_10_641Z-
+10 verbose logfile /data/data/com.termux/files/home/.npm/_logs/2025-05-24T18_09_10_641Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly packumentCache heap:964689920 maxSize:241172480 maxEntrySize:120586240
+13 silly logfile done cleaning log files
+14 silly packumentCache corgi:https://registry.npmjs.org/openai cache-miss
+15 http fetch GET 200 https://registry.npmjs.org/openai 565ms (cache miss)
+16 silly packumentCache corgi:https://registry.npmjs.org/openai set size:undefined disposed:false
+17 silly idealTree buildDeps
+18 silly fetch manifest openai@4.103.0
+19 silly packumentCache full:https://registry.npmjs.org/openai cache-miss
+20 http fetch GET 200 https://registry.npmjs.org/openai 301ms (cache updated)
+21 silly packumentCache full:https://registry.npmjs.org/openai set size:undefined disposed:false
+22 silly fetch manifest ws@^8.18.0
+23 silly packumentCache full:https://registry.npmjs.org/ws cache-miss
+24 http fetch GET 200 https://registry.npmjs.org/ws 205ms (cache revalidated)
+25 silly packumentCache full:https://registry.npmjs.org/ws set size:408408 disposed:false
+26 silly fetch manifest bufferutil@^4.0.1
+27 silly packumentCache full:https://registry.npmjs.org/bufferutil cache-miss
+28 http fetch GET 200 https://registry.npmjs.org/bufferutil 136ms (cache revalidated)
+29 silly packumentCache full:https://registry.npmjs.org/bufferutil set size:51033 disposed:false
+30 silly fetch manifest utf-8-validate@>=5.0.2
+31 silly packumentCache full:https://registry.npmjs.org/utf-8-validate cache-miss
+32 http fetch GET 200 https://registry.npmjs.org/utf-8-validate 109ms (cache revalidated)
+33 silly packumentCache full:https://registry.npmjs.org/utf-8-validate set size:75205 disposed:false
+34 silly fetch manifest zod@^3.23.8
+35 silly packumentCache full:https://registry.npmjs.org/zod cache-miss
+36 http fetch GET 200 https://registry.npmjs.org/zod 277ms (cache updated)
+37 silly packumentCache full:https://registry.npmjs.org/zod set size:undefined disposed:false
+38 silly fetch manifest node-fetch@^2.6.9
+39 silly packumentCache full:https://registry.npmjs.org/node-fetch cache-miss
+40 http fetch GET 200 https://registry.npmjs.org/node-fetch 113ms (cache revalidated)
+41 silly packumentCache full:https://registry.npmjs.org/node-fetch set size:896010 disposed:false
+42 silly fetch manifest encoding@^0.1.0
+43 silly packumentCache full:https://registry.npmjs.org/encoding cache-miss
+44 http fetch GET 200 https://registry.npmjs.org/encoding 117ms (cache revalidated)
+45 silly packumentCache full:https://registry.npmjs.org/encoding set size:17833 disposed:false
+46 silly placeDep ROOT node-fetch@2.7.0 REPLACE for: crimznbot@1.0.0 want: ^2.6.9
+47 silly placeDep ROOT openai@4.103.0 REPLACE for: crimznbot@1.0.0 want: 4.103.0
+48 silly reify mark retired [
+48 silly reify   '/data/data/com.termux/files/home/CryptoConsult/Crimznbot/node_modules/openai',
+48 silly reify   '/data/data/com.termux/files/home/CryptoConsult/Crimznbot/node_modules/.bin/openai'
+48 silly reify ]
+49 silly reify moves {
+49 silly reify   '/data/data/com.termux/files/home/CryptoConsult/Crimznbot/node_modules/openai': '/data/data/com.termux/files/home/CryptoConsult/Crimznbot/node_modules/.openai-RTrNX5gO',
+49 silly reify   '/data/data/com.termux/files/home/CryptoConsult/Crimznbot/node_modules/.bin/openai': '/data/data/com.termux/files/home/CryptoConsult/Crimznbot/node_modules/.bin/.openai-ZmRexL6K'
+49 silly reify }
+50 silly audit bulk request {
+50 silly audit   '@types/node': [ '18.19.87' ],
+50 silly audit   '@types/node-fetch': [ '2.6.12' ],
+50 silly audit   'abort-controller': [ '3.0.0' ],
+50 silly audit   accepts: [ '1.3.8' ],
+50 silly audit   agentkeepalive: [ '4.6.0' ],
+50 silly audit   'array-flatten': [ '1.1.1' ],
+50 silly audit   asynckit: [ '0.4.0' ],
+50 silly audit   'body-parser': [ '1.20.3' ],
+50 silly audit   bytes: [ '3.1.2' ],
+50 silly audit   'call-bind-apply-helpers': [ '1.0.2' ],
+50 silly audit   'call-bound': [ '1.0.4' ],
+50 silly audit   'combined-stream': [ '1.0.8' ],
+50 silly audit   'content-disposition': [ '0.5.4' ],
+50 silly audit   'content-type': [ '1.0.5' ],
+50 silly audit   cookie: [ '0.7.1' ],
+50 silly audit   'cookie-signature': [ '1.0.6' ],
+50 silly audit   cors: [ '2.8.5' ],
+50 silly audit   debug: [ '2.6.9' ],
+50 silly audit   'delayed-stream': [ '1.0.0' ],
+50 silly audit   depd: [ '2.0.0' ],
+50 silly audit   destroy: [ '1.2.0' ],
+50 silly audit   'dunder-proto': [ '1.0.1' ],
+50 silly audit   'ee-first': [ '1.1.1' ],
+50 silly audit   encodeurl: [ '2.0.0', '1.0.2' ],
+50 silly audit   'es-define-property': [ '1.0.1' ],
+50 silly audit   'es-errors': [ '1.3.0' ],
+50 silly audit   'es-object-atoms': [ '1.1.1' ],
+50 silly audit   'es-set-tostringtag': [ '2.1.0' ],
+50 silly audit   'escape-html': [ '1.0.3' ],
+50 silly audit   etag: [ '1.8.1' ],
+50 silly audit   'event-target-shim': [ '5.0.1' ],
+50 silly audit   express: [ '4.21.2' ],
+50 silly audit   finalhandler: [ '1.3.1' ],
+50 silly audit   'form-data': [ '4.0.2' ],
+50 silly audit   'form-data-encoder': [ '1.7.2' ],
+50 silly audit   'formdata-node': [ '4.4.1' ],
+50 silly audit   forwarded: [ '0.2.0' ],
+50 silly audit   fresh: [ '0.5.2' ],
+50 silly audit   'function-bind': [ '1.1.2' ],
+50 silly audit   'get-intrinsic': [ '1.3.0' ],
+50 silly audit   'get-proto': [ '1.0.1' ],
+50 silly audit   gopd: [ '1.2.0' ],
+50 silly audit   'has-symbols': [ '1.1.0' ],
+50 silly audit   'has-tostringtag': [ '1.0.2' ],
+50 silly audit   hasown: [ '2.0.2' ],
+50 silly audit   'http-errors': [ '2.0.0' ],
+50 silly audit   'humanize-ms': [ '1.2.1' ],
+50 silly audit   'iconv-lite': [ '0.4.24' ],
+50 silly audit   inherits: [ '2.0.4' ],
+50 silly audit   'ipaddr.js': [ '1.9.1' ],
+50 silly audit   'math-intrinsics': [ '1.1.0' ],
+50 silly audit   'media-typer': [ '0.3.0' ],
+50 silly audit   'merge-descriptors': [ '1.0.3' ],
+50 silly audit   methods: [ '1.1.2' ],
+50 silly audit   mime: [ '1.6.0' ],
+50 silly audit   'mime-db': [ '1.52.0' ],
+50 silly audit   'mime-types': [ '2.1.35' ],
+50 silly audit   ms: [ '2.0.0', '2.1.3' ],
+50 silly audit   negotiator: [ '0.6.3' ],
+50 silly audit   'node-domexception': [ '1.0.0' ],
+50 silly audit   'object-assign': [ '4.1.1' ],
+50 silly audit   'object-inspect': [ '1.13.4' ],
+50 silly audit   'on-finished': [ '2.4.1' ],
+50 silly audit   parseurl: [ '1.3.3' ],
+50 silly audit   'path-to-regexp': [ '0.1.12' ],
+50 silly audit   'proxy-addr': [ '2.0.7' ],
+50 silly audit   qs: [ '6.13.0' ],
+50 silly audit   'range-parser': [ '1.2.1' ],
+50 silly audit   'raw-body': [ '2.5.2' ],
+50 silly audit   'safe-buffer': [ '5.2.1' ],
+50 silly audit   'safer-buffer': [ '2.1.2' ],
+50 silly audit   send: [ '0.19.0' ],
+50 silly audit   'serve-static': [ '1.16.2' ],
+50 silly audit   setprototypeof: [ '1.2.0' ],
+50 silly audit   'side-channel': [ '1.1.0' ],
+50 silly audit   'side-channel-list': [ '1.0.0' ],
+50 silly audit   'side-channel-map': [ '1.0.1' ],
+50 silly audit   'side-channel-weakmap': [ '1.0.2' ],
+50 silly audit   statuses: [ '2.0.1' ],
+50 silly audit   toidentifier: [ '1.0.1' ],
+50 silly audit   tr46: [ '0.0.3' ],
+50 silly audit   'type-is': [ '1.6.18' ],
+50 silly audit   'undici-types': [ '5.26.5' ],
+50 silly audit   unpipe: [ '1.0.0' ],
+50 silly audit   'utils-merge': [ '1.0.1' ],
+50 silly audit   vary: [ '1.1.2' ],
+50 silly audit   'web-streams-polyfill': [ '4.0.0-beta.3' ],
+50 silly audit   'webidl-conversions': [ '3.0.1' ],
+50 silly audit   'whatwg-url': [ '5.0.0' ],
+50 silly audit   'node-fetch': [ '2.7.0' ],
+50 silly audit   openai: [ '4.103.0' ]
+50 silly audit }
+51 http cache openai@https://registry.npmjs.org/openai/-/openai-4.103.0.tgz 0ms (cache hit)
+52 silly tarball no local data for openai@https://registry.npmjs.org/openai/-/openai-4.103.0.tgz. Extracting by manifest.
+53 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 194ms
+54 silly audit report {}
+55 http fetch GET 200 https://registry.npmjs.org/openai/-/openai-4.103.0.tgz 1808ms (cache miss)
+56 silly CHANGE node_modules/openai
+57 verbose cwd /data/data/com.termux/files/home/CryptoConsult/Crimznbot
+58 verbose os Linux 5.15.148-android13-8-29832239
+59 verbose node v23.11.0
+60 verbose npm  v10.9.2
+61 verbose exit 0
+62 info ok

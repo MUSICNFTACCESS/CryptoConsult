@@ -1,0 +1,124 @@
+0 verbose cli /data/data/com.termux/files/usr/bin/node /data/data/com.termux/files/usr/bin/npm
+1 info using npm@10.9.2
+2 info using node@v23.11.0
+3 silly config load:file:/data/data/com.termux/files/usr/lib/node_modules/npm/npmrc
+4 silly config load:file:/data/data/com.termux/files/home/CryptoConsult/Crimznbot/.npmrc
+5 silly config load:file:/data/data/com.termux/files/home/.npmrc
+6 silly config load:file:/data/data/com.termux/files/usr/etc/npmrc
+7 verbose title npm install
+8 verbose argv "install"
+9 verbose logfile logs-max:10 dir:/data/data/com.termux/files/home/.npm/_logs/2025-05-24T18_06_23_475Z-
+10 verbose logfile /data/data/com.termux/files/home/.npm/_logs/2025-05-24T18_06_23_475Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly packumentCache heap:964689920 maxSize:241172480 maxEntrySize:120586240
+13 silly logfile done cleaning log files
+14 silly idealTree buildDeps
+15 verbose shrinkwrap failed to load node_modules/.package-lock.json out of date, updated: node_modules
+16 silly reify mark retired [
+16 silly reify   '/data/data/com.termux/files/home/CryptoConsult/Crimznbot/node_modules/dotenv'
+16 silly reify ]
+17 silly reify moves {
+17 silly reify   '/data/data/com.termux/files/home/CryptoConsult/Crimznbot/node_modules/dotenv': '/data/data/com.termux/files/home/CryptoConsult/Crimznbot/node_modules/.dotenv-BGXvl1WF'
+17 silly reify }
+18 silly audit bulk request {
+18 silly audit   '@types/node': [ '18.19.87' ],
+18 silly audit   '@types/node-fetch': [ '2.6.12' ],
+18 silly audit   'abort-controller': [ '3.0.0' ],
+18 silly audit   accepts: [ '1.3.8' ],
+18 silly audit   agentkeepalive: [ '4.6.0' ],
+18 silly audit   'array-flatten': [ '1.1.1' ],
+18 silly audit   asynckit: [ '0.4.0' ],
+18 silly audit   'body-parser': [ '1.20.3' ],
+18 silly audit   bytes: [ '3.1.2' ],
+18 silly audit   'call-bind-apply-helpers': [ '1.0.2' ],
+18 silly audit   'call-bound': [ '1.0.4' ],
+18 silly audit   'combined-stream': [ '1.0.8' ],
+18 silly audit   'content-disposition': [ '0.5.4' ],
+18 silly audit   'content-type': [ '1.0.5' ],
+18 silly audit   cookie: [ '0.7.1' ],
+18 silly audit   'cookie-signature': [ '1.0.6' ],
+18 silly audit   cors: [ '2.8.5' ],
+18 silly audit   debug: [ '2.6.9' ],
+18 silly audit   'delayed-stream': [ '1.0.0' ],
+18 silly audit   depd: [ '2.0.0' ],
+18 silly audit   destroy: [ '1.2.0' ],
+18 silly audit   'dunder-proto': [ '1.0.1' ],
+18 silly audit   'ee-first': [ '1.1.1' ],
+18 silly audit   encodeurl: [ '2.0.0', '1.0.2' ],
+18 silly audit   'es-define-property': [ '1.0.1' ],
+18 silly audit   'es-errors': [ '1.3.0' ],
+18 silly audit   'es-object-atoms': [ '1.1.1' ],
+18 silly audit   'es-set-tostringtag': [ '2.1.0' ],
+18 silly audit   'escape-html': [ '1.0.3' ],
+18 silly audit   etag: [ '1.8.1' ],
+18 silly audit   'event-target-shim': [ '5.0.1' ],
+18 silly audit   express: [ '4.21.2' ],
+18 silly audit   finalhandler: [ '1.3.1' ],
+18 silly audit   'form-data': [ '4.0.2' ],
+18 silly audit   'form-data-encoder': [ '1.7.2' ],
+18 silly audit   'formdata-node': [ '4.4.1' ],
+18 silly audit   forwarded: [ '0.2.0' ],
+18 silly audit   fresh: [ '0.5.2' ],
+18 silly audit   'function-bind': [ '1.1.2' ],
+18 silly audit   'get-intrinsic': [ '1.3.0' ],
+18 silly audit   'get-proto': [ '1.0.1' ],
+18 silly audit   gopd: [ '1.2.0' ],
+18 silly audit   'has-symbols': [ '1.1.0' ],
+18 silly audit   'has-tostringtag': [ '1.0.2' ],
+18 silly audit   hasown: [ '2.0.2' ],
+18 silly audit   'http-errors': [ '2.0.0' ],
+18 silly audit   'humanize-ms': [ '1.2.1' ],
+18 silly audit   'iconv-lite': [ '0.4.24' ],
+18 silly audit   inherits: [ '2.0.4' ],
+18 silly audit   'ipaddr.js': [ '1.9.1' ],
+18 silly audit   'math-intrinsics': [ '1.1.0' ],
+18 silly audit   'media-typer': [ '0.3.0' ],
+18 silly audit   'merge-descriptors': [ '1.0.3' ],
+18 silly audit   methods: [ '1.1.2' ],
+18 silly audit   mime: [ '1.6.0' ],
+18 silly audit   'mime-db': [ '1.52.0' ],
+18 silly audit   'mime-types': [ '2.1.35' ],
+18 silly audit   ms: [ '2.0.0', '2.1.3' ],
+18 silly audit   negotiator: [ '0.6.3' ],
+18 silly audit   'node-domexception': [ '1.0.0' ],
+18 silly audit   'node-fetch': [ '2.7.0' ],
+18 silly audit   'object-assign': [ '4.1.1' ],
+18 silly audit   'object-inspect': [ '1.13.4' ],
+18 silly audit   'on-finished': [ '2.4.1' ],
+18 silly audit   openai: [ '4.97.0' ],
+18 silly audit   parseurl: [ '1.3.3' ],
+18 silly audit   'path-to-regexp': [ '0.1.12' ],
+18 silly audit   'proxy-addr': [ '2.0.7' ],
+18 silly audit   qs: [ '6.13.0' ],
+18 silly audit   'range-parser': [ '1.2.1' ],
+18 silly audit   'raw-body': [ '2.5.2' ],
+18 silly audit   'safe-buffer': [ '5.2.1' ],
+18 silly audit   'safer-buffer': [ '2.1.2' ],
+18 silly audit   send: [ '0.19.0' ],
+18 silly audit   'serve-static': [ '1.16.2' ],
+18 silly audit   setprototypeof: [ '1.2.0' ],
+18 silly audit   'side-channel': [ '1.1.0' ],
+18 silly audit   'side-channel-list': [ '1.0.0' ],
+18 silly audit   'side-channel-map': [ '1.0.1' ],
+18 silly audit   'side-channel-weakmap': [ '1.0.2' ],
+18 silly audit   statuses: [ '2.0.1' ],
+18 silly audit   toidentifier: [ '1.0.1' ],
+18 silly audit   tr46: [ '0.0.3' ],
+18 silly audit   'type-is': [ '1.6.18' ],
+18 silly audit   'undici-types': [ '5.26.5' ],
+18 silly audit   unpipe: [ '1.0.0' ],
+18 silly audit   'utils-merge': [ '1.0.1' ],
+18 silly audit   vary: [ '1.1.2' ],
+18 silly audit   'web-streams-polyfill': [ '4.0.0-beta.3' ],
+18 silly audit   'webidl-conversions': [ '3.0.1' ],
+18 silly audit   'whatwg-url': [ '5.0.0' ]
+18 silly audit }
+19 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 616ms
+20 silly audit report {}
+21 silly REMOVE node_modules/dotenv
+22 verbose cwd /data/data/com.termux/files/home/CryptoConsult/Crimznbot
+23 verbose os Linux 5.15.148-android13-8-29832239
+24 verbose node v23.11.0
+25 verbose npm  v10.9.2
+26 verbose exit 0
+27 info ok

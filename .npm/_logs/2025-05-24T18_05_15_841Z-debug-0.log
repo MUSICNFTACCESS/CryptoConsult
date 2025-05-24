@@ -1,0 +1,38 @@
+0 verbose cli /data/data/com.termux/files/usr/bin/node /data/data/com.termux/files/usr/bin/npm
+1 info using npm@10.9.2
+2 info using node@v23.11.0
+3 silly config load:file:/data/data/com.termux/files/usr/lib/node_modules/npm/npmrc
+4 silly config load:file:/data/data/com.termux/files/home/CryptoConsult/Crimznbot/.npmrc
+5 silly config load:file:/data/data/com.termux/files/home/.npmrc
+6 silly config load:file:/data/data/com.termux/files/usr/etc/npmrc
+7 verbose title npm install node-fetch
+8 verbose argv "install" "node-fetch"
+9 verbose logfile logs-max:10 dir:/data/data/com.termux/files/home/.npm/_logs/2025-05-24T18_05_15_841Z-
+10 verbose logfile /data/data/com.termux/files/home/.npm/_logs/2025-05-24T18_05_15_841Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly packumentCache heap:964689920 maxSize:241172480 maxEntrySize:120586240
+13 silly logfile done cleaning log files
+14 verbose stack JSONParseError: Unexpected non-whitespace character after JSON at position 247 (line 14 column 2) while parsing near "...ai\": \"^4.24.0\"\n  }\n}}\n"
+14 verbose stack     at /data/data/com.termux/files/usr/lib/node_modules/npm/node_modules/read-package-json-fast/lib/index.js:7:61
+14 verbose stack     at async #initTree (/data/data/com.termux/files/usr/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/build-ideal-tree.js:268:21)
+14 verbose stack     at async Arborist.buildIdealTree (/data/data/com.termux/files/usr/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/build-ideal-tree.js:178:7)
+14 verbose stack     at async Promise.all (index 1)
+14 verbose stack     at async Arborist.reify (/data/data/com.termux/files/usr/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/reify.js:131:5)
+14 verbose stack     at async Install.exec (/data/data/com.termux/files/usr/lib/node_modules/npm/lib/commands/install.js:162:5)
+14 verbose stack     at async Npm.exec (/data/data/com.termux/files/usr/lib/node_modules/npm/lib/npm.js:207:9)
+14 verbose stack     at async module.exports (/data/data/com.termux/files/usr/lib/node_modules/npm/lib/cli/entry.js:67:5)
+15 error code EJSONPARSE
+16 error path /data/data/com.termux/files/home/CryptoConsult/Crimznbot/package.json
+17 error JSON.parse Unexpected non-whitespace character after JSON at position 247 (line 14 column 2) while parsing near "...ai\": \"^4.24.0\"\n  }\n}}\n"
+18 error JSON.parse Failed to parse JSON data.
+18 error JSON.parse Note: package.json must be actual JSON, not just JavaScript.
+19 silly unfinished npm timer reify 1748109918286
+20 silly unfinished npm timer reify:loadTrees 1748109918291
+21 silly unfinished npm timer idealTree:init 1748109918294
+22 verbose cwd /data/data/com.termux/files/home/CryptoConsult/Crimznbot
+23 verbose os Linux 5.15.148-android13-8-29832239
+24 verbose node v23.11.0
+25 verbose npm  v10.9.2
+26 verbose exit 1
+27 verbose code 1
+28 error A complete log of this run can be found in: /data/data/com.termux/files/home/.npm/_logs/2025-05-24T18_05_15_841Z-debug-0.log

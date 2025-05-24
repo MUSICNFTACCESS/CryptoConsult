@@ -1,113 +1,3 @@
-nano ~/CryptoConsult/index.html
-cd ~/CryptoConsult
-git add index.html
-git commit -m "Full site final: Bio, graffiti headers, purple buttons, music, pricing"
-git push origin restore-gpt4o
-nano ~/CryptoConsult/index.html
-cd ~/CryptoConsult
-git add index.html
-git commit -m "Full final: original layout + support section + disclaimer"
-git push origin restore-gpt4o
-git log --oneline
-git checkout aab7361
-git stash && git checkout aab7361
-cd ~/CryptoConsult
-git checkout -b restore-working-version
-git push origin restore-working-version
-nano ~/CryptoConsult/index.html
-cd ~/CryptoConsult
-git add .
-git commit -m "Fix: restored working index and corrected script path"
-git push origin restore-working-version
-nano ~/CryptoConsult/server.js
-git add server.js
-git commit -m "Fix: corrected OpenAI SDK usage"
-git push origin restore-working-version
-nano ~CryptoConsult/index.html
-nano ~/CryptoConsult/index.html
-cd ~/CryptoConsult
-git add index.html
-git commit -m "Fix: restored full index with music and correct layout"
-git push origin restore-working-version
-cd ~/CryptoConsult && git fetch origin && git checkout -B restore-loved-version 43ef7388d5da6c85b187286311107cc6d52c430e && git push origin restore-loved-version --force
-nano ~/CryptoConsult/script.js
-nano ~/CryptoConsult/server.js
-git add . && git commit -m "Upgrade: GPT-4o bot with real-time token prices + music fix" && git push origin restore-loved-version
-nano ~/CryptoConsult/package.json
-npm install
-nano ~/CryptoConsult/package.json
-npm install
-git add . && git commit -m "Fix: clean package.json with axios and openai" && git push origin restore-loved-version
-nano ~/CryptoConsult/index.html
-nano ~/CryptoConsult/chat.js
-pm2 restart CryptoConsult
-cd ~/CryptoConsult
-pm2 start server.js --name CryptoConsult
-pm2 save
-pm2 list
-curl -s -X POST https://cryptoconsult-1.onrender.com/api/chat   -H "Content-Type: application/json"   -d '{"message":"What is the price of PEPE and SOL?"}'
-nano ~/CryptoConsult/chat.js
-pm2 restart CryptoConsult
-curl -s -X POST https://cryptoconsult-1.onrender.com/api/chat   -H "Content-Type: application/json"   -d '{"message":"What is the price of PEPE and SOL?"}'
-nano ~/CryptoConsult/chat.js
-pm2 restart CryptoConsult
-curl -s -X POST https://cryptoconsult-1.onrender.com/api/chat   -H "Content-Type: application/json"   -d '{"message":"What is the price of PEPE and SOL?"}'
-nano ~/CryptoConsult/chat.js
-pm2 restart CryptoConsult
-curl -s -X POST https://cryptoconsult-1.onrender.com/api/chat   -H "Content-Type: application/json"   -d '{"message":"What is the price of PEPE and SOL?"}'
-curl -s -X POST https://cryptoconsult-1.onrender.com/api/chat   -H "Content-Type: application/json"   -d '{"message":"What is the price of PEPE and SOL?"}'
-cat ~/CryptoConsult/chat.js
-curl -s -X POST https://cryptoconsult-1.onrender.com/api/chat   -H "Content-Type: application/json"   -d '{"message":"What is the price of PEPE and SOL?"}'
-cd ~/CryptoConsult
-git add chat.js
-git commit -m "Fix: update chat.js with SOL and PEPE price matching"
-git push origin main
-curl -s -X POST https://cryptoconsult-1.onrender.com/api/chat   -H "Content-Type: application/json"   -d '{"message":"What is the price of PEPE and SOL?"}'
-cd ~/CryptoConsult
-git add chat.js
-git commit -m "Debug: log token matches and CoinGecko price for SOL fix"
-git push origin main
-cd ~/CryptoConsult
-git add chat.js
-git commit -m "Debug: log token matches and CoinGecko price for SOL fix"
-git push origin main
-cd ~/CryptoConsult
-git add chat.js
-git commit -m "Fix: force deploy updated chat.js with SOL price logging"
-git push origin main
-git push origin restore-loved-version
-curl -s -X POST https://cryptoconsult-1.onrender.com/api/chat   -H "Content-Type: application/json"   -d '{"message":"What is the price of PEPE and SOL?"}'
-nano ~/CryptoConsult/style.css
-git add style.css
-git commit -m "Style: graffiti section titles with Orbitron font"
-git push origin restore-loved-version
-mv ~/CryptoConsult/style.css ~/CryptoConsult/public/style.css
-mv ~/CryptoConsult/script.js ~/CryptoConsult/public/script.js
-cd ~/CryptoConsult
-git add public/style.css public/script.js chat.js
-git commit -m "Fix: place frontend files in public folder + update chat.js"
-git push origin restore-loved-version
-cat ~/CryptoConsult/chat.js
-cd ~/CryptoConsult
-git add chat.js
-git commit -m "Fix: force deploy updated chat.js with confident price logic"
-git push origin restore-loved-version
-cd ~/CryptoConsult
-git add chat.js public/script.js public/style.css index.html
-git commit -m "Fix: deploy working chat.js and moved frontend to public/"
-git push origin restore-loved-version
-nano ~/CryptoConsult/index.html
-nano ~/CryptoConsult/script.js
-git add script.js
-git commit -m "Fix: enable CrimznBot output + music on click + price updates"
-git push origin restore-loved-version
-curl -s -X POST https://cryptoconsult-1.onrender.com/api/chat   -H "Content-Type: application/json"   -d '{"message":"What is the price of Bitcoin and ONDO?"}'
-nano ~/CryptoConsult/chat.js
-git add chat.js
-git commit -m "Fix: inject live prices into GPT system prompt for confident CrimznBot"
-git push origin restore-loved-version
-nano ~/CryptoConsult/index.html
-git add index.html
 git commit -m "Full update: index with chat-response box, live UI, full content"
 git push origin restore-loved-version
 nano ~/CryptoConsult/public/script.js
@@ -498,3 +388,113 @@ git status
 cd ~/CryptoConsult && curl -o index.html https://raw.githubusercontent.com/MUSICNFTACCESS/CryptoConsult/main/index.html && curl -o script.js https://raw.githubusercontent.com/MUSICNFTACCESS/CryptoConsult/main/script.js && curl -o server.js https://raw.githubusercontent.com/MUSICNFTACCESS/CryptoConsult/main/server.js && curl -o style.css https://raw.githubusercontent.com/MUSICNFTACCESS/CryptoConsult/main/style.css && curl -o public/style.css https://raw.githubusercontent.com/MUSICNFTACCESS/CryptoConsult/main/public/style.css && git add . && git commit -m "Fix: resolved all merge conflicts using latest working files" && git push origin main
 cd ~/CryptoConsult && sed -i 's|solana:[^"]*|solana:Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF?amount=1|' index.html && git add index.html && git commit -m "Update: replaced Solana Pay address with new permanent one" && git push origin main
 cd ~/CryptoConsult && sed -i 's|<a href="solana:[^"]*" target="_blank">[[:space:]]*<button>Pay with Solana</button>[[:space:]]*</a>|<button onclick="window.location.href='\''solana:Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF?amount=1'\''">Pay with Solana</button>|' index.html && git add index.html && git commit -m "Fix: make Solana Pay button use JS redirect to avoid broken href" && git push origin main
+cd ~/CryptoConsult-1 &&
+cat > index.html << 'EOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CryptoConsult</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>CryptoConsult by Crimzn</h1>
+
+  <section>
+    <h2>Available Services</h2>
+    <ul>
+      <li>Technical Analysis</li>
+      <li>Wallet Setup</li>
+      <li>Capital Rotation Strategy</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Live Crypto ETF Flows</h2>
+    <iframe src="https://sosovalue.xyz/etf" width="100%" height="400" style="border: none;"></iframe>
+  </section>
+
+  <section>
+    <h2>Contact Me</h2>
+    <form id="contact-form">
+      <input type="text" placeholder="Your name" required>
+      <input type="email" placeholder="Your email" required>
+      <textarea placeholder="Your message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <audio id="bg-audio" src="autoplay.mp3"></audio>
+
+  <script>
+    // Autoplay after first user click
+    let audioStarted = false;
+    document.addEventListener('click', () => {
+      if (!audioStarted) {
+        document.getElementById('bg-audio').play();
+        audioStarted = true;
+      }
+    });
+
+    // Email obfuscation
+    const to = 'crimzn' + 'cipriano' + '@' + 'gmail.com';
+    document.getElementById('contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Message sent to: ' + to);
+    });
+  </script>
+</body>
+</html>
+EOF
+
+echo "✅ CryptoConsult-1 site updated with music fix, contact form protection, and new ETF widget."
+git add index.html && git commit -m "Fix: remove broken link, add ETF widget, autoplay audio, email obfuscation" && git push
+git add index.html && git commit -m "Force: trigger redeploy on Render" && git push
+git push origin HEAD:main
+git checkout -b fix-patch-branch && git checkout main && git pull origin main && git merge fix-patch-branch && git push origin main
+git branch -r
+git checkout master && git pull origin master && git merge fix-patch-branch && git push origin master
+git pull origin master --no-rebase
+git pull origin master --allow-unrelated-histories
+git pull origin master --allow-unrelated-histories --no-rebase
+git add package.json package-lock.json && git commit -m "Save: local changes to package files before merge"
+git pull origin master --allow-unrelated-histories --no-rebase
+git checkout --ours .gitignore package.json package-lock.json public/index.html public/script.js public/style.css server.js && git add . && git commit -m "Merge resolved: keep local version" && git push origin master
+rm .git-credentials && git reset --soft HEAD~1 && git restore --staged . && git add --all && git commit -m "Clean: remove credential leak and finalize merge" && git push origin master
+git pull origin master --no-rebase --allow-unrelated-histories && git push origin master
+git checkout --ours .gitignore package.json package-lock.json public/index.html public/script.js public/style.css server.js && git add . && git commit -m "Resolve conflicts: keep local version" && git push origin master
+pip install git-filter-repo && git filter-repo --path .git-credentials --invert-paths && rm -f .git-credentials && git add . && git commit -m "Remove leaked .git-credentials file" && git push --force origin master
+git filter-repo --force --path .git-credentials --invert-paths && rm -f .git-credentials && git add . && git commit -m "Remove leaked .git-credentials file" && git push --force origin master
+git push --force origin master
+git remote add origin https://github.com/MUSICNFTACCESS/CryptoConsult-1.git
+git push --force origin master
+cat .git/config
+git remote remove origin && git remote add origin https://github.com/MUSICNFTACCESS/CryptoConsult-1.git && git push --force origin master
+gh repo list MUSICNFTACCESS
+gh auth login
+gh repo list MUSICNFTACCESS
+gh repo list MUSICNFTACCESS --limit 100 --json name,visibility,updatedAt | grep name
+git remote set-url origin https://github.com/MUSICNFTACCESS/CryptoConsult.git && git push --force origin master
+gh deploy --repo MUSICNFTACCESS/CryptoConsult
+curl -X POST https://api.render.com/deploy/srv-xxxxxxxxxxxx/deploy-hook?key=xxxxxhttps://api.render.com/deploy/srv-d0enr6p5pdvs73asf7vg?key=BlHlFNj3B4o
+curl -X POST "https://api.render.com/deploy/srv-d0enr6p5pdvs73asf7vg/deploy-hook?key=BlHlFNj3B4o"
+curl -i -X POST "https://api.render.com/deploy/srv-d0enr6p5pdvs73asf7vg?key=BlHlFNj3B4o"
+git add public/index.html && git commit -m "Trigger fresh deploy to update Render" && git push origin master
+git add index.html && git commit -m "Trigger fresh deploy to update Render" && git push origin master
+echo '<!-- redeploy trigger: refresh site -->' >> index.html
+git add index.html && git commit -m "Trigger Render redeploy with harmless HTML change" && git push origin master
+echo '<!-- trigger: force redeploy -->' >> index.html && git add index.html && git commit -m "Force redeploy by appending trigger comment" && git push origin master
+git log --oneline -n 5
+git push origin master:main --force
+cd ~/CryptoConsult
+cp ../CrimznBotBackend/public/index.html public/index.html
+git add public/index.html && git commit -m "Fix: Sync CryptoConsult UI with latest CrimznBotBackend version" && git push origin main
+cp -u ../CrimznBotBackend/public/index.html public/index.html
+touch public/index.html
+git add public/index.html && git commit -m "Force re-sync of CryptoConsult UI from working CrimznBotBackend" && git push origin main
+nano public/index.html
+git add public/index.html && git commit -m "Trigger: force redeploy of CryptoConsult frontend" && git push origin main
+echo "<\!-- redeploy trigger -->" >> public/index.html && git add public/index.html && git commit -m "Trigger: force redeploy of CryptoConsult frontend" && git push origin main
+rm server.js package.json package-lock.json Procfile
+git add . && git commit -m "Clean: convert CryptoConsult to static site layout" && git push origin main

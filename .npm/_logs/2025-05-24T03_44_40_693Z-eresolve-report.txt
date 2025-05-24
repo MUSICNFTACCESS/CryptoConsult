@@ -1,0 +1,281 @@
+'Log files:
+/data/data/com.termux/files/home/.npm/_logs/2025-05-24T03_44_40_693Z-debug-0.log
+
+# npm resolution error report
+
+While resolving: react-scripts@5.0.1
+Found: typescript@5.8.3
+node_modules/typescript
+  peer typescript@">=5.3.3" from @solana/codecs-numbers@2.1.1
+  node_modules/@solana/codecs-numbers
+    @solana/codecs-numbers@"^2.1.0" from @solana/web3.js@1.98.2
+    node_modules/@solana/web3.js
+      @solana/web3.js@"^1.89.0" from the root project
+      peer @solana/web3.js@"^1.98.0" from @solana/wallet-adapter-react@0.15.38
+      node_modules/@solana/wallet-adapter-react
+        @solana/wallet-adapter-react@"^0.15.17" from the root project
+      peer @solana/web3.js@"^1.58.0" from @solana-mobile/wallet-adapter-mobile@2.2.0
+      node_modules/@solana-mobile/wallet-adapter-mobile
+        @solana-mobile/wallet-adapter-mobile@"^2.1.5" from @solana/wallet-adapter-react@0.15.38
+        node_modules/@solana/wallet-adapter-react
+          @solana/wallet-adapter-react@"^0.15.17" from the root project
+      peer @solana/web3.js@"^1.98.0" from @solana/wallet-adapter-base@0.9.26
+      node_modules/@solana/wallet-adapter-base
+        @solana/wallet-adapter-base@"^0.9.26" from @solana/wallet-adapter-react@0.15.38
+        node_modules/@solana/wallet-adapter-react
+          @solana/wallet-adapter-react@"^0.15.17" from the root project
+        @solana/wallet-adapter-base@"^0.9.23" from @solana-mobile/wallet-adapter-mobile@2.2.0
+        node_modules/@solana-mobile/wallet-adapter-mobile
+          @solana-mobile/wallet-adapter-mobile@"^2.1.5" from @solana/wallet-adapter-react@0.15.38
+          node_modules/@solana/wallet-adapter-react
+            @solana/wallet-adapter-react@"^0.15.17" from the root project
+        peer @solana/wallet-adapter-base@"*" from @solana/wallet-standard-wallet-adapter-react@1.1.4
+        node_modules/@solana/wallet-standard-wallet-adapter-react
+          @solana/wallet-standard-wallet-adapter-react@"^1.1.4" from @solana/wallet-adapter-react@0.15.38
+          node_modules/@solana/wallet-adapter-react
+            @solana/wallet-adapter-react@"^0.15.17" from the root project
+        @solana/wallet-adapter-base@"^0.9.23" from @solana/wallet-standard-wallet-adapter-base@1.1.4
+        node_modules/@solana/wallet-standard-wallet-adapter-react/node_modules/@solana/wallet-standard-wallet-adapter-base
+          @solana/wallet-standard-wallet-adapter-base@"^1.1.4" from @solana/wallet-standard-wallet-adapter-react@1.1.4
+          node_modules/@solana/wallet-standard-wallet-adapter-react
+            @solana/wallet-standard-wallet-adapter-react@"^1.1.4" from @solana/wallet-adapter-react@0.15.38
+            node_modules/@solana/wallet-adapter-react
+              @solana/wallet-adapter-react@"^0.15.17" from the root project
+      peer @solana/web3.js@"^1.58.0" from @solana-mobile/mobile-wallet-adapter-protocol-web3js@2.2.0
+      node_modules/@solana-mobile/mobile-wallet-adapter-protocol-web3js
+        @solana-mobile/mobile-wallet-adapter-protocol-web3js@"^2.2.0" from @solana-mobile/wallet-adapter-mobile@2.2.0
+        node_modules/@solana-mobile/wallet-adapter-mobile
+          @solana-mobile/wallet-adapter-mobile@"^2.1.5" from @solana/wallet-adapter-react@0.15.38
+          node_modules/@solana/wallet-adapter-react
+            @solana/wallet-adapter-react@"^0.15.17" from the root project
+        @solana-mobile/mobile-wallet-adapter-protocol-web3js@"^2.2.0" from @solana-mobile/wallet-standard-mobile@0.2.0
+        node_modules/@solana-mobile/wallet-standard-mobile
+          @solana-mobile/wallet-standard-mobile@"^0.2.0" from @solana-mobile/wallet-adapter-mobile@2.2.0
+          node_modules/@solana-mobile/wallet-adapter-mobile
+            @solana-mobile/wallet-adapter-mobile@"^2.1.5" from @solana/wallet-adapter-react@0.15.38
+            node_modules/@solana/wallet-adapter-react
+              @solana/wallet-adapter-react@"^0.15.17" from the root project
+      peer @solana/web3.js@"^1.58.0" from @solana-mobile/wallet-standard-mobile@0.2.0
+      node_modules/@solana-mobile/wallet-standard-mobile
+        @solana-mobile/wallet-standard-mobile@"^0.2.0" from @solana-mobile/wallet-adapter-mobile@2.2.0
+        node_modules/@solana-mobile/wallet-adapter-mobile
+          @solana-mobile/wallet-adapter-mobile@"^2.1.5" from @solana/wallet-adapter-react@0.15.38
+          node_modules/@solana/wallet-adapter-react
+            @solana/wallet-adapter-react@"^0.15.17" from the root project
+      peer @solana/web3.js@"^1.98.0" from @solana/wallet-standard-wallet-adapter-base@1.1.4
+      node_modules/@solana/wallet-standard-wallet-adapter-react/node_modules/@solana/wallet-standard-wallet-adapter-base
+        @solana/wallet-standard-wallet-adapter-base@"^1.1.4" from @solana/wallet-standard-wallet-adapter-react@1.1.4
+        node_modules/@solana/wallet-standard-wallet-adapter-react
+          @solana/wallet-standard-wallet-adapter-react@"^1.1.4" from @solana/wallet-adapter-react@0.15.38
+          node_modules/@solana/wallet-adapter-react
+            @solana/wallet-adapter-react@"^0.15.17" from the root project
+  peer typescript@">=5.3.3" from @solana/codecs-core@2.1.1
+  node_modules/@solana/codecs-core
+    @solana/codecs-core@"2.1.1" from @solana/codecs-numbers@2.1.1
+    node_modules/@solana/codecs-numbers
+      @solana/codecs-numbers@"^2.1.0" from @solana/web3.js@1.98.2
+      node_modules/@solana/web3.js
+        @solana/web3.js@"^1.89.0" from the root project
+        peer @solana/web3.js@"^1.98.0" from @solana/wallet-adapter-react@0.15.38
+        node_modules/@solana/wallet-adapter-react
+          @solana/wallet-adapter-react@"^0.15.17" from the root project
+        peer @solana/web3.js@"^1.58.0" from @solana-mobile/wallet-adapter-mobile@2.2.0
+        node_modules/@solana-mobile/wallet-adapter-mobile
+          @solana-mobile/wallet-adapter-mobile@"^2.1.5" from @solana/wallet-adapter-react@0.15.38
+          node_modules/@solana/wallet-adapter-react
+            @solana/wallet-adapter-react@"^0.15.17" from the root project
+        peer @solana/web3.js@"^1.98.0" from @solana/wallet-adapter-base@0.9.26
+        node_modules/@solana/wallet-adapter-base
+          @solana/wallet-adapter-base@"^0.9.26" from @solana/wallet-adapter-react@0.15.38
+          node_modules/@solana/wallet-adapter-react
+            @solana/wallet-adapter-react@"^0.15.17" from the root project
+          @solana/wallet-adapter-base@"^0.9.23" from @solana-mobile/wallet-adapter-mobile@2.2.0
+          node_modules/@solana-mobile/wallet-adapter-mobile
+            @solana-mobile/wallet-adapter-mobile@"^2.1.5" from @solana/wallet-adapter-react@0.15.38
+            node_modules/@solana/wallet-adapter-react
+              @solana/wallet-adapter-react@"^0.15.17" from the root project
+          peer @solana/wallet-adapter-base@"*" from @solana/wallet-standard-wallet-adapter-react@1.1.4
+          node_modules/@solana/wallet-standard-wallet-adapter-react
+            @solana/wallet-standard-wallet-adapter-react@"^1.1.4" from @solana/wallet-adapter-react@0.15.38
+            node_modules/@solana/wallet-adapter-react
+              @solana/wallet-adapter-react@"^0.15.17" from the root project
+          @solana/wallet-adapter-base@"^0.9.23" from @solana/wallet-standard-wallet-adapter-base@1.1.4
+          node_modules/@solana/wallet-standard-wallet-adapter-react/node_modules/@solana/wallet-standard-wallet-adapter-base
+            @solana/wallet-standard-wallet-adapter-base@"^1.1.4" from @solana/wallet-standard-wallet-adapter-react@1.1.4
+            node_modules/@solana/wallet-standard-wallet-adapter-react
+              @solana/wallet-standard-wallet-adapter-react@"^1.1.4" from @solana/wallet-adapter-react@0.15.38
+              node_modules/@solana/wallet-adapter-react
+                @solana/wallet-adapter-react@"^0.15.17" from the root project
+        peer @solana/web3.js@"^1.58.0" from @solana-mobile/mobile-wallet-adapter-protocol-web3js@2.2.0
+        node_modules/@solana-mobile/mobile-wallet-adapter-protocol-web3js
+          @solana-mobile/mobile-wallet-adapter-protocol-web3js@"^2.2.0" from @solana-mobile/wallet-adapter-mobile@2.2.0
+          node_modules/@solana-mobile/wallet-adapter-mobile
+            @solana-mobile/wallet-adapter-mobile@"^2.1.5" from @solana/wallet-adapter-react@0.15.38
+            node_modules/@solana/wallet-adapter-react
+              @solana/wallet-adapter-react@"^0.15.17" from the root project
+          @solana-mobile/mobile-wallet-adapter-protocol-web3js@"^2.2.0" from @solana-mobile/wallet-standard-mobile@0.2.0
+          node_modules/@solana-mobile/wallet-standard-mobile
+            @solana-mobile/wallet-standard-mobile@"^0.2.0" from @solana-mobile/wallet-adapter-mobile@2.2.0
+            node_modules/@solana-mobile/wallet-adapter-mobile
+              @solana-mobile/wallet-adapter-mobile@"^2.1.5" from @solana/wallet-adapter-react@0.15.38
+              node_modules/@solana/wallet-adapter-react
+                @solana/wallet-adapter-react@"^0.15.17" from the root project
+        peer @solana/web3.js@"^1.58.0" from @solana-mobile/wallet-standard-mobile@0.2.0
+        node_modules/@solana-mobile/wallet-standard-mobile
+          @solana-mobile/wallet-standard-mobile@"^0.2.0" from @solana-mobile/wallet-adapter-mobile@2.2.0
+          node_modules/@solana-mobile/wallet-adapter-mobile
+            @solana-mobile/wallet-adapter-mobile@"^2.1.5" from @solana/wallet-adapter-react@0.15.38
+            node_modules/@solana/wallet-adapter-react
+              @solana/wallet-adapter-react@"^0.15.17" from the root project
+        peer @solana/web3.js@"^1.98.0" from @solana/wallet-standard-wallet-adapter-base@1.1.4
+        node_modules/@solana/wallet-standard-wallet-adapter-react/node_modules/@solana/wallet-standard-wallet-adapter-base
+          @solana/wallet-standard-wallet-adapter-base@"^1.1.4" from @solana/wallet-standard-wallet-adapter-react@1.1.4
+          node_modules/@solana/wallet-standard-wallet-adapter-react
+            @solana/wallet-standard-wallet-adapter-react@"^1.1.4" from @solana/wallet-adapter-react@0.15.38
+            node_modules/@solana/wallet-adapter-react
+              @solana/wallet-adapter-react@"^0.15.17" from the root project
+  peer typescript@">=5.3.3" from @solana/errors@2.1.1
+  node_modules/@solana/errors
+    @solana/errors@"2.1.1" from @solana/codecs-numbers@2.1.1
+    node_modules/@solana/codecs-numbers
+      @solana/codecs-numbers@"^2.1.0" from @solana/web3.js@1.98.2
+      node_modules/@solana/web3.js
+        @solana/web3.js@"^1.89.0" from the root project
+        peer @solana/web3.js@"^1.98.0" from @solana/wallet-adapter-react@0.15.38
+        node_modules/@solana/wallet-adapter-react
+          @solana/wallet-adapter-react@"^0.15.17" from the root project
+        peer @solana/web3.js@"^1.58.0" from @solana-mobile/wallet-adapter-mobile@2.2.0
+        node_modules/@solana-mobile/wallet-adapter-mobile
+          @solana-mobile/wallet-adapter-mobile@"^2.1.5" from @solana/wallet-adapter-react@0.15.38
+          node_modules/@solana/wallet-adapter-react
+            @solana/wallet-adapter-react@"^0.15.17" from the root project
+        peer @solana/web3.js@"^1.98.0" from @solana/wallet-adapter-base@0.9.26
+        node_modules/@solana/wallet-adapter-base
+          @solana/wallet-adapter-base@"^0.9.26" from @solana/wallet-adapter-react@0.15.38
+          node_modules/@solana/wallet-adapter-react
+            @solana/wallet-adapter-react@"^0.15.17" from the root project
+          @solana/wallet-adapter-base@"^0.9.23" from @solana-mobile/wallet-adapter-mobile@2.2.0
+          node_modules/@solana-mobile/wallet-adapter-mobile
+            @solana-mobile/wallet-adapter-mobile@"^2.1.5" from @solana/wallet-adapter-react@0.15.38
+            node_modules/@solana/wallet-adapter-react
+              @solana/wallet-adapter-react@"^0.15.17" from the root project
+          peer @solana/wallet-adapter-base@"*" from @solana/wallet-standard-wallet-adapter-react@1.1.4
+          node_modules/@solana/wallet-standard-wallet-adapter-react
+            @solana/wallet-standard-wallet-adapter-react@"^1.1.4" from @solana/wallet-adapter-react@0.15.38
+            node_modules/@solana/wallet-adapter-react
+              @solana/wallet-adapter-react@"^0.15.17" from the root project
+          @solana/wallet-adapter-base@"^0.9.23" from @solana/wallet-standard-wallet-adapter-base@1.1.4
+          node_modules/@solana/wallet-standard-wallet-adapter-react/node_modules/@solana/wallet-standard-wallet-adapter-base
+            @solana/wallet-standard-wallet-adapter-base@"^1.1.4" from @solana/wallet-standard-wallet-adapter-react@1.1.4
+            node_modules/@solana/wallet-standard-wallet-adapter-react
+              @solana/wallet-standard-wallet-adapter-react@"^1.1.4" from @solana/wallet-adapter-react@0.15.38
+              node_modules/@solana/wallet-adapter-react
+                @solana/wallet-adapter-react@"^0.15.17" from the root project
+        peer @solana/web3.js@"^1.58.0" from @solana-mobile/mobile-wallet-adapter-protocol-web3js@2.2.0
+        node_modules/@solana-mobile/mobile-wallet-adapter-protocol-web3js
+          @solana-mobile/mobile-wallet-adapter-protocol-web3js@"^2.2.0" from @solana-mobile/wallet-adapter-mobile@2.2.0
+          node_modules/@solana-mobile/wallet-adapter-mobile
+            @solana-mobile/wallet-adapter-mobile@"^2.1.5" from @solana/wallet-adapter-react@0.15.38
+            node_modules/@solana/wallet-adapter-react
+              @solana/wallet-adapter-react@"^0.15.17" from the root project
+          @solana-mobile/mobile-wallet-adapter-protocol-web3js@"^2.2.0" from @solana-mobile/wallet-standard-mobile@0.2.0
+          node_modules/@solana-mobile/wallet-standard-mobile
+            @solana-mobile/wallet-standard-mobile@"^0.2.0" from @solana-mobile/wallet-adapter-mobile@2.2.0
+            node_modules/@solana-mobile/wallet-adapter-mobile
+              @solana-mobile/wallet-adapter-mobile@"^2.1.5" from @solana/wallet-adapter-react@0.15.38
+              node_modules/@solana/wallet-adapter-react
+                @solana/wallet-adapter-react@"^0.15.17" from the root project
+        peer @solana/web3.js@"^1.58.0" from @solana-mobile/wallet-standard-mobile@0.2.0
+        node_modules/@solana-mobile/wallet-standard-mobile
+          @solana-mobile/wallet-standard-mobile@"^0.2.0" from @solana-mobile/wallet-adapter-mobile@2.2.0
+          node_modules/@solana-mobile/wallet-adapter-mobile
+            @solana-mobile/wallet-adapter-mobile@"^2.1.5" from @solana/wallet-adapter-react@0.15.38
+            node_modules/@solana/wallet-adapter-react
+              @solana/wallet-adapter-react@"^0.15.17" from the root project
+        peer @solana/web3.js@"^1.98.0" from @solana/wallet-standard-wallet-adapter-base@1.1.4
+        node_modules/@solana/wallet-standard-wallet-adapter-react/node_modules/@solana/wallet-standard-wallet-adapter-base
+          @solana/wallet-standard-wallet-adapter-base@"^1.1.4" from @solana/wallet-standard-wallet-adapter-react@1.1.4
+          node_modules/@solana/wallet-standard-wallet-adapter-react
+            @solana/wallet-standard-wallet-adapter-react@"^1.1.4" from @solana/wallet-adapter-react@0.15.38
+            node_modules/@solana/wallet-adapter-react
+              @solana/wallet-adapter-react@"^0.15.17" from the root project
+    @solana/errors@"2.1.1" from @solana/codecs-core@2.1.1
+    node_modules/@solana/codecs-core
+      @solana/codecs-core@"2.1.1" from @solana/codecs-numbers@2.1.1
+      node_modules/@solana/codecs-numbers
+        @solana/codecs-numbers@"^2.1.0" from @solana/web3.js@1.98.2
+        node_modules/@solana/web3.js
+          @solana/web3.js@"^1.89.0" from the root project
+          peer @solana/web3.js@"^1.98.0" from @solana/wallet-adapter-react@0.15.38
+          node_modules/@solana/wallet-adapter-react
+            @solana/wallet-adapter-react@"^0.15.17" from the root project
+          peer @solana/web3.js@"^1.58.0" from @solana-mobile/wallet-adapter-mobile@2.2.0
+          node_modules/@solana-mobile/wallet-adapter-mobile
+            @solana-mobile/wallet-adapter-mobile@"^2.1.5" from @solana/wallet-adapter-react@0.15.38
+            node_modules/@solana/wallet-adapter-react
+              @solana/wallet-adapter-react@"^0.15.17" from the root project
+          peer @solana/web3.js@"^1.98.0" from @solana/wallet-adapter-base@0.9.26
+          node_modules/@solana/wallet-adapter-base
+            @solana/wallet-adapter-base@"^0.9.26" from @solana/wallet-adapter-react@0.15.38
+            node_modules/@solana/wallet-adapter-react
+              @solana/wallet-adapter-react@"^0.15.17" from the root project
+            @solana/wallet-adapter-base@"^0.9.23" from @solana-mobile/wallet-adapter-mobile@2.2.0
+            node_modules/@solana-mobile/wallet-adapter-mobile
+              @solana-mobile/wallet-adapter-mobile@"^2.1.5" from @solana/wallet-adapter-react@0.15.38
+              node_modules/@solana/wallet-adapter-react
+                @solana/wallet-adapter-react@"^0.15.17" from the root project
+            peer @solana/wallet-adapter-base@"*" from @solana/wallet-standard-wallet-adapter-react@1.1.4
+            node_modules/@solana/wallet-standard-wallet-adapter-react
+              @solana/wallet-standard-wallet-adapter-react@"^1.1.4" from @solana/wallet-adapter-react@0.15.38
+              node_modules/@solana/wallet-adapter-react
+                @solana/wallet-adapter-react@"^0.15.17" from the root project
+            @solana/wallet-adapter-base@"^0.9.23" from @solana/wallet-standard-wallet-adapter-base@1.1.4
+            node_modules/@solana/wallet-standard-wallet-adapter-react/node_modules/@solana/wallet-standard-wallet-adapter-base
+              @solana/wallet-standard-wallet-adapter-base@"^1.1.4" from @solana/wallet-standard-wallet-adapter-react@1.1.4
+              node_modules/@solana/wallet-standard-wallet-adapter-react
+                @solana/wallet-standard-wallet-adapter-react@"^1.1.4" from @solana/wallet-adapter-react@0.15.38
+                node_modules/@solana/wallet-adapter-react
+                  @solana/wallet-adapter-react@"^0.15.17" from the root project
+          peer @solana/web3.js@"^1.58.0" from @solana-mobile/mobile-wallet-adapter-protocol-web3js@2.2.0
+          node_modules/@solana-mobile/mobile-wallet-adapter-protocol-web3js
+            @solana-mobile/mobile-wallet-adapter-protocol-web3js@"^2.2.0" from @solana-mobile/wallet-adapter-mobile@2.2.0
+            node_modules/@solana-mobile/wallet-adapter-mobile
+              @solana-mobile/wallet-adapter-mobile@"^2.1.5" from @solana/wallet-adapter-react@0.15.38
+              node_modules/@solana/wallet-adapter-react
+                @solana/wallet-adapter-react@"^0.15.17" from the root project
+            @solana-mobile/mobile-wallet-adapter-protocol-web3js@"^2.2.0" from @solana-mobile/wallet-standard-mobile@0.2.0
+            node_modules/@solana-mobile/wallet-standard-mobile
+              @solana-mobile/wallet-standard-mobile@"^0.2.0" from @solana-mobile/wallet-adapter-mobile@2.2.0
+              node_modules/@solana-mobile/wallet-adapter-mobile
+                @solana-mobile/wallet-adapter-mobile@"^2.1.5" from @solana/wallet-adapter-react@0.15.38
+                node_modules/@solana/wallet-adapter-react
+                  @solana/wallet-adapter-react@"^0.15.17" from the root project
+          peer @solana/web3.js@"^1.58.0" from @solana-mobile/wallet-standard-mobile@0.2.0
+          node_modules/@solana-mobile/wallet-standard-mobile
+            @solana-mobile/wallet-standard-mobile@"^0.2.0" from @solana-mobile/wallet-adapter-mobile@2.2.0
+            node_modules/@solana-mobile/wallet-adapter-mobile
+              @solana-mobile/wallet-adapter-mobile@"^2.1.5" from @solana/wallet-adapter-react@0.15.38
+              node_modules/@solana/wallet-adapter-react
+                @solana/wallet-adapter-react@"^0.15.17" from the root project
+          peer @solana/web3.js@"^1.98.0" from @solana/wallet-standard-wallet-adapter-base@1.1.4
+          node_modules/@solana/wallet-standard-wallet-adapter-react/node_modules/@solana/wallet-standard-wallet-adapter-base
+            @solana/wallet-standard-wallet-adapter-base@"^1.1.4" from @solana/wallet-standard-wallet-adapter-react@1.1.4
+            node_modules/@solana/wallet-standard-wallet-adapter-react
+              @solana/wallet-standard-wallet-adapter-react@"^1.1.4" from @solana/wallet-adapter-react@0.15.38
+              node_modules/@solana/wallet-adapter-react
+                @solana/wallet-adapter-react@"^0.15.17" from the root project
+
+Could not resolve dependency:
+peerOptional typescript@"^3.2.1 || ^4" from react-scripts@5.0.1
+node_modules/react-scripts
+  react-scripts@"5.0.1" from the root project
+
+Conflicting peer dependency: typescript@4.9.5
+node_modules/typescript
+  peerOptional typescript@"^3.2.1 || ^4" from react-scripts@5.0.1
+  node_modules/react-scripts
+    react-scripts@"5.0.1" from the root project
+
+Fix the upstream dependency conflict, or retry
+this command with --force or --legacy-peer-deps
+to accept an incorrect (and potentially broken) dependency resolution.
