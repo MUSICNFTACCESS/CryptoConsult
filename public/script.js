@@ -1,6 +1,7 @@
 let questionCount = 0;
 const maxFreeQuestions = 3;
 
+// Fetch live crypto prices every 60 seconds
 async function fetchPrices() {
   try {
     const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
@@ -15,6 +16,7 @@ async function fetchPrices() {
   }
 }
 
+// Handle chat interaction and question limits
 async function sendMessage() {
   const input = document.getElementById("user-input");
   const output = document.getElementById("chat-output");
@@ -25,6 +27,7 @@ async function sendMessage() {
   if (questionCount >= maxFreeQuestions) {
     paywall.style.display = "block";
     input.disabled = true;
+    document.getElementById("send-button").disabled = true;
     return;
   }
 
@@ -37,13 +40,14 @@ async function sendMessage() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message })
     });
+
     const data = await res.json();
     output.innerHTML += `<p style="color:#00ff00;"><strong>CrimznBot:</strong> ${data.reply}</p>`;
     questionCount++;
   } catch (err) {
-    output.innerHTML += `<p style="color:red;"><strong>Error:</strong> Please try again later.</p>`;
+    output.innerHTML += `<p style="color:red;"><strong>Error:</strong> CrimznBot is not responding.</p>`;
   }
 }
 
 window.onload = fetchPrices;
-setInterval(fetchPrices, 60000);
+setInterval(fetchPrices, 60000); // Refresh every 60 seconds
