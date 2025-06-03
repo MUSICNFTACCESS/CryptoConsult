@@ -21,41 +21,30 @@ app.get("/", (req, res) => {
 
 app.post("/ask", async (req, res) => {
   const question = req.body.question;
-
   try {
     const completion = await openai.chat.completions.create({
       model: "gpt-4",
       messages: [{ role: "user", content: question }],
     });
-
     const answer = completion.choices[0].message.content;
     res.json({ answer });
   } catch (err) {
-    console.error("Error from OpenAI:", err);
+    console.error("OpenAI error:", err);
     res.status(500).json({ answer: "Sorry, I’m having trouble connecting to the AI." });
   }
 });
 
 app.get("/prices", async (req, res) => {
   try {
-    const url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd";
-
-    const response = await fetch(url, {
-      headers: {
-        "Accept": "application/json",
-        "User-Agent": "Mozilla/5.0"
-      }
-    });
-
+    const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
     const data = await response.json();
-
     res.json({
-      btc: data.bitcoin?.usd || "Error",
-      eth: data.ethereum?.usd || "Error",
-      sol: data.solana?.usd || "Error"
+      btc: data?.bitcoin?.usd || "Error",
+      eth: data?.ethereum?.usd || "Error",
+      sol: data?.solana?.usd || "Error",
     });
   } catch (err) {
-    console.error("Error fetching CoinGecko prices:", err);
+    console.error("Price fetch error:", err);
     res.status(500).json({ btc: "Error", eth: "Error", sol: "Error" });
   }
 });
