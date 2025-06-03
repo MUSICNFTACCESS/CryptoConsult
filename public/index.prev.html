@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CryptoConsult by Crimzn</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>CryptoConsult by Crimzn</h1>
+    <p>Ask CrimznBot anything about crypto, markets, or blockchain strategy.</p>
+
+    <div class="section" id="price-display">
+      <h2>Live Prices</h2>
+      <p>BTC: <span id="btc-price">Loading...</span></p>
+      <p>ETH: <span id="eth-price">Loading...</span></p>
+      <p>SOL: <span id="sol-price">Loading...</span></p>
+    </div>
+
+    <div class="section" id="services">
+      <h2>Available Services</h2>
+      <ul>
+        <li>🧠 Technical & Fundamental Analysis</li>
+        <li>🔐 Wallet Setup & Security Guidance</li>
+        <li>📈 Portfolio Strategy & Risk Management</li>
+        <li>🪙 On-ramping / Off-ramping</li>
+        <li>🎓 Crypto Education</li>
+      </ul>
+    </div>
+
+    <div class="section chatbox">
+      <h2>Talk to CrimznBot</h2>
+      <div id="chat-output"></div>
+      <input type="text" id="user-input" placeholder="Ask me anything crypto..." />
+      <button id="send-button" onclick="sendMessage()">Send</button>
+    </div>
+
+    <div id="paywall" style="display:none;" class="section">
+      <p>💡 You've reached your free question limit. To continue, please support below:</p>
+      <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">💳 Pay $99.99 USDC</a><br>
+      <a href="https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b" target="_blank">🪙 Send Tip (1 USDC)</a><br>
+      <a href="https://cryptoconsult.onrender.com/solana" target="_blank">⚡ Pay with Solana</a><br>
+      <a href="https://t.me/Crimznbot" target="_blank">📬 Contact Me on Telegram</a>
+    </div>
+
+    <footer>
+      ⚡ Powered by CrimznBot | Built for the Based & Brave ⚡
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
