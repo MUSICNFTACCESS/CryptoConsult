@@ -37,7 +37,12 @@ app.post("/ask", async (req, res) => {
 
 app.get("/prices", async (req, res) => {
   try {
-    const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
+    const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd", {
+      headers: {
+        "Accept": "application/json",
+        "User-Agent": "Mozilla/5.0"
+      }
+    });
     const data = await response.json();
     res.json({
       btc: data?.bitcoin?.usd || "Error",
