@@ -38,22 +38,22 @@ app.post("/ask", async (req, res) => {
 
 app.get("/prices", async (req, res) => {
   try {
-    const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd", {
+    const response = await fetch("https://api.coinstats.app/public/v1/coins?skip=0&limit=3&currency=USD", {
       headers: {
-        "Accept": "application/json",
         "User-Agent": "Mozilla/5.0"
       }
     });
-
     const data = await response.json();
 
-    res.json({
-      btc: data?.bitcoin?.usd || "Error",
-      eth: data?.ethereum?.usd || "Error",
-      sol: data?.solana?.usd || "Error",
-    });
+    const prices = {
+      btc: data.coins.find(coin => coin.symbol === "BTC")?.price.toFixed(2) || "Error",
+      eth: data.coins.find(coin => coin.symbol === "ETH")?.price.toFixed(2) || "Error",
+      sol: data.coins.find(coin => coin.symbol === "SOL")?.price.toFixed(2) || "Error"
+    };
+
+    res.json(prices);
   } catch (err) {
-    console.error("Error fetching prices:", err);
+    console.error("Error fetching CoinStats prices:", err);
     res.status(500).json({ btc: "Error", eth: "Error", sol: "Error" });
   }
 });
