@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CryptoConsult by Crimzn - Real-time crypto prices and AI consulting.">
+  <meta name="keywords" content="Crypto, Bitcoin, Solana, Ethereum, CrimznBot, Blockchain, Consulting">
   <title>CryptoConsult by Crimzn</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -11,9 +14,11 @@
     <p>Ask CrimznBot anything about crypto, markets, or blockchain strategy.</p>
 
     <h2>Live Crypto Prices</h2>
-    <p>BTC: <span id="btc-price">Loading...</span> USD</p>
-    <p>ETH: <span id="eth-price">Loading...</span> USD</p>
-    <p>SOL: <span id="sol-price">Loading...</span> USD</p>
+    <div id="price-box">
+      <p>BTC: <span id="btc-price">Loading...</span> USD</p>
+      <p>ETH: <span id="eth-price">Loading...</span> USD</p>
+      <p>SOL: <span id="sol-price">Loading...</span> USD</p>
+    </div>
 
     <h2>Available Services</h2>
     <ul>
@@ -26,20 +31,22 @@
 
     <h2>Talk to CrimznBot</h2>
     <div id="chat-output"></div>
-    <input type="text" id="user-input" placeholder="Ask me anything crypto..." />
-    <button id="send-button" onclick="sendMessage()">Send</button>
+    <input type="text" id="user-input" class="input-field" placeholder="Ask me anything crypto..." />
+    <button id="send-button" class="send-btn" onclick="sendMessage()">Send</button>
 
-    <div id="paywall" style="display:none;">
-      <p>🧱 You've reached your free question limit. To continue, please:</p>
-      <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8">💰 Pay $99.99</a><br />
-      <a href="https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b">🎁 Send Tip (1 USDC)</a><br />
-      <a href="https://cryptoconsult.onrender.com/solana">⚡ Pay with Solana</a><br />
-      <a href="https://t.me/Crimznbot">📬 Telegram @Crimznbot</a>
+    <div id="paywall" style="display:none; margin-top: 20px;">
+      <p>🛑 You've reached your free question limit. To continue, please:</p>
+      <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">💰 Pay $99.99 USDC</a><br>
+      <a href="https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b" target="_blank">🙏 Send Tip (1 USDC)</a><br>
+      <a href="https://cryptoconsult.onrender.com/solana" target="_blank">⚡ Pay with Solana</a><br>
+      <a href="https://t.me/Crimznbot" target="_blank">📬 Telegram @Crimznbot</a>
     </div>
 
+    <hr style="border: 1px solid #f7931a; margin: 40px 0;" />
+
     <h2>Contact Me</h2>
-    <a href="mailto:crimzncipriano@gmail.com">📧 Email Crimzn</a><br />
-    <a href="https://t.me/Crimznbot">💬 Telegram @Crimznbot</a>
+    <a href="mailto:crimzncipriano@gmail.com">📧 Email Crimzn</a><br>
+    <a href="https://t.me/Crimznbot" target="_blank">💬 Telegram @Crimznbot</a>
 
     <h2>License</h2>
     <p>📄 MIT License</p>
