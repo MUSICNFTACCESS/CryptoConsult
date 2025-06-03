@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const fetch = require("node-fetch");
 const OpenAI = require("openai");
+const path = require("path");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -13,6 +14,10 @@ const openai = new OpenAI({
 
 app.use(bodyParser.json());
 app.use(express.static("public"));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 app.post("/ask", async (req, res) => {
   const question = req.body.question;
@@ -33,13 +38,19 @@ app.post("/ask", async (req, res) => {
 
 app.get("/prices", async (req, res) => {
   try {
-    const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
+    const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd", {
+      headers: {
+        "Accept": "application/json",
+        "User-Agent": "Mozilla/5.0"
+      }
+    });
+
     const data = await response.json();
 
     res.json({
-      btc: data.bitcoin.usd,
-      eth: data.ethereum.usd,
-      sol: data.solana.usd,
+      btc: data?.bitcoin?.usd || "Error",
+      eth: data?.ethereum?.usd || "Error",
+      sol: data?.solana?.usd || "Error",
     });
   } catch (err) {
     console.error("Error fetching prices:", err);
