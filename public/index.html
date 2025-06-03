@@ -1,60 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CryptoConsult by Crimzn - Real-time crypto prices and AI consulting.">
-  <meta name="keywords" content="Crypto, Bitcoin, Solana, Ethereum, CrimznBot, Blockchain, Consulting">
+  <meta charset="UTF-8">
   <title>CryptoConsult by Crimzn</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background-color: #000;
+      color: #f7931a;
+      font-family: 'Courier New', monospace;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    h1, h2 {
+      color: #f7931a;
+      margin-bottom: 10px;
+    }
+    section {
+      margin: 32px 0;
+      border-top: 1px solid #f7931a33;
+      padding-top: 20px;
+    }
+    button, a.button {
+      background-color: #f7931a;
+      color: #000;
+      border: none;
+      padding: 10px 16px;
+      margin: 5px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-family: monospace;
+      display: inline-block;
+    }
+    .price {
+      font-size: 1.2em;
+      margin: 8px 0;
+    }
+    #chat-log {
+      background: #111;
+      color: #0f0;
+      padding: 12px;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 600px;
+      border: 1px solid #f7931a;
+      min-height: 80px;
+    }
+    input, textarea {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      font-family: monospace;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #999;
+    }
+    a {
+      color: #0af;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>CryptoConsult by Crimzn</h1>
-    <p>Ask CrimznBot anything about crypto, markets, or blockchain strategy.</p>
 
+  <h1>CryptoConsult by Crimzn</h1>
+  <p>Ask CrimznBot anything about crypto, markets, or blockchain strategy.</p>
+
+  <section id="prices">
     <h2>Live Crypto Prices</h2>
-    <div id="price-box">
-      <p>BTC: <span id="btc-price">Loading...</span> USD</p>
-      <p>ETH: <span id="eth-price">Loading...</span> USD</p>
-      <p>SOL: <span id="sol-price">Loading...</span> USD</p>
-    </div>
+    <div class="price" id="btc-price">BTC: Loading...</div>
+    <div class="price" id="eth-price">ETH: Loading...</div>
+    <div class="price" id="sol-price">SOL: Loading...</div>
+  </section>
 
+  <section id="services">
     <h2>Available Services</h2>
-    <ul>
-      <li>📊 Technical & Fundamental Analysis</li>
-      <li>🔐 Wallet Setup & Security Guidance</li>
-      <li>📈 Portfolio Strategy & Risk Management</li>
-      <li>🪙 On-ramping / Off-ramping</li>
-      <li>🎓 Crypto Education</li>
+    <ul style="list-style-type: none; padding-left: 0;">
+      <li>✅ 📊 Technical & Fundamental Analysis</li>
+      <li>✅ 🔐 Wallet Setup & Security Guidance</li>
+      <li>✅ 📈 Portfolio Strategy & Risk Management</li>
+      <li>✅ 🪙 On-ramping / Off-ramping</li>
+      <li>✅ 🎓 Crypto Education</li>
     </ul>
+  </section>
 
+  <section id="payments">
+    <h2>Support & Payments</h2>
+    <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" class="button">💼 Book a Consultation — $99.99 USDC</a>
+    <a href="https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982d" class="button">💸 Send Tip (1 USDC)</a>
+    <a href="https://paypal.me/crimzn" class="button">🌐 Pay with PayPal</a>
+  </section>
+
+  <section id="chat">
     <h2>Talk to CrimznBot</h2>
-    <div id="chat-output"></div>
-    <input type="text" id="user-input" class="input-field" placeholder="Ask me anything crypto..." />
-    <button id="send-button" class="send-btn" onclick="sendMessage()">Send</button>
+    <div id="chat-log">Ask me anything...</div>
+    <form>
+      <input type="text" placeholder="Ask me anything crypto..." required />
+      <br>
+      <button type="submit">Send</button>
+    </form>
+  </section>
 
-    <div id="paywall" style="display:none; margin-top: 20px;">
-      <p>🛑 You've reached your free question limit. To continue, please:</p>
-      <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">💰 Pay $99.99 USDC</a><br>
-      <a href="https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b" target="_blank">🙏 Send Tip (1 USDC)</a><br>
-      <a href="https://cryptoconsult.onrender.com/solana" target="_blank">⚡ Pay with Solana</a><br>
-      <a href="https://t.me/Crimznbot" target="_blank">📬 Telegram @Crimznbot</a>
-    </div>
-
-    <hr style="border: 1px solid #f7931a; margin: 40px 0;" />
-
+  <section id="contact">
     <h2>Contact Me</h2>
-    <a href="mailto:crimzncipriano@gmail.com">📧 Email Crimzn</a><br>
-    <a href="https://t.me/Crimznbot" target="_blank">💬 Telegram @Crimznbot</a>
+    <a href="mailto:crimzncipriano@gmail.com" class="button">📧 Email Crimzn</a>
+    <a href="https://t.me/Crimznbot" class="button">💬 Telegram @Crimznbot</a>
+  </section>
 
+  <section id="license">
     <h2>License</h2>
-    <p>📄 MIT License</p>
+    <a href="https://github.com/MUSICNFTACCESS/CryptoConsult/blob/main/LICENSE" class="button">📄 MIT License</a>
+  </section>
 
-    <footer>
-      <p>© 2025 CryptoConsult by Crimzn. Not financial advice. DYOR.</p>
-    </footer>
-  </div>
+  <footer>
+    <p>© 2025 CryptoConsult by Crimzn.<br>Not financial advice. DYOR.</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
