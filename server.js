@@ -17,6 +17,8 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
+let totalQuestionsAsked = 0;
+
 // Root route
 app.get("/", (req, res) => {
   res.send("CrimznBot backend is live.");
@@ -34,16 +36,22 @@ app.get("/price", async (req, res) => {
   }
 });
 
-// CrimznBot endpoint
+// CrimznBot chat endpoint (POST)
 app.post("/chat", async (req, res) => {
   const userMessage = req.body.message;
   if (!userMessage) return res.status(400).json({ error: "No message provided" });
+
+  totalQuestionsAsked++;
+  console.log(`Q#${totalQuestionsAsked} → ${userMessage}`);
 
   try {
     const response = await openai.createChatCompletion({
       model: "gpt-4",
       messages: [
-        { role: "system", content: "You are CrimznBot, a bold and brilliant crypto consultant with deep insight into markets, macro, and degen moves. Always be direct, data-backed, and helpful." },
+        {
+          role: "system",
+          content: `You are CrimznBot, a bold, brilliant crypto strategist with a degen twist. You speak like Raoul Pal, but with edge. If asked about prices, macro, tokens, or cycles — give detailed, confident answers. Keep replies focused, but with swagger.`,
+        },
         { role: "user", content: userMessage }
       ],
       max_tokens: 300,
@@ -55,6 +63,11 @@ app.post("/chat", async (req, res) => {
     console.error("OpenAI error:", err.message);
     res.status(500).json({ error: "Failed to get CrimznBot response" });
   }
+});
+
+// GET fallback to avoid 404 on /chat visits
+app.get("/chat", (req, res) => {
+  res.status(405).send("Please use POST /chat with a message in the body.");
 });
 
 app.listen(port, () => {
