@@ -1,56 +1,49 @@
-let questionCount = 0;
-const maxFreeQuestions = 3;
+document.addEventListener("DOMContentLoaded", () => {
+  const chatLog = document.getElementById("chat-log");
+  const input = document.querySelector("input");
+  const sendButton = document.querySelector("button");
 
-const BACKEND_URL = "https://cryptoconsult-1.onrender.com";
+  async function fetchPrices() {
+    try {
+      const res = await fetch("/prices");
+      const data = await res.json();
 
-// 🔁 Fetch live crypto prices every 60 seconds
-async function fetchPrices() {
-  try {
-    const res = await fetch(`${BACKEND_URL}/price`);
-    const data = await res.json();
-    document.getElementById("btc-price").textContent = `$${data.bitcoin} USD`;
-    document.getElementById("eth-price").textContent = `$${data.ethereum} USD`;
-    document.getElementById("sol-price").textContent = `$${data.solana} USD`;
-  } catch (err) {
-    document.getElementById("btc-price").textContent = "Error USD";
-    document.getElementById("eth-price").textContent = "Error USD";
-    document.getElementById("sol-price").textContent = "Error USD";
-  }
-}
-
-// 🤖 Handle chat interaction and question limits
-async function sendMessage() {
-  const input = document.getElementById("user-input");
-  const output = document.getElementById("chat-output");
-  const paywall = document.getElementById("paywall");
-  const message = input.value.trim();
-
-  if (!message) return;
-
-  if (questionCount >= maxFreeQuestions) {
-    paywall.style.display = "block";
-    input.disabled = true;
-    document.getElementById("send-button").disabled = true;
-    return;
+      document.getElementById("btc-price").textContent = `BTC: $${data.btc} USD`;
+      document.getElementById("eth-price").textContent = `ETH: $${data.eth} USD`;
+      document.getElementById("sol-price").textContent = `SOL: $${data.sol} USD`;
+    } catch (err) {
+      document.getElementById("btc-price").textContent = "BTC: Error USD USD";
+      document.getElementById("eth-price").textContent = "ETH: Error USD USD";
+      document.getElementById("sol-price").textContent = "SOL: Error USD USD";
+    }
   }
 
-  output.innerHTML += `<p style="color:#f7931a;"><strong>You:</strong> ${message}</p>`;
-  input.value = "";
+  async function sendMessage() {
+    const message = input.value.trim();
+    if (!message) return;
 
-  try {
-    const res = await fetch(`${BACKEND_URL}/chat`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message }),
-    });
+    chatLog.innerHTML = `<span style="color: orange;">You:</span> ${message}`;
+    input.value = "Loading...";
 
-    const data = await res.json();
-    output.innerHTML += `<p style="color:#00ff00;"><strong>CrimznBot:</strong> ${data.reply}</p>`;
-    questionCount++;
-  } catch (err) {
-    output.innerHTML += `<p style="color:red;"><strong>Error:</strong> Please try again</p>`;
+    try {
+      const res = await fetch("/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: message }),
+      });
+      const data = await res.json();
+      chatLog.innerHTML += `<br><span style="color: lime;">CrimznBot:</span> ${data.answer}`;
+    } catch (err) {
+      chatLog.innerHTML += `<br><span style="color: red;">Error talking to CrimznBot.</span>`;
+    }
+
+    input.value = "";
   }
-}
 
-window.onload = fetchPrices;
-setInterval(fetchPrices, 60000); // every 60 seconds
+  sendButton.onclick = sendMessage;
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") sendMessage();
+  });
+
+  fetchPrices();
+});
