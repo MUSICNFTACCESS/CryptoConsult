@@ -2,159 +2,164 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CryptoConsult by Crimzn</title>
   <style>
     body {
-      background-color: #000000;
+      background-color: #000;
       color: #f7931a;
       font-family: 'Courier New', Courier, monospace;
       margin: 0;
       padding: 0;
     }
-    h1, h2, h3 {
-      color: #f7931a;
+    header, footer {
+      background-color: #111;
       text-align: center;
+      padding: 20px;
     }
     .container {
       max-width: 720px;
       margin: 0 auto;
       padding: 20px;
-      text-align: center;
     }
-    .section {
+    section {
       margin-top: 40px;
-      padding-top: 16px;
       border-top: 1px solid #f7931a;
+      padding-top: 20px;
     }
-    button {
+    button, a.button {
       background-color: #f7931a;
       color: black;
       border: none;
-      padding: 10px 20px;
-      font-family: inherit;
-      font-size: 16px;
-      margin: 5px;
+      padding: 10px 16px;
+      margin: 10px 5px;
       cursor: pointer;
-      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
     }
-    input, textarea {
-      width: 90%;
+    input {
       padding: 10px;
+      width: 70%;
+      border: none;
       margin-top: 10px;
-      background-color: #1a1a1a;
-      color: #f7931a;
-      border: 1px solid #f7931a;
-      border-radius: 6px;
     }
-    #chat-box {
-      background-color: #1a1a1a;
+    #chatbox {
       border: 1px solid #f7931a;
-      height: 300px;
-      overflow-y: scroll;
       padding: 10px;
-      margin-bottom: 10px;
-      text-align: left;
+      margin-top: 20px;
+      background-color: #111;
     }
-    .user-msg {
+    .user-message {
       color: #f7931a;
     }
-    .bot-msg {
-      color: #00ff84;
+    .bot-response {
+      color: #00ff88;
+    }
+    .license-badge {
+      margin-top: 10px;
+      display: block;
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <header>
     <h1>CryptoConsult by Crimzn</h1>
-    <p>Your source for pro-level crypto insights, strategy, and signals.</p>
-
-    <div class="section">
-      <h2>Live Prices</h2>
+  </header>
+  
+  <div class="container">
+    <section>
+      <h2>Live Crypto Prices</h2>
       <p>BTC: <span id="btc-price">Loading...</span> USD</p>
       <p>ETH: <span id="eth-price">Loading...</span> USD</p>
       <p>SOL: <span id="sol-price">Loading...</span> USD</p>
-    </div>
+    </section>
 
-    <div class="section">
+    <section>
+      <h2>About Crimzn</h2>
+      <p>Crimzn is a crypto strategist and consultant offering premium insight into blockchain investments, DeFi, and macro trends. This platform is built for crypto guidance, not financial advice.</p>
+    </section>
+
+    <section>
       <h2>Available Services</h2>
-      <ul style="text-align:left;">
-        <li>📈 Technical Analysis</li>
-        <li>📊 Fundamental Analysis</li>
+      <ul>
+        <li>📊 Technical Analysis</li>
+        <li>📚 Fundamental Analysis</li>
         <li>🧠 Strategy & Risk Management</li>
-        <li>🧾 Onboarding & Wallet Setup</li>
+        <li>🔐 Onboarding & Wallet Setup</li>
         <li>💸 Off-Ramping & Capital Rotation</li>
-        <li>📚 Education & Research</li>
+        <li>📘 Education & Research</li>
       </ul>
-    </div>
+    </section>
 
-    <div class="section">
+    <section>
       <h2>Support & Payments</h2>
-      <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">
-        <button>💼 Book a Consultation – $99.99 USDC</button>
-      </a>
-      <a href="https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b" target="_blank">
-        <button>💰 Send Tip (1 USDC)</button>
-      </a>
-      <a href="https://www.paypal.me/crimzn" target="_blank">
-        <button>💸 Pay with PayPal</button>
-      </a>
-    </div>
+      <a class="button" href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8">Book a Consultation — $99.99 USDC</a>
+      <a class="button" href="https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b">Send Tip (1 USDC)</a>
+      <a class="button" href="https://paypal.me/crimzn">Pay with PayPal</a>
+    </section>
 
-    <div class="section">
+    <section>
       <h2>Talk to CrimznBot</h2>
-      <div id="chat-box"></div>
+      <div id="chatbox"></div>
       <input type="text" id="user-input" placeholder="Ask me anything crypto..." />
-      <button id="send-button" onclick="sendMessage()">Send</button>
-    </div>
+      <button onclick="sendMessage()">Send</button>
+    </section>
 
-    <div class="section">
+    <section>
       <h2>Contact Me</h2>
-      <p>
-        <a href="mailto:crimzncipriano@gmail.com" target="_blank">
-          <button>📧 Email Crimzn</button>
-        </a>
-        <a href="https://t.me/Crimznbot" target="_blank">
-          <button>📲 Telegram @Crimznbot</button>
-        </a>
-      </p>
-    </div>
+      <a class="button" href="mailto:crimzncipriano@gmail.com">📧 Email Crimzn</a>
+      <a class="button" href="https://t.me/Crimznbot">💬 Telegram @Crimznbot</a>
+    </section>
+
+    <section>
+      <h2>License</h2>
+      <a href="https://github.com/MUSICNFTACCESS/CryptoConsult/blob/main/LICENSE">
+        <img class="license-badge" src="https://img.shields.io/github/license/MUSICNFTACCESS/CryptoConsult?color=f7931a&style=flat-square" alt="License">
+      </a>
+    </section>
   </div>
+
+  <footer>
+    <p>&copy; 2025 CryptoConsult by Crimzn. Not financial advice. DYOR.</p>
+  </footer>
 
   <script>
     async function fetchPrice(symbol, elementId) {
       try {
-        const res = await fetch(`/price?symbol=${symbol}`);
+        const res = await fetch(`https://cryptoconsult-1.onrender.com/price?symbol=${symbol}`);
         const data = await res.json();
-        document.getElementById(elementId).textContent = data.price || "N/A";
-      } catch {
-        document.getElementById(elementId).textContent = "Error";
+        document.getElementById(elementId).innerText = data.price || 'N/A';
+      } catch (e) {
+        document.getElementById(elementId).innerText = 'Error';
       }
     }
 
-    fetchPrice("bitcoin", "btc-price");
-    fetchPrice("ethereum", "eth-price");
-    fetchPrice("solana", "sol-price");
+    fetchPrice('bitcoin', 'btc-price');
+    fetchPrice('ethereum', 'eth-price');
+    fetchPrice('solana', 'sol-price');
 
     async function sendMessage() {
-      const input = document.getElementById("user-input");
-      const chatBox = document.getElementById("chat-box");
-      const message = input.value.trim();
+      const input = document.getElementById('user-input');
+      const chatbox = document.getElementById('chatbox');
+      const message = input.value;
       if (!message) return;
 
-      chatBox.innerHTML += `<div class="user-msg"><strong>You:</strong> ${message}</div>`;
-      input.value = "";
+      chatbox.innerHTML = `<div class='user-message'><strong>You:</strong> ${message}</div>`;
+      input.value = '';
 
       try {
-        const res = await fetch("/chat", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
+        const res = await fetch("https://cryptoconsult-1.onrender.com/chat", {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ message })
         });
+
         const data = await res.json();
-        chatBox.innerHTML += `<div class="bot-msg"><strong>CrimznBot:</strong> ${data.reply || data.error}</div>`;
-        chatBox.scrollTop = chatBox.scrollHeight;
+        const reply = data.reply || data.message || 'No response.';
+        chatbox.innerHTML += `<div class='bot-response'><strong>CrimznBot:</strong> ${reply}</div>`;
       } catch (err) {
-        chatBox.innerHTML += `<div class="bot-msg">⚠️ Error getting response</div>`;
+        chatbox.innerHTML += `<div class='bot-response'><strong>CrimznBot:</strong> Error getting response.</div>`;
       }
     }
   </script>
