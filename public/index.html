@@ -2,188 +2,153 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CryptoConsult by Crimzn</title>
   <style>
     body {
       background-color: #000;
       color: #f7931a;
-      font-family: 'Courier New', Courier, monospace;
+      font-family: 'Courier New', monospace;
+      text-align: center;
       margin: 0;
-      padding: 0;
+      padding: 0 10px;
     }
     h1, h2, h3 {
       color: #f7931a;
-      text-align: center;
+      margin-top: 30px;
     }
-    .container {
-      max-width: 720px;
-      margin: auto;
-      padding: 20px;
-      text-align: center;
-    }
-    .chat-box {
-      background-color: #111;
+    hr {
       border: 1px solid #f7931a;
-      border-radius: 8px;
-      padding: 10px;
-      margin-top: 20px;
-    }
-    #response {
-      white-space: pre-wrap;
-      margin-top: 10px;
-      background-color: #222;
-      padding: 10px;
-      border-radius: 5px;
-      color: #00ff00;
-    }
-    input[type="text"] {
-      width: 80%;
-      padding: 8px;
-      border-radius: 4px;
-      border: none;
-      margin-right: 5px;
+      margin: 30px 0;
     }
     button {
-      padding: 8px 16px;
-      border: none;
-      border-radius: 4px;
       background-color: #f7931a;
       color: black;
+      border: none;
+      padding: 8px 12px;
+      margin: 4px;
+      border-radius: 5px;
       font-weight: bold;
       cursor: pointer;
-      margin: 4px;
     }
-    .section {
-      margin-top: 40px;
-      padding-top: 16px;
-      border-top: 1px solid #f7931a;
+    button:hover {
+      opacity: 0.85;
     }
-    .price {
-      font-size: 1.2em;
-      margin: 5px 0;
+    .message-box {
+      background-color: #111;
+      border: 1px solid #f7931a;
+      padding: 10px;
+      margin: 10px auto;
+      max-width: 90%;
+      color: #0f0;
     }
-    .footer {
-      margin-top: 40px;
-      font-size: 0.9em;
-      text-align: center;
-    }
-    .license {
-      margin-top: 10px;
-    }
-    a {
+    input[type="text"] {
+      padding: 8px;
+      width: 60%;
+      border: 1px solid #f7931a;
+      border-radius: 5px;
+      margin-right: 8px;
+      background: #000;
       color: #f7931a;
     }
-    .solana-qr {
-      margin-top: 20px;
-      display: none;
+    .emoji-list {
+      list-style: none;
+      padding-left: 0;
     }
-    @media (min-width: 600px) {
-      .solana-qr {
-        display: block;
-      }
+    .emoji-list li {
+      margin: 6px 0;
+      font-size: 1em;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>CryptoConsult by Crimzn</h1>
-    <p>Strategic crypto insights, portfolio analysis, and direct access to your personal AI assistant — CrimznBot.</p>
+  <h1>CryptoConsult by Crimzn</h1>
+  <p>Ask CrimznBot anything about crypto, markets, or blockchain strategy.</p>
 
-    <div class="section">
-      <h2>Live Prices</h2>
-      <div id="btc" class="price">BTC: Loading...</div>
-      <div id="eth" class="price">ETH: Loading...</div>
-      <div id="sol" class="price">SOL: Loading...</div>
-    </div>
+  <hr>
 
-    <div class="section">
-      <h2>Services Offered</h2>
-      <ul style="text-align:left;">
-        <li>📊 Technical & Fundamental Analysis</li>
-        <li>💼 Portfolio Strategy & Allocation</li>
-        <li>🧠 Blockchain Education & Guidance</li>
-        <li>🛠 Wallet Setup & Risk Management</li>
-        <li>🧾 Tax-Efficient Exit Planning</li>
-      </ul>
-    </div>
+  <h2>Live Crypto Prices</h2>
+  <p>BTC: <span id="btc-price">Loading...</span> USD</p>
+  <p>ETH: <span id="eth-price">Loading...</span> USD</p>
+  <p>SOL: <span id="sol-price">Loading...</span> USD</p>
 
-    <div class="section">
-      <h2>Talk to CrimznBot</h2>
-      <div class="chat-box">
-        <input type="text" id="message" placeholder="Ask me anything crypto..." />
-        <button onclick="sendMessage()">Send</button>
-        <div id="response"></div>
-      </div>
-    </div>
+  <hr>
 
-    <div class="section">
-      <h2>Support & Payments</h2>
-      <button onclick="window.open('https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8')">
-        Pay $99.99 for Services Rendered
-      </button><br>
-      <button onclick="window.open('https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b')">
-        Send Tip (1 USDC)
-      </button><br>
-      <button onclick="window.open('https://www.paypal.me/crimzn')">
-        Pay with PayPal
-      </button><br>
-      <div class="solana-qr">
-        <p>Prefer Solana? Scan to pay:</p>
-        <img src="https://arweave.net/EPgg6JrMQCj4bbPXJ4MHsNsBp9LQxli6b8y9Zvc98Lg" alt="Solana Pay QR" width="150" />
-      </div>
-    </div>
+  <h2>Services Offered</h2>
+  <ul class="emoji-list">
+    <li>📊 Technical & Fundamental Analysis</li>
+    <li>💼 Portfolio Strategy & Allocation</li>
+    <li>🧠 Blockchain Education & Guidance</li>
+    <li>🛠 Wallet Setup & Risk Management</li>
+    <li>🧾 Tax-Efficient Exit Planning</li>
+  </ul>
 
-    <div class="section">
-      <h2>Contact Me</h2>
-      <button onclick="window.open('mailto:crimzncipriano@gmail.com')">Email Crimzn</button>
-      <button onclick="window.open('https://t.me/Crimznbot')">Message on Telegram</button>
-    </div>
+  <hr>
 
-    <div class="footer">
-      <p>Not financial advice. Consult with a licensed advisor before investing.</p>
-      <div class="license">
-        <a href="https://github.com/MUSICNFTACCESS/CryptoConsult/blob/main/LICENSE" target="_blank">
-          <img src="https://img.shields.io/github/license/MUSICNFTACCESS/CryptoConsult?color=orange" alt="License Badge" />
-        </a>
-      </div>
-    </div>
+  <h2>Talk to CrimznBot</h2>
+  <div class="message-box" id="response">No response</div>
+  <input type="text" id="user-input" placeholder="What can you do..." />
+  <button onclick="sendMessage()">Send</button>
+
+  <hr>
+
+  <h2>Support & Payments</h2>
+  <div>
+    <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">
+      <button>Pay $99.99 for Services Rendered</button>
+    </a>
+    <a href="https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b" target="_blank">
+      <button>Send Tip (1 USDC)</button>
+    </a>
+    <a href="https://www.paypal.me/crimzn" target="_blank">
+      <button>Pay with PayPal</button>
+    </a>
   </div>
+
+  <h3>Prefer Solana? Scan to pay:</h3>
+  <p>
+    <img src="https://arweave.net/9N6O4kdxhW23UOmJnn_bRddKUzpQrkAyEEMD9klRE_s" alt="Solana Pay QR" width="180" height="180">
+  </p>
+
+  <hr>
+
+  <h2>Contact Me</h2>
+  <div>
+    <a href="mailto:crimzncipriano@gmail.com">
+      <button>Email Crimzn</button>
+    </a>
+    <a href="https://t.me/Crimznbot" target="_blank">
+      <button>Message on Telegram</button>
+    </a>
+  </div>
+
+  <hr>
+
+  <h2>License</h2>
+  <a href="https://opensource.org/licenses/MIT" target="_blank">
+    <img src="https://img.shields.io/badge/license-MIT-orange" alt="MIT License">
+  </a>
+
+  <p style="margin-top: 20px;">
+    © 2025 CryptoConsult by Crimzn.<br>
+    Not financial advice. Consult with a licensed advisor before investing.
+  </p>
 
   <script>
     async function sendMessage() {
-      const message = document.getElementById("message").value;
-      const resDiv = document.getElementById("response");
-      resDiv.innerHTML = "Thinking...";
+      const input = document.getElementById("user-input").value;
+      const resBox = document.getElementById("response");
+      if (!input) return;
+
+      resBox.innerText = "Thinking...";
       try {
-        const res = await fetch("https://cryptoconsult-1.onrender.com/chat", {
+        const response = await fetch("https://cryptoconsult-1.onrender.com/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message })
+          body: JSON.stringify({ message: input })
         });
-        const data = await res.json();
-        resDiv.innerHTML = data.response || data.error || "No response";
+
+        const data = await response.json();
+        resBox.innerText = data.reply || "⚠️ Error: Please try again";
       } catch (err) {
-        resDiv.innerHTML = "❌ Error: Please try again";
-      }
-    }
-
-    async function fetchPrices() {
-      const coins = ["bitcoin", "ethereum", "solana"];
-      for (let coin of coins) {
-        try {
-          const res = await fetch(`https://cryptoconsult-1.onrender.com/price?symbol=${coin}`);
-          const data = await res.json();
-          document.getElementById(coin === "bitcoin" ? "btc" : coin === "ethereum" ? "eth" : "sol").innerText =
-            coin.toUpperCase() + ": $" + (data.price || "N/A");
-        } catch {
-          document.getElementById(coin === "bitcoin" ? "btc" : coin === "ethereum" ? "eth" : "sol").innerText =
-            coin.toUpperCase() + ": Error";
-        }
-      }
-    }
-
-    fetchPrices();
-    setInterval(fetchPrices, 60000); // update every minute
-  </script>
-</body>
-</html>
+        res
