@@ -3,7 +3,6 @@ process.on("uncaughtException", err => console.error("❌ Uncaught:", err));
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
-const fetch = require("node-fetch");
 const OpenAI = require("openai");
 const path = require("path");
 
