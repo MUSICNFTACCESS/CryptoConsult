@@ -1,3 +1,4 @@
+const fetch = (...args) => import("node-fetch").then(({default: fetch}) => fetch(...args));
 process.on("uncaughtException", err => console.error("❌ Uncaught:", err));
 require("dotenv").config();
 const express = require("express");
