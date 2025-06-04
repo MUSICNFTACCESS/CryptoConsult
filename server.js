@@ -28,14 +28,12 @@ app.listen(PORT, () => {
 
 // 🧠 CrimznBot Chat Route (GPT-4o style)
 app.use(express.json());
-const { Configuration, OpenAIApi } = require("openai");
 
 let openai;
 try {
-  const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
   });
-  openai = new OpenAIApi(configuration);
+  openai = new OpenAIApi({ apiKey: process.env.OPENAI_API_KEY });
 } catch (err) {
   console.error("⚠️ OpenAI config failed:", err.message);
 }
