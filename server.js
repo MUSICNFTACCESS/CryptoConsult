@@ -55,6 +55,6 @@ app.get("/prices", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
+app.listen(3000, () => { console.log("🚀 CrimznBot running at http://localhost:3000"); });
   console.log(`🚀 CrimznBot running at http://localhost:${port}`);
 });
